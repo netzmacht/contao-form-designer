@@ -4,12 +4,8 @@ services:
     arguments:
       - '@netzmacht.contao_form_designer.layout_manager'
       - '@netzmacht.contao_form_designer.repository.layout'
-      - '@factory'
-
-    #        LayoutManager $manager,
-#             FormLayoutRepository $repository,
-#             FormLayoutFactory $factory,
-#             LoggerInterface $logger,
+      - '@netzmacht.contao_form_designer.layout_factory'
+      - '@monolog.logger.contao'
 
   netzmacht.contao_form_designer.listener.theme_form_layout:
     class: Netzmacht\Contao\FormDesigner\Listener\ThemeFormLayoutListener
