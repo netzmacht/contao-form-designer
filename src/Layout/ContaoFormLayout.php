@@ -11,6 +11,7 @@
 namespace Netzmacht\Contao\FormDesigner\Layout;
 
 use Contao\Widget;
+use Netzmacht\Html\Attributes;
 
 /**
  * Class ContaoFormLayout.
@@ -44,6 +45,39 @@ final class ContaoFormLayout extends AbstractFormLayout
         $this->widgetConfig      = $widgetConfig;
         $this->fallbackTemplates = $fallbackTemplates;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getContainerAttributes(Widget $widget)
+    {
+        $attributes = new Attributes();
+        $attributes
+            ->addClass('form-widget')
+            ->addClass('form-' . $widget->style);
+
+        if ($widget->class) {
+            $attributes->addClass($widget->class);
+        }
+
+        return $attributes;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getLabelAttributes(Widget $widget)
+    {
+        $attributes = new Attributes();
+        $attributes->setAttribute('for', 'ctrl_' . $widget->id);
+
+        if ($widget->class) {
+            $attributes->addClass($widget->class);
+        }
+
+        return $attributes;
+    }
+
 
     /**
      * {@inheritdoc}
@@ -91,8 +125,8 @@ final class ContaoFormLayout extends AbstractFormLayout
             return $this->widgetConfig[$widget->type][$section];
         }
 
-        if (isset($this->fallbackTemplates[$widget->type])) {
-            return $this->fallbackTemplates[$widget->type];
+        if (isset($this->fallbackTemplates[$section])) {
+            return $this->fallbackTemplates[$section];
         }
 
         return '';

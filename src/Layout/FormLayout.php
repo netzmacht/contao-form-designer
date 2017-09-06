@@ -11,6 +11,7 @@
 namespace Netzmacht\Contao\FormDesigner\Layout;
 
 use Contao\Widget;
+use Netzmacht\Html\Attributes;
 
 /**
  * Class FormLayout
@@ -54,4 +55,22 @@ interface FormLayout
      * @return string
      */
     public function renderErrors(Widget $widget);
+
+    /**
+     * Get container attributes.
+     *
+     * @param Widget $widget Form widget.
+     *
+     * @return Attributes
+     */
+    public function getContainerAttributes(Widget $widget);
+
+    /**
+     * Get label attributes.
+     *
+     * @param Widget $widget Form widget.
+     *
+     * @return Attributes
+     */
+    public function getLabelAttributes(Widget $widget);
 }
