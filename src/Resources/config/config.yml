@@ -31,3 +31,5 @@ parameters:
       control: 'fd_control_text'
     upload:
       control: 'fd_control_upload'
+
+  netzmacht.contao_form_designer.form_designer.modules: []
