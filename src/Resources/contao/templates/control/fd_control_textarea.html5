@@ -1,0 +1,6 @@
+<textarea name="<?= $this->widget->name ?>"
+          id="ctrl_<?= $this->widget->id ?>"
+          class="textarea<?php if ($this->widget->class) echo ' ' . $this->widget->class; ?>"
+          rows="<?= $this->widget->rows ?>"
+          cols="<?= $this->widget->cols ?>"<?= $this->widget->getAttributes() ?>
+    ><?= $this->widget->value ?></textarea>

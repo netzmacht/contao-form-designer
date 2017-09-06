@@ -1,24 +1,32 @@
 parameters:
   netzmacht.contao_form_designer.defaults:
     layout: 'fd_layout_row'
-    error:  'fd_error_single'
+    error:  'fd_error_latest'
     control: 'fd_control_default'
     label:  'fd_label_default'
     
   netzmacht.contao_form_designer.widgets:
+    captcha:
+      control: 'fd_control_captcha'
     checkbox:
       control: 'fd_control_checkbox'
+      layout:  'fd_layout_row_field'
     explanation:
       control: 'fd_control_explanation'
+      layout:  'fd_layout_row_field'
     message:
       control: 'fd_control_message'
     password:
       control: 'fd_control_password'
-      layout:   'fd_layout_row_double'
+      layout:   'fd_layout_row_password'
     radio:
       control: 'fd_control_radio'
+      layout:  'fd_layout_row_field'
     select:
       control: 'fd_control_select'
+    submit:
+      control: 'fd_control_submit'
+      layout:  'fd_layout_row_field'
     textarea:
       control: 'fd_control_textarea'
     text:

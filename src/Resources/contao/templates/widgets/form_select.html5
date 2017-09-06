@@ -1,0 +1,6 @@
+<?php
+
+$manager = \Contao\System::getContainer()->get('netzmacht.contao_form_designer.layout_manager');
+$layout  = $manager->getLayout($this);
+
+echo $layout->render($this);

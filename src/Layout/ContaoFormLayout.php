@@ -54,7 +54,7 @@ final class ContaoFormLayout extends AbstractFormLayout
         $attributes = new Attributes();
         $attributes
             ->addClass('form-widget')
-            ->addClass('form-' . $widget->style);
+            ->addClass('form-' . $widget->type);
 
         if ($widget->class) {
             $attributes->addClass($widget->class);
@@ -77,7 +77,6 @@ final class ContaoFormLayout extends AbstractFormLayout
 
         return $attributes;
     }
-
 
     /**
      * {@inheritdoc}
