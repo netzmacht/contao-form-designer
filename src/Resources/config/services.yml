@@ -16,5 +16,8 @@ services:
     arguments:
       - []
 
+  netzmacht.contao_form_designer.repository.form:
+    class: Netzmacht\Contao\FormDesigner\Model\Form\ContaoFormRepository
+
   netzmacht.contao_form_designer.repository.layout:
     class: Netzmacht\Contao\FormDesigner\Model\FormLayout\ContaoFormLayoutRepository

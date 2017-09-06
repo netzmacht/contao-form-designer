@@ -19,6 +19,9 @@ use Contao\FormModel;
  */
 class ContaoFormRepository implements FormRepository
 {
+    /**
+     * {@inheritdoc}
+     */
     public function find($formId)
     {
         return FormModel::findByPk($formId);

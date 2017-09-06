@@ -17,6 +17,7 @@ use Contao\ModuleModel;
 use Netzmacht\Contao\FormDesigner\FormLayoutFactory;
 use Netzmacht\Contao\FormDesigner\Layout\FormLayout;
 use Netzmacht\Contao\FormDesigner\LayoutManager;
+use Netzmacht\Contao\FormDesigner\Model\Form\FormRepository;
 use Netzmacht\Contao\FormDesigner\Model\FormLayout\FormLayoutRepository;
 use Psr\Log\LoggerInterface;
 
@@ -35,11 +36,19 @@ class ContextualFormLayoutListener extends AbstractListener
     private $supportedModules;
 
     /**
+     * Form repository.
+     *
+     * @var FormRepository
+     */
+    private $formRepository;
+
+    /**
      * HookListener constructor.
      *
      * @param LayoutManager        $manager          Layout manager.
      * @param FormLayoutRepository $repository       Form layout repository.
      * @param FormLayoutFactory    $factory          Form layout factory.
+     * @param FormRepository       $formRepository   Form repository.
      * @param LoggerInterface      $logger           Logger.
      * @param array                $supportedModules Supported modules.
      */
@@ -47,12 +56,14 @@ class ContextualFormLayoutListener extends AbstractListener
         LayoutManager $manager,
         FormLayoutRepository $repository,
         FormLayoutFactory $factory,
+        FormRepository $formRepository,
         LoggerInterface $logger,
         array $supportedModules
     ) {
         parent::__construct($manager, $repository, $factory, $logger);
 
         $this->supportedModules = $supportedModules;
+        $this->formRepository = $formRepository;
     }
 
     /**
@@ -96,7 +107,7 @@ class ContextualFormLayoutListener extends AbstractListener
      */
     private function handleForm(Model $model)
     {
-        $form = FormModel::findByPk($model->form);
+        $form = $this->formRepository->find($model->form);
         if (!$form) {
             return;
         }

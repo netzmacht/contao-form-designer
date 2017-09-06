@@ -5,8 +5,14 @@ services:
       - '@netzmacht.contao_form_designer.layout_manager'
       - '@netzmacht.contao_form_designer.repository.layout'
       - '@netzmacht.contao_form_designer.layout_factory'
+      - '@netzmacht.contao_form_designer.repository.form'
       - '@logger'
       - '%netzmacht.contao_form_designer.form_designer.modules%'
 
   netzmacht.contao_form_designer.listener.theme_form_layout:
     class: Netzmacht\Contao\FormDesigner\Listener\ThemeFormLayoutListener
+    arguments:
+      - '@netzmacht.contao_form_designer.layout_manager'
+      - '@netzmacht.contao_form_designer.repository.layout'
+      - '@netzmacht.contao_form_designer.layout_factory'
+      - '@logger'
