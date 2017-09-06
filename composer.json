@@ -2,30 +2,29 @@
   "name":"netzmacht/contao-form-designer",
   "description":"Contao form designer allows custom form styles",
   "keywords":["form", "contao"],
-  "type":"contao-module",
+  "type":"contao-bundle",
   "license":"LGPL-3.0+",
   "authors":[
     {
       "name":"David Molineus",
       "email":"mail@netzmacht.de",
-      "homepage":"http://www.netzmacht.de",
+      "homepage":"https://netzmacht.de",
       "role":"Developer"
     }
   ],
   "support":{
     "email":"mail@netzmacht.de",
     "issues":"https://github.com/netzmacht/contao-form-designer/issues",
-    "wiki":"http://contao-bootstrap.netzmacht.de",
-    "source":"https://github.com/netzmacht/contao-form-designer/form"
+    "source":"https://github.com/netzmacht/contao-form-designer/"
   },
   "require":{
     "php":">=5.6.0",
     "contao/core-bundle":"~4.4",
-    "contao-community-alliance/composer-plugin": "~3.0",
     "contao-community-alliance/meta-palettes":"~1.10"
   },
   "require-dev": {
-    "netzmacht/contao-build-tools": "~1.1"
+    "netzmacht/contao-build-tools": "~1.1",
+    "contao/manager-plugin": "^2.1"
   },
   "autoload": {
     "psr-4": { "Netzmacht\\Contao\\FormDesigner\\": "src/" }
