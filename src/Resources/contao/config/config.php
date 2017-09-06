@@ -29,7 +29,7 @@ $GLOBALS['TL_HOOKS']['getFrontendModule'][] = [
     'onPostGenerateElement'
 ];
 
-$GLOBALS['TL_HOOKS']['getPage'][] = [
-    'netzmacht.contao_form_designer.fallback_layout',
+$GLOBALS['TL_HOOKS']['generatePage'][] = [
+    'netzmacht.contao_form_designer.listener.theme_form_layout',
     'onGeneratePage'
 ];
