@@ -1,0 +1,7 @@
+<?php if ($this->widget->hasErrors()): ?>
+    <ul class="errors">
+        <?php foreach($this->widget->getErrors() as $error): ?>
+            <li class="error"><?php echo $error; ?></li>
+        <?php endforeach; ?>
+    </ul>
+<?php endif; ?>

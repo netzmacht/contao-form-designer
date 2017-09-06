@@ -1,0 +1,5 @@
+<?php if ($this->widget->label): ?>
+    <label <?= $this->layout->getLabelAttributes($this->widget) ?>>
+        <span class="invisible"><?= $this->widget->mandatoryField ?> </span><?= $this->widget->label ?><span class="mandatory">*</span>
+    </label>
+<?php endif; ?>

@@ -1,0 +1,34 @@
+<?php $attributes = $this->layout->getContainerAttributes($this->widget); ?>
+<div <?= $attributes ?>>
+    <?php $this->block('label'); ?>
+    <?php $this->insert(
+        $this->layout->getLabelTemplate(),
+        ['layout' => $this->layout, 'widget' => $this->widget]
+    ); ?>
+    <?php $this->endblock(); ?>
+
+    <?php $this->block('field'); ?>
+    <?php $this->insert(
+        $this->layout->getWidgetTemplate($this->widget),
+        ['layout' => $this->layout, 'widget' => $this->widget]
+    ); ?>
+    <?php $this->endblock(); ?>
+
+    <?php $this->block('error'); ?>
+    <?php $this->insert(
+        $this->layout->getErrorTemplate(),
+        ['layout' => $this->layout, 'widget' => $this->widget]
+    ); ?>
+    <?php $this->endblock(); ?>
+</div>
+
+<div <?= $attributes->addClass('confirm') ?>>
+    <?php $this->block('label2'); ?>
+    <?php $this->endblock(); ?>
+
+    <?php $this->block('field2'); ?>
+    <?php $this->endblock(); ?>
+
+    <?php $this->block('error2'); ?>
+    <?php $this->endblock(); ?>
+</div>

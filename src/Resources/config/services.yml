@@ -1,0 +1,20 @@
+services:
+  netzmacht.contao_form_designer.fallback_layout:
+    class: Netzmacht\Contao\FormDesigner\Layout\ContaoFormLayout
+    arguments:
+      - '%netzmacht.contao_form_designer.widgets%'
+      - '%netzmacht.contao_form_designer.defaults%'
+
+  netzmacht.contao_form_designer.layout_manager:
+    class: Netzmacht\Contao\FormDesigner\LayoutManager
+    arguments:
+      - '@event_dispatcher'
+      - '@netzmacht.contao_form_designer.fallback_layout'
+
+  netzmacht.contao_form_designer.layout_factory:
+    class: Netzmacht\Contao\FormDesigner\FormLayoutFactory
+    arguments:
+      - []
+
+  netzmacht.contao_form_designer.repository.layout:
+    class: Netzmacht\Contao\FormDesigner\Model\FormLayout\ContaoFormLayoutRepository

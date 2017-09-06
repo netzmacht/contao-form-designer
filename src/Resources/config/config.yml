@@ -1,0 +1,33 @@
+parameters:
+  netzmacht.contao_form_designer.defaults:
+    layout: 'fd_layout_row'
+    error:  'fd_error_single'
+    control: 'fd_control_default'
+    label:  'fd_label_default'
+    
+  netzmacht.contao_form_designer.widgets:
+    checkbox:
+      control: 'fd_control_checkbox'
+    explanation:
+      control: 'fd_control_explanation'
+    message:
+      control: 'fd_control_message'
+    password:
+      control: 'fd_control_password'
+      layout:   'fd_layout_row_double'
+    radio:
+      control: 'fd_control_radio'
+    select:
+      control: 'fd_control_select'
+    textarea:
+      control: 'fd_control_textarea'
+    text:
+      control: 'fd_control_text'
+    url:
+      control: 'fd_control_text'
+    email:
+      control: 'fd_control_text'
+    number:
+      control: 'fd_control_text'
+    upload:
+      control: 'fd_control_upload'
