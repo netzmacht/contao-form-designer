@@ -116,6 +116,7 @@ $GLOBALS['TL_DCA']['tl_form_layout'] = [
             'filter'           => true,
             'inputType'        => 'select',
             'options_callback' => ['netzmacht.contao_form_designer.listener.dca.form_layout', 'getTypes'],
+            'reference'        => &$GLOBALS['TL_LANG']['tl_form_layout']['types'],
             'eval'             => [
                 'tl_class'           => 'w50',
                 'includeBlankOption' => true,

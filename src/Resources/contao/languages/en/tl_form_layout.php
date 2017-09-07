@@ -38,3 +38,5 @@ $GLOBALS['TL_LANG']['tl_form_layout']['fallbackHelp'][0]    = 'Fallback help tem
 $GLOBALS['TL_LANG']['tl_form_layout']['fallbackHelp'][1]    = 'Help template being used if no specific widget template is defined.';
 
 $GLOBALS['TL_LANG']['tl_form_layout']['default'] = 'Default';
+
+$GLOBALS['TL_LANG']['tl_form_layout']['types']['standard'] = 'Standard';
