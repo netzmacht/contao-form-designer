@@ -8,10 +8,9 @@
  *
  */
 
-namespace Netzmacht\Contao\FormDesigner;
+namespace Netzmacht\Contao\FormDesigner\Factory;
 
 use Netzmacht\Contao\FormDesigner\Exception\CreatingLayoutFailed;
-use Netzmacht\Contao\FormDesigner\Factory\LayoutTypeFactory;
 use Netzmacht\Contao\FormDesigner\Layout\FormLayout;
 
 /**
@@ -19,19 +18,19 @@ use Netzmacht\Contao\FormDesigner\Layout\FormLayout;
  *
  * @package Netzmacht\Contao\FormDesigner
  */
-class FormLayoutFactory
+class DelegatingFormLayoutFactory implements FormLayoutFactory
 {
     /**
      * Factories map.
      *
-     * @var LayoutTypeFactory[]
+     * @var FormLayoutFactory[]
      */
     private $factories = [];
 
     /**
      * FormLayoutFactory constructor.
      *
-     * @param LayoutTypeFactory[] $factories
+     * @param FormLayoutFactory[] $factories
      */
     public function __construct(array $factories)
     {
@@ -39,20 +38,30 @@ class FormLayoutFactory
     }
 
     /**
-     * Create form layout for a widget.
-     *
-     * @param string $type   Form layout type.
-     * @param array  $config Form layout config.
-     *
-     * @return FormLayout
-     * @throws CreatingLayoutFailed
+     * {@inheritdoc}
      */
     public function create($type, array $config)
     {
         if (isset ($this->factories[$type])) {
-            return $this->factories[$type]->create($config);
+            return $this->factories[$type]->create($type, $config);
         }
 
         throw CreatingLayoutFailed::unsupportedType($type);
+    }
+
+    /**
+     * Get the list of supported types.
+     *
+     * @return array
+     */
+    public function supportedTypes()
+    {
+        return array_reduce(
+            $this->factories,
+            function ($types, FormLayoutFactory $factory) {
+                return array_merge($types, $factory->supportedTypes());
+            },
+            []
+        );
     }
 }

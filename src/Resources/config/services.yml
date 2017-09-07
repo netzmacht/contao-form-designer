@@ -12,7 +12,7 @@ services:
       - '@netzmacht.contao_form_designer.fallback_layout'
 
   netzmacht.contao_form_designer.layout_factory:
-    class: Netzmacht\Contao\FormDesigner\FormLayoutFactory
+    class: Netzmacht\Contao\FormDesigner\Factory\FormLayoutFactory
     arguments:
       - []
 

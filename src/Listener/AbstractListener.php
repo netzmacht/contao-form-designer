@@ -12,7 +12,7 @@ namespace Netzmacht\Contao\FormDesigner\Listener;
 
 use Contao\CoreBundle\Monolog\ContaoContext;
 use Netzmacht\Contao\FormDesigner\Exception\CreatingLayoutFailed;
-use Netzmacht\Contao\FormDesigner\FormLayoutFactory;
+use Netzmacht\Contao\FormDesigner\Factory\FormLayoutFactory;
 use Netzmacht\Contao\FormDesigner\LayoutManager;
 use Netzmacht\Contao\FormDesigner\Model\FormLayout\FormLayoutModel;
 use Netzmacht\Contao\FormDesigner\Model\FormLayout\FormLayoutRepository;
@@ -77,7 +77,7 @@ abstract class AbstractListener
     /**
      * Create form layout.
      *
-     * @param FormLayoutModel $model Form layout model.
+     * @param FormLayoutModel $model    Form layout model.
      * @param callable        $callback Callback to handle an created
      *
      * @return void

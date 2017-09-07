@@ -10,6 +10,7 @@
 
 namespace Netzmacht\Contao\FormDesigner\Factory;
 
+use Netzmacht\Contao\FormDesigner\Exception\CreatingLayoutFailed;
 use Netzmacht\Contao\FormDesigner\Layout\FormLayout;
 
 /**
@@ -17,14 +18,23 @@ use Netzmacht\Contao\FormDesigner\Layout\FormLayout;
  *
  * @package Netzmacht\Contao\FormDesigner\Factory
  */
-interface LayoutTypeFactory
+interface FormLayoutFactory
 {
     /**
      * Create the layout for a widget.
      *
-     * @param array $config Form layout config.
+     * @param string $type   Given type.
+     * @param array  $config Form layout config.
      *
      * @return FormLayout
+     * @throws CreatingLayoutFailed
      */
-    public function create(array $config);
+    public function create($type, array $config);
+
+    /**
+     * Get the list of supported types.
+     *
+     * @return array
+     */
+    public function supportedTypes();
 }

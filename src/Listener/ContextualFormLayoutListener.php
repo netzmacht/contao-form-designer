@@ -11,10 +11,9 @@
 namespace Netzmacht\Contao\FormDesigner\Listener;
 
 use Contao\ContentModel;
-use Contao\FormModel;
 use Contao\Model;
 use Contao\ModuleModel;
-use Netzmacht\Contao\FormDesigner\FormLayoutFactory;
+use Netzmacht\Contao\FormDesigner\Factory\FormLayoutFactory;
 use Netzmacht\Contao\FormDesigner\Layout\FormLayout;
 use Netzmacht\Contao\FormDesigner\LayoutManager;
 use Netzmacht\Contao\FormDesigner\Model\Form\FormRepository;
@@ -63,7 +62,7 @@ class ContextualFormLayoutListener extends AbstractListener
         parent::__construct($manager, $repository, $factory, $logger);
 
         $this->supportedModules = $supportedModules;
-        $this->formRepository = $formRepository;
+        $this->formRepository   = $formRepository;
     }
 
     /**
@@ -112,7 +111,7 @@ class ContextualFormLayoutListener extends AbstractListener
             return;
         }
 
-        $layoutId = (int) $form->formLayout;
+        $layoutId = (int)$form->formLayout;
         if (!$layoutId) {
             return;
         }
