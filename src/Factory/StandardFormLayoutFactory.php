@@ -83,15 +83,15 @@ class StandardFormLayoutFactory implements FormLayoutFactory
         $widgetConfig = ($config['inherit']) ? $this->widgetConfig : [];
 
         foreach (deserialize($config['widgets'], true) as $widget) {
-            if ($widget['type'] === '') {
+            if ($widget['widget'] === '') {
                 continue;
             }
 
             foreach ($this->sections as $section) {
                 if ($widget[$section] === 'fallback') {
-                    unset ($widgetConfig[$widget['type']][$section]);
+                    unset ($widgetConfig[$widget['widget']][$section]);
                 } elseif ($widget[$section]) {
-                    $widgetConfig[$widget['type']][$section] = $widget[$section];
+                    $widgetConfig[$widget['widget']][$section] = $widget[$section];
                 }
             }
         }

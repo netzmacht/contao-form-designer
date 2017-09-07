@@ -32,7 +32,7 @@ class ThemeFormLayoutListener extends AbstractListener
      *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function onGeneratePage(PageModel $pageModel, LayoutModel $layoutModel)
+    public function onPageLayout(PageModel $pageModel, LayoutModel $layoutModel)
     {
         $model = $this->repository->findDefaultByTheme((int) $layoutModel->pid);
         if (!$model) {

@@ -41,8 +41,10 @@ class DelegatingFormLayoutFactory implements FormLayoutFactory
      */
     public function create($type, array $config)
     {
-        if (isset ($this->factories[$type])) {
-            return $this->factories[$type]->create($type, $config);
+        foreach ($this->factories as $factory) {
+            if (in_array($type, $factory->supportedTypes())) {
+                return $factory->create($type, $config);
+            }
         }
 
         throw CreatingLayoutFailed::unsupportedType($type);

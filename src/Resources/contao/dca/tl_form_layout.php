@@ -11,6 +11,7 @@
 $GLOBALS['TL_DCA']['tl_form_layout'] = [
     'config'       => [
         'dataContainer'    => 'Table',
+        'ptable'           => 'tl_theme',
         'enableVersioning' => true,
         'sql'              => [
             'keys' => [
