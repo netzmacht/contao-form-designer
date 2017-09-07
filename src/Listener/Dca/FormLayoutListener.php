@@ -59,8 +59,12 @@ class FormLayoutListener
      *
      * @return void
      */
-    public function loadStyles ()
+    public function initialize ()
     {
+        /** @var Controller $controller */
+        $controller = $this->contaoFramework->getAdapter(Controller::class);
+        $controller->loadLanguageFile('tl_form_field');
+
         $GLOBALS['TL_CSS'][] = 'bundles/netzmachtcontaoformdesigner/style/backend.css';
     }
 

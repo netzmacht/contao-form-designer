@@ -20,7 +20,7 @@ $GLOBALS['TL_DCA']['tl_form_layout'] = [
             ],
         ],
         'onload_callback' => [
-            ['netzmacht.contao_form_designer.listener.dca.form_layout', 'loadStyles'],
+            ['netzmacht.contao_form_designer.listener.dca.form_layout', 'initialize'],
         ],
         'onsubmit_callback' => [
             ['netzmacht.contao_form_designer.listener.dca.form_layout', 'setDefaultLayout'],
@@ -145,6 +145,7 @@ $GLOBALS['TL_DCA']['tl_form_layout'] = [
                             'netzmacht.contao_form_designer.listener.dca.form_layout',
                             'getWidgetTypes',
                         ],
+                        'reference'        => &$GLOBALS['TL_LANG']['FFL'],
                         'eval' => [
                             'includeBlankOption' => true,
                             'chosen' => true,
