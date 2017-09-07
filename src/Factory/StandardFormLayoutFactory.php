@@ -88,9 +88,7 @@ class StandardFormLayoutFactory implements FormLayoutFactory
             }
 
             foreach ($this->sections as $section) {
-                if ($widget[$section] === 'fallback') {
-                    unset ($widgetConfig[$widget['widget']][$section]);
-                } elseif ($widget[$section]) {
+                if ($widget[$section]) {
                     $widgetConfig[$widget['widget']][$section] = $widget[$section];
                 }
             }
@@ -113,9 +111,7 @@ class StandardFormLayoutFactory implements FormLayoutFactory
         foreach ($this->sections as $section) {
             $name = 'fallback' . ucfirst($section);
 
-            if ($config[$name] === 'fallback') {
-                unset ($fallbackTemplates[$section]);
-            } elseif ($config[$name]) {
+            if ($config[$name]) {
                 $fallbackTemplates[$section] = $config[$name];
             }
         }
