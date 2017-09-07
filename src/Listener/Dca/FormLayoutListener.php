@@ -12,6 +12,7 @@ namespace Netzmacht\Contao\FormDesigner\Listener\Dca;
 
 use Contao\Controller;
 use Contao\CoreBundle\Framework\ContaoFrameworkInterface;
+use Contao\DataContainer;
 use Netzmacht\Contao\FormDesigner\Factory\FormLayoutFactory;
 use Netzmacht\Contao\FormDesigner\Model\FormLayout\FormLayoutRepository;
 
@@ -23,16 +24,22 @@ use Netzmacht\Contao\FormDesigner\Model\FormLayout\FormLayoutRepository;
 class FormLayoutListener
 {
     /**
+     * Form layout factory.
+     *
      * @var FormLayoutFactory
      */
     private $factory;
 
     /**
+     * Contao framework.
+     *
      * @var ContaoFrameworkInterface
      */
     private $contaoFramework;
 
     /**
+     * Form layout repository.
+     *
      * @var FormLayoutRepository
      */
     private $repository;
@@ -40,11 +47,11 @@ class FormLayoutListener
     /**
      * FormLayoutListener constructor.
      *
-     * @param FormLayoutRepository     $repository
-     * @param FormLayoutFactory        $factory
-     * @param ContaoFrameworkInterface $contaoFramework
+     * @param FormLayoutRepository     $repository      Form layout repository.
+     * @param FormLayoutFactory        $factory         Form layout factory.
+     * @param ContaoFrameworkInterface $contaoFramework Contao framework.
      */
-    public function __construct (
+    public function __construct(
         FormLayoutRepository $repository,
         FormLayoutFactory $factory,
         ContaoFrameworkInterface $contaoFramework
@@ -58,8 +65,9 @@ class FormLayoutListener
      * Load styles.
      *
      * @return void
+     * @SuppressWarnings(PHPMD.Superglobals)
      */
-    public function initialize ()
+    public function initialize()
     {
         /** @var Controller $controller */
         $controller = $this->contaoFramework->getAdapter(Controller::class);
@@ -71,11 +79,11 @@ class FormLayoutListener
     /**
      * Set the default layout.
      *
-     * @param $dataContainer
+     * @param DataContainer $dataContainer Data container driver.
      *
      * @return void
      */
-    public function setDefaultLayout ($dataContainer)
+    public function setDefaultLayout($dataContainer)
     {
         if ($dataContainer->activeRecord->defaultLayout) {
             $this->repository->setDefaultLayout($dataContainer->activeRecord->pid, $dataContainer->activeRecord->id);
@@ -83,12 +91,15 @@ class FormLayoutListener
     }
 
     /**
-     * @param $label
-     * @param $row
+     * Generate the row label.
+     *
+     * @param array  $row   Data row.
+     * @param string $label Default label.
      *
      * @return string
+     * @SuppressWarnings(PHPMD.Superglobals)
      */
-    public function generateRowLabel ($row, $label)
+    public function generateRowLabel($row, $label)
     {
         if ($row['defaultLayout']) {
             return $label . ' <span class="tl_gray">[' . $GLOBALS['TL_LANG']['tl_form_layout']['default'] . ']</span>';
@@ -98,20 +109,22 @@ class FormLayoutListener
     }
 
     /**
+     * Get the layout types.
+     *
      * @return array
      */
-    public function getTypes ()
+    public function getTypes()
     {
         return $this->factory->supportedTypes();
     }
 
-
     /**
      * Get all widget types.
      *
-     * return @array
+     * @return array
+     * @SuppressWarnings(PHPMD.Superglobals)
      */
-    public function getWidgetTypes ()
+    public function getWidgetTypes()
     {
         return array_merge(
             array_keys($GLOBALS['TL_FFL']),
@@ -124,41 +137,51 @@ class FormLayoutListener
     }
 
     /**
+     * Get the layout templates.
+     *
      * @return array
      */
-    public function getLayoutTemplates ()
+    public function getLayoutTemplates()
     {
         return $this->getTemplateGroup('fd_layout');
     }
 
     /**
+     * Get the control templates.
+     *
      * @return array
      */
-    public function getControlTemplates ()
+    public function getControlTemplates()
     {
         return $this->getTemplateGroup('fd_control');
     }
 
     /**
+     * Get the label templates.
+     *
      * @return array
      */
-    public function getLabelTemplates ()
+    public function getLabelTemplates()
     {
         return $this->getTemplateGroup('fd_label');
     }
 
     /**
+     * Get the error templates.
+     *
      * @return array
      */
-    public function getErrorTemplates ()
+    public function getErrorTemplates()
     {
         return $this->getTemplateGroup('fd_error');
     }
 
     /**
+     * Get the help templates.
+     *
      * @return array
      */
-    public function getHelpTemplates ()
+    public function getHelpTemplates()
     {
         return $this->getTemplateGroup('fd_help');
     }
@@ -170,7 +193,7 @@ class FormLayoutListener
      *
      * @return array
      */
-    public function getTemplateGroup ($groupName)
+    public function getTemplateGroup($groupName)
     {
         /** @var Controller $controller */
         $controller = $this->contaoFramework->getAdapter(Controller::class);

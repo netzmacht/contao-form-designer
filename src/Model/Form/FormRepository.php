@@ -13,7 +13,7 @@ namespace Netzmacht\Contao\FormDesigner\Model\Form;
 use Contao\FormModel;
 
 /**
- * Interface FormRepository
+ * Interface FormRepository.
  *
  * @package Netzmacht\Contao\FormDesigner\Model\Form
  */

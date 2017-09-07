@@ -14,7 +14,7 @@ use Contao\Widget;
 use Netzmacht\Html\Attributes;
 
 /**
- * Class FormLayout
+ * Interface FormLayout.
  *
  * @package Netzmacht\Contao\FormDesigner\Resources
  */

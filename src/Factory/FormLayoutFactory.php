@@ -14,7 +14,7 @@ use Netzmacht\Contao\FormDesigner\Exception\CreatingLayoutFailed;
 use Netzmacht\Contao\FormDesigner\Layout\FormLayout;
 
 /**
- * Interface LayoutTypeFactory
+ * Interface LayoutTypeFactory.
  *
  * @package Netzmacht\Contao\FormDesigner\Factory
  */
@@ -27,7 +27,7 @@ interface FormLayoutFactory
      * @param array  $config Form layout config.
      *
      * @return FormLayout
-     * @throws CreatingLayoutFailed
+     * @throws CreatingLayoutFailed When layout could not be created.
      */
     public function create($type, array $config);
 

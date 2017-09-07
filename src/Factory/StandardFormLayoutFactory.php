@@ -13,7 +13,7 @@ namespace Netzmacht\Contao\FormDesigner\Factory;
 use Netzmacht\Contao\FormDesigner\Layout\ContaoFormLayout;
 
 /**
- * Class DefaultFormLayoutFactory
+ * Class DefaultFormLayoutFactory.
  *
  * @package Netzmacht\Contao\FormDesigner\Factory
  */
@@ -46,7 +46,7 @@ class StandardFormLayoutFactory implements FormLayoutFactory
      * @param array $widgetConfig      Control template map.
      * @param array $fallbackTemplates Control fallback template.
      */
-    public function __construct (array $widgetConfig, array $fallbackTemplates)
+    public function __construct(array $widgetConfig, array $fallbackTemplates)
     {
         $this->widgetConfig      = $widgetConfig;
         $this->fallbackTemplates = $fallbackTemplates;
@@ -55,7 +55,7 @@ class StandardFormLayoutFactory implements FormLayoutFactory
     /**
      * {@inheritdoc}
      */
-    public function create ($type, array $config)
+    public function create($type, array $config)
     {
         $widgetConfig      = $this->buildWidgetConfig($config);
         $fallbackTemplates = $this->buildFallbackTemplates($config);
@@ -66,7 +66,7 @@ class StandardFormLayoutFactory implements FormLayoutFactory
     /**
      * {@inheritdoc}
      */
-    public function supportedTypes ()
+    public function supportedTypes()
     {
         return ['standard'];
     }
@@ -78,7 +78,7 @@ class StandardFormLayoutFactory implements FormLayoutFactory
      *
      * @return array
      */
-    private function buildWidgetConfig (array $config)
+    private function buildWidgetConfig(array $config)
     {
         $widgetConfig = $this->widgetConfig;
 
@@ -106,7 +106,7 @@ class StandardFormLayoutFactory implements FormLayoutFactory
      *
      * @return array
      */
-    private function buildFallbackTemplates (array $config)
+    private function buildFallbackTemplates(array $config)
     {
         $fallbackTemplates = $this->fallbackTemplates;
 

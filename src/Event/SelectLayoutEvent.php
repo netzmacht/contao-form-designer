@@ -40,7 +40,7 @@ class SelectLayoutEvent extends Event
     /**
      * SelectLayoutEvent constructor.
      *
-     * @param Widget $widget
+     * @param Widget $widget Form element widget.
      */
     public function __construct(Widget $widget)
     {

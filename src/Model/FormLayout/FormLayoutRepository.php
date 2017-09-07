@@ -18,6 +18,8 @@ namespace Netzmacht\Contao\FormDesigner\Model\FormLayout;
 interface FormLayoutRepository
 {
     /**
+     * Find the default form layout by the theme.
+     *
      * @param int $themeId Theme id.
      *
      * @return FormLayoutModel|null
@@ -41,5 +43,5 @@ interface FormLayoutRepository
      *
      * @return void
      */
-    public function setDefaultLayout ($themeId, $defaultLayoutId);
+    public function setDefaultLayout($themeId, $defaultLayoutId);
 }

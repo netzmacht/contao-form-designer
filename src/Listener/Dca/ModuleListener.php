@@ -13,29 +13,33 @@ namespace Netzmacht\Contao\FormDesigner\Listener\Dca;
 use Bit3\Contao\MetaPalettes\MetaPalettes;
 
 /**
- * Class ModuleListener
+ * Class ModuleListener.
  *
  * @package Netzmacht\Contao\FormDesigner\Listener\Dca
  */
 class ModuleListener
 {
     /**
-     * @var
+     * List of supported modules.
+     *
+     * @var array
      */
     private $supportedModules;
 
     /**
      * ModuleListener constructor.
      *
-     * @param $supportedModules
+     * @param array $supportedModules Supported modules.
      */
-    public function __construct ($supportedModules)
+    public function __construct(array $supportedModules)
     {
         $this->supportedModules = $supportedModules;
     }
 
     /**
+     * Initialize.
      *
+     * @return void
      */
     public function initialize()
     {

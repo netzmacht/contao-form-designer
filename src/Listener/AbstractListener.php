@@ -78,7 +78,7 @@ abstract class AbstractListener
      * Create form layout.
      *
      * @param FormLayoutModel $model    Form layout model.
-     * @param callable        $callback Callback to handle an created
+     * @param callable        $callback Callback to handle an created.
      *
      * @return void
      */

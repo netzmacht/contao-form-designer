@@ -24,7 +24,7 @@ class FormLayoutFactoryCompilerPass implements CompilerPassInterface
     /**
      * {@inheritdoc}
      */
-    public function process (ContainerBuilder $container)
+    public function process(ContainerBuilder $container)
     {
         if (!$container->has('netzmacht.contao_form_designer.layout_factory')) {
             return;

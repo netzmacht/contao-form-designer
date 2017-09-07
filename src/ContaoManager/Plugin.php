@@ -17,16 +17,15 @@ use Contao\ManagerPlugin\Bundle\Parser\ParserInterface;
 use Netzmacht\Contao\FormDesigner\NetzmachtContaoFormDesignerBundle;
 
 /**
- * Class Plugin
+ * Class Plugin.
  *
  * @package Netzmacht\Contao\FormDesigner\ContaoManager
  */
 class Plugin implements BundlePluginInterface
 {
     /**
-     * @param ParserInterface $parser
-     *
-     * @return array
+     * {@inheritdoc}
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function getBundles(ParserInterface $parser)
     {

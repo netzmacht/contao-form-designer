@@ -20,6 +20,8 @@ use Doctrine\DBAL\Connection;
 class ContaoFormLayoutRepository implements FormLayoutRepository
 {
     /**
+     * Database connection.
+     *
      * @var Connection
      */
     private $connection;
@@ -29,7 +31,7 @@ class ContaoFormLayoutRepository implements FormLayoutRepository
      *
      * @param Connection $connection Database connection.
      */
-    public function __construct (Connection $connection)
+    public function __construct(Connection $connection)
     {
         $this->connection = $connection;
     }
@@ -53,7 +55,7 @@ class ContaoFormLayoutRepository implements FormLayoutRepository
     /**
      * {@inheritdoc}
      */
-    public function setDefaultLayout ($themeId, $defaultLayoutId)
+    public function setDefaultLayout($themeId, $defaultLayoutId)
     {
         $statement = $this->connection->prepare('UPDATE tl_form_layout SET defaultLayout=? WHERE pid=? AND id!=?');
         $statement->bindValue(1, '');

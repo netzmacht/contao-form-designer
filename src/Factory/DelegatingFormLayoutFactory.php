@@ -29,7 +29,7 @@ class DelegatingFormLayoutFactory implements FormLayoutFactory
     /**
      * FormLayoutFactory constructor.
      *
-     * @param FormLayoutFactory[] $factories
+     * @param array|FormLayoutFactory[] $factories Form layout factories.
      */
     public function __construct(array $factories)
     {
@@ -38,6 +38,7 @@ class DelegatingFormLayoutFactory implements FormLayoutFactory
 
     /**
      * {@inheritdoc}
+     * @throws CreatingLayoutFailed When type is not supported.
      */
     public function create($type, array $config)
     {

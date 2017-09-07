@@ -10,7 +10,6 @@
 
 namespace Netzmacht\Contao\FormDesigner\Listener;
 
-use Contao\ContentElement;
 use Contao\ContentModel;
 use Contao\Model;
 use Contao\ModuleModel;
@@ -22,7 +21,7 @@ use Netzmacht\Contao\FormDesigner\Model\FormLayout\FormLayoutRepository;
 use Psr\Log\LoggerInterface;
 
 /**
- * Class IsVisibleElementListener
+ * Class IsVisibleElementListener.
  *
  * @package Netzmacht\Contao\FormDesigner\Listener
  */
@@ -61,7 +60,7 @@ class ContextualFormLayoutListener extends AbstractListener
      * @param array                $supportedModules         Supported modules.
      * @param array                $supportedContentElements Supported content elements.
      */
-    public function __construct (
+    public function __construct(
         LayoutManager $manager,
         FormLayoutRepository $repository,
         FormLayoutFactory $factory,
@@ -80,12 +79,17 @@ class ContextualFormLayoutListener extends AbstractListener
     /**
      * Handle the is visible hook.
      *
-     * @param Model $model
+     * @param Model $model   Model.
+     * @param bool  $visible Visible flag.
      *
      * @return bool
      */
-    public function onIsVisibleElement (Model $model, $visible)
+    public function onIsVisibleElement(Model $model, $visible)
     {
+        if (TL_MODE === 'BE') {
+            return $visible;
+        }
+
         if ($model instanceof ContentModel) {
             if ($this->handleContentElement($model)) {
                 return $visible;
@@ -114,8 +118,9 @@ class ContextualFormLayoutListener extends AbstractListener
      * @param string $buffer Generated content.
      *
      * @return string
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function onPostGenerateElement (Model $model, $buffer)
+    public function onPostGenerateElement(Model $model, $buffer)
     {
         $this->manager->removeContextLayout();
 
@@ -129,7 +134,7 @@ class ContextualFormLayoutListener extends AbstractListener
      *
      * @return bool
      */
-    private function handleForm (Model $model)
+    private function handleForm(Model $model)
     {
         $form = $this->formRepository->find($model->form);
         if (!$form) {
@@ -140,11 +145,13 @@ class ContextualFormLayoutListener extends AbstractListener
     }
 
     /**
-     * @param ModuleModel $model
+     * Handle a module.
+     *
+     * @param ModuleModel $model Module model.
      *
      * @return bool
      */
-    private function handleModule (ModuleModel $model)
+    private function handleModule(ModuleModel $model)
     {
         if (!in_array($model->type, $this->supportedModules)) {
             return false;
@@ -154,11 +161,13 @@ class ContextualFormLayoutListener extends AbstractListener
     }
 
     /**
-     * @param ContentModel $model
+     * Handle a content element.
+     *
+     * @param ContentModel $model Content model.
      *
      * @return bool
      */
-    private function handleContentElement ($model)
+    private function handleContentElement(ContentModel $model)
     {
         if (!in_array($model->type, $this->supportedContentElements)) {
             return false;
@@ -174,7 +183,7 @@ class ContextualFormLayoutListener extends AbstractListener
      *
      * @return false
      */
-    private function registerContextLayout ($layoutId)
+    private function registerContextLayout($layoutId)
     {
         $layoutId = (int) $layoutId;
         if (!$layoutId) {

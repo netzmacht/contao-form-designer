@@ -114,7 +114,7 @@ final class ContaoFormLayout extends AbstractFormLayout
      * Get a template for a section.
      *
      * @param Widget $widget  Widget.
-     * @param string $section Section
+     * @param string $section Section.
      *
      * @return string
      */

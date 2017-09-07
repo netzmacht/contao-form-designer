@@ -18,7 +18,9 @@ namespace Netzmacht\Contao\FormDesigner\Exception;
 class CreatingLayoutFailed extends Exception
 {
     /**
-     * @param $type
+     * Create exception for an unsupported type.
+     *
+     * @param string $type Type.
      *
      * @return static
      */
