@@ -11,7 +11,6 @@
 namespace Netzmacht\Contao\FormDesigner\Factory;
 
 use Netzmacht\Contao\FormDesigner\Exception\CreatingLayoutFailed;
-use Netzmacht\Contao\FormDesigner\Layout\FormLayout;
 
 /**
  * Class FormLayoutFactory.
