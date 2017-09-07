@@ -18,15 +18,22 @@ $GLOBALS['TL_DCA']['tl_form_layout'] = [
                 'pid' => 'index',
             ],
         ],
+        'onload_callback' => [
+            ['netzmacht.contao_form_designer.listener.dca.form_layout', 'loadStyles'],
+        ],
+        'onsubmit_callback' => [
+            ['netzmacht.contao_form_designer.listener.dca.form_layout', 'setDefaultLayout'],
+        ]
     ],
     'palettes'     => [
         '__selector__' => ['type'],
     ],
     'metapalettes' => [
         'default'                  => [
-            'title' => ['title', 'type', 'default'],
+            'title' => ['title', 'type', 'defaultLayout'],
         ],
         'standard extends default' => [
+            '+title'   => ['inherit'],
             'widgets'  => ['widgets'],
             'fallback' => ['fallbackLayout', 'fallbackControl', 'fallbackLabel', 'fallbackError', 'fallbackHelp'],
         ],
@@ -40,6 +47,7 @@ $GLOBALS['TL_DCA']['tl_form_layout'] = [
         'label'             => [
             'fields' => ['title', 'inColumn'],
             'format' => '%s <span style="color:#999;padding-left:3px">[%s]</span>',
+            'label_callback' => ['netzmacht.contao_form_designer.listener.dca.form_layout', 'generateRowLabel'],
         ],
         'global_operations' => [
             'toggleNodes' => [
@@ -63,7 +71,7 @@ $GLOBALS['TL_DCA']['tl_form_layout'] = [
             ],
             'copy'   => [
                 'label'      => &$GLOBALS['TL_LANG']['tl_form_layout']['copy'],
-                'href'       => 'act=paste&amp;mode=copy',
+                'href'       => 'act=copy',
                 'icon'       => 'copy.svg',
                 'attributes' => 'onclick="Backend.getScrollOffset()"',
             ],
@@ -116,11 +124,18 @@ $GLOBALS['TL_DCA']['tl_form_layout'] = [
             ],
             'sql'              => "varchar(32) NOT NULL default ''",
         ],
-        'default'         => [
-            'label'     => &$GLOBALS['TL_LANG']['tl_form_layout']['default'],
+        'defaultLayout'         => [
+            'label'     => &$GLOBALS['TL_LANG']['tl_form_layout']['defaultLayout'],
             'exclude'   => true,
             'inputType' => 'checkbox',
-            'eval'      => ['tl_class' => 'w50 m12'],
+            'eval'      => ['tl_class' => 'w50'],
+            'sql'       => "char(1) NOT NULL default ''",
+        ],
+        'inherit'         => [
+            'label'     => &$GLOBALS['TL_LANG']['tl_form_layout']['inherit'],
+            'exclude'   => true,
+            'inputType' => 'checkbox',
+            'eval'      => ['tl_class' => 'w50'],
             'sql'       => "char(1) NOT NULL default ''",
         ],
         'widgets'         => [
@@ -128,17 +143,18 @@ $GLOBALS['TL_DCA']['tl_form_layout'] = [
             'exclude'   => true,
             'inputType' => 'multiColumnWizard',
             'eval'      => [
-                'tl_class'     => 'clr long',
+                'tl_class'     => 'clr long widgets-wizard',
                 'columnFields' => [
                     'widget' => [
-                        'label'            => &$GLOBALS['TL_LANG']['tl_form_layout']['widgets'],
+                        'label'            => &$GLOBALS['TL_LANG']['tl_form_layout']['widget'],
                         'inputType'        => 'select',
                         'options_callback' => [
                             'netzmacht.contao_form_designer.listener.dca.form_layout',
                             'getWidgetTypes',
                         ],
                         'eval' => [
-                            'style' => 'width: 20%'
+                            'includeBlankOption' => true,
+                            'chosen' => true,
                         ]
                     ],
                     'layout' => [
@@ -149,7 +165,8 @@ $GLOBALS['TL_DCA']['tl_form_layout'] = [
                             'getLayoutTemplates',
                         ],
                         'eval' => [
-                            'style' => 'width: 20%'
+                            'includeBlankOption' => true,
+                            'chosen' => true,
                         ]
                     ],
                     'control' => [
@@ -160,7 +177,8 @@ $GLOBALS['TL_DCA']['tl_form_layout'] = [
                             'getControlTemplates',
                         ],
                         'eval' => [
-                            'style' => 'width: 20%'
+                            'includeBlankOption' => true,
+                            'chosen' => true,
                         ]
                     ],
                     'label' => [
@@ -171,7 +189,8 @@ $GLOBALS['TL_DCA']['tl_form_layout'] = [
                             'getLabelTemplates',
                         ],
                         'eval' => [
-                            'style' => 'width: 20%'
+                            'includeBlankOption' => true,
+                            'chosen' => true,
                         ]
                     ],
                     'error' => [
@@ -182,7 +201,8 @@ $GLOBALS['TL_DCA']['tl_form_layout'] = [
                             'getErrorTemplates',
                         ],
                         'eval' => [
-                            'style' => 'width: 20%'
+                            'includeBlankOption' => true,
+                            'chosen' => true,
                         ]
                     ],
                     'help' => [
@@ -193,12 +213,13 @@ $GLOBALS['TL_DCA']['tl_form_layout'] = [
                             'getHelpTemplates',
                         ],
                         'eval' => [
-                            'style' => 'width: 20%'
+                            'includeBlankOption' => true,
+                            'chosen' => true,
                         ]
                     ],
                 ],
             ],
-            'sql'       => "varchar(64) NOT NULL default ''",
+            'sql'       => "blob NULL",
         ],
         'fallbackLayout'  => [
             'label'            => &$GLOBALS['TL_LANG']['tl_form_layout']['fallbackLayout'],

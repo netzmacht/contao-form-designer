@@ -32,4 +32,14 @@ interface FormLayoutRepository
      * @return FormLayoutModel|null
      */
     public function find($layoutId);
+
+    /**
+     * Set the default layout setting.
+     *
+     * @param int $themeId         Theme id.
+     * @param int $defaultLayoutId Form layout id.
+     *
+     * @return void
+     */
+    public function setDefaultLayout ($themeId, $defaultLayoutId);
 }

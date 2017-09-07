@@ -29,3 +29,5 @@ services:
 
   netzmacht.contao_form_designer.repository.layout:
     class: Netzmacht\Contao\FormDesigner\Model\FormLayout\ContaoFormLayoutRepository
+    arguments:
+      - '@database_connection'
