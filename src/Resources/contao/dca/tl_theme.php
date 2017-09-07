@@ -16,7 +16,7 @@ array_insert(
         'form_layout' => [
             'href'  => 'table=tl_form_layout',
             'label' => &$GLOBALS['TL_LANG']['tl_theme']['form_layout'],
-            'icon'  => 'bundles/contaobootstrapgrid/img/icon.png'
+            'icon'  => 'bundles/netzmachtcontaoformdesigner/img/form.gif'
         ]
     ]
 );
