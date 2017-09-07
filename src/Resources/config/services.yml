@@ -12,9 +12,17 @@ services:
       - '@netzmacht.contao_form_designer.fallback_layout'
 
   netzmacht.contao_form_designer.layout_factory:
-    class: Netzmacht\Contao\FormDesigner\Factory\FormLayoutFactory
+    class: Netzmacht\Contao\FormDesigner\Factory\DelegatingFormLayoutFactory
     arguments:
       - []
+
+  netzmacht.contao_form_designer.factory.default:
+    class: Netzmacht\Contao\FormDesigner\Factory\StandardFormLayoutFactory
+    arguments:
+      - '%netzmacht.contao_form_designer.widgets%'
+      - '%netzmacht.contao_form_designer.defaults%'
+    tags:
+      - { name: 'netzmacht.contao_form_designer.factory' }
 
   netzmacht.contao_form_designer.repository.form:
     class: Netzmacht\Contao\FormDesigner\Model\Form\ContaoFormRepository

@@ -10,6 +10,9 @@
 
 use Netzmacht\Contao\FormDesigner\Model\FormLayout\FormLayoutModel;
 
+// Backend modules
+$GLOBALS['BE_MOD']['design']['themes']['tables'][] = 'tl_form_layout';
+
 // Models
 $GLOBALS['TL_MODELS']['tl_form_layout'] = FormLayoutModel::class;
 
