@@ -94,15 +94,16 @@ class FormLayoutListener
      * Generate the row label.
      *
      * @param array  $row   Data row.
-     * @param string $label Default label.
      *
      * @return string
      * @SuppressWarnings(PHPMD.Superglobals)
      */
-    public function generateRowLabel($row, $label)
+    public function generateRowLabel($row)
     {
+        $label = $row['title'];
+
         if ($row['defaultLayout']) {
-            return $label . ' <span class="tl_gray">[' . $GLOBALS['TL_LANG']['tl_form_layout']['default'] . ']</span>';
+            $label .= ' <span class="tl_gray">[' . $GLOBALS['TL_LANG']['tl_form_layout']['default'] . ']</span>';
         }
 
         return $label;

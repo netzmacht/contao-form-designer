@@ -40,14 +40,15 @@ $GLOBALS['TL_DCA']['tl_form_layout'] = [
     ],
     'list'         => [
         'sorting'           => [
-            'mode'        => 1,
+            'mode'        => 4,
             'fields'      => ['type', 'title'],
+            'headerFields' => ['name', 'author', 'tstamp'],
             'panelLayout' => 'filter;search',
+            'child_record_callback' => ['netzmacht.contao_form_designer.listener.dca.form_layout', 'generateRowLabel'],
         ],
         'label'             => [
             'fields' => ['title', 'inColumn'],
             'format' => '%s <span style="color:#999;padding-left:3px">[%s]</span>',
-            'label_callback' => ['netzmacht.contao_form_designer.listener.dca.form_layout', 'generateRowLabel'],
         ],
         'global_operations' => [
             'toggleNodes' => [
