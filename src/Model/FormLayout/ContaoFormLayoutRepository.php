@@ -39,7 +39,7 @@ class ContaoFormLayoutRepository implements FormLayoutRepository
      */
     public function findDefaultByTheme($themeId)
     {
-        return FormLayoutModel::findOneBy(['tl_form_layout.pid=?', 'tl_form_layout.default=1'], [$themeId]);
+        return FormLayoutModel::findOneBy(['tl_form_layout.pid=?', 'tl_form_layout.defaultLayout=1'], [$themeId]);
     }
 
     /**
