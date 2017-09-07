@@ -44,7 +44,7 @@ class ModuleListener
     public function initialize()
     {
         foreach ($this->supportedModules as $module) {
-            MetaPalettes::appendFields('tl_module', $module, 'template', ['formLayout']);
+            MetaPalettes::appendFields('tl_module', $module, 'include', ['formLayout']);
         }
     }
 }
