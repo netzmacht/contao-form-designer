@@ -34,7 +34,6 @@ $GLOBALS['TL_DCA']['tl_form_layout'] = [
             'title' => ['title', 'type', 'defaultLayout'],
         ],
         'standard extends default' => [
-            '+title'   => ['inherit'],
             'widgets'  => ['widgets'],
             'fallback' => ['fallbackLayout', 'fallbackControl', 'fallbackLabel', 'fallbackError', 'fallbackHelp'],
         ],
@@ -127,13 +126,6 @@ $GLOBALS['TL_DCA']['tl_form_layout'] = [
         ],
         'defaultLayout'         => [
             'label'     => &$GLOBALS['TL_LANG']['tl_form_layout']['defaultLayout'],
-            'exclude'   => true,
-            'inputType' => 'checkbox',
-            'eval'      => ['tl_class' => 'w50'],
-            'sql'       => "char(1) NOT NULL default ''",
-        ],
-        'inherit'         => [
-            'label'     => &$GLOBALS['TL_LANG']['tl_form_layout']['inherit'],
             'exclude'   => true,
             'inputType' => 'checkbox',
             'eval'      => ['tl_class' => 'w50'],

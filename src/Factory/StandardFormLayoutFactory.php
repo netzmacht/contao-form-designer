@@ -80,7 +80,7 @@ class StandardFormLayoutFactory implements FormLayoutFactory
      */
     private function buildWidgetConfig (array $config)
     {
-        $widgetConfig = ($config['inherit']) ? $this->widgetConfig : [];
+        $widgetConfig = $this->widgetConfig;
 
         foreach (deserialize($config['widgets'], true) as $widget) {
             if ($widget['widget'] === '') {
@@ -108,7 +108,7 @@ class StandardFormLayoutFactory implements FormLayoutFactory
      */
     private function buildFallbackTemplates (array $config)
     {
-        $fallbackTemplates = ($config['inherit']) ? $this->fallbackTemplates : [];
+        $fallbackTemplates = $this->fallbackTemplates;
 
         foreach ($this->sections as $section) {
             $name = 'fallback' . ucfirst($section);
