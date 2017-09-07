@@ -86,17 +86,22 @@ class ContextualFormLayoutListener extends AbstractListener
      */
     public function onIsVisibleElement (Model $model, $visible)
     {
-        // Forms are hybrid elements. The hook getForm is not used for regular ces or modules, so use this workaround.
-        if (($model instanceof ContentModel || $model instanceof ModuleModel) && $model->type === 'form') {
-            $this->handleForm($model);
+        if ($model instanceof ContentModel) {
+            if ($this->handleContentElement($model)) {
+                return $visible;
+            }
         }
 
         if ($model instanceof ModuleModel) {
-            $this->handleModule($model);
+            if ($this->handleModule($model)) {
+                return $visible;
+            };
         }
 
-        if ($model instanceof ContentModel) {
-            $this->handleContentElement($model);
+
+        // Forms are hybrid elements. The hook getForm is not used for regular ces or modules, so use this workaround.
+        if (($model instanceof ContentModel || $model instanceof ModuleModel) && $model->type === 'form') {
+            $this->handleForm($model);
         }
 
         return $visible;
@@ -121,44 +126,45 @@ class ContextualFormLayoutListener extends AbstractListener
      * Handle a form.
      *
      * @param Model $model Form model.
+     *
+     * @return bool
      */
     private function handleForm (Model $model)
     {
         $form = $this->formRepository->find($model->form);
         if (!$form) {
-            return;
+            return false;
         }
 
-        $layoutId = (int) $form->formLayout;
-        if (!$layoutId) {
-            return;
-        }
-
-        $this->registerContextLayout($layoutId);
+        return $this->registerContextLayout($form->formLayout);
     }
 
     /**
      * @param ModuleModel $model
+     *
+     * @return bool
      */
     private function handleModule (ModuleModel $model)
     {
         if (!in_array($model->type, $this->supportedModules)) {
-            return;
+            return false;
         }
 
-        $this->registerContextLayout($model->formLayout);
+        return $this->registerContextLayout($model->formLayout);
     }
 
     /**
      * @param ContentModel $model
+     *
+     * @return bool
      */
     private function handleContentElement ($model)
     {
         if (!in_array($model->type, $this->supportedContentElements)) {
-            return;
+            return false;
         }
 
-        $this->registerContextLayout($model->formLayout);
+        return $this->registerContextLayout($model->formLayout);
     }
 
     /**
@@ -166,18 +172,18 @@ class ContextualFormLayoutListener extends AbstractListener
      *
      * @param int $layoutId Form layout id.
      *
-     * @return void
+     * @return false
      */
     private function registerContextLayout ($layoutId)
     {
         $layoutId = (int) $layoutId;
         if (!$layoutId) {
-            return;
+            return false;
         }
 
         $model = $this->repository->find($layoutId);
         if (!$model) {
-            return;
+            return false;
         }
 
         $this->createFormLayout(
@@ -186,5 +192,7 @@ class ContextualFormLayoutListener extends AbstractListener
                 $manager->setContextLayout($formLayout);
             }
         );
+
+        return true;
     }
 }
