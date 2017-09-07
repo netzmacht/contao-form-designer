@@ -8,13 +8,13 @@
  *
  */
 
-$GLOBALS['TL_DCA']['tl_module']['config']['onload_callback'][] = [
-    'netzmacht.contao_form_designer.listener.dca.module',
+$GLOBALS['TL_DCA']['tl_content']['config']['onload_callback'][] = [
+    'netzmacht.contao_form_designer.listener.dca.content',
     'initialize'
 ];
 
-$GLOBALS['TL_DCA']['tl_module']['fields']['formLayout'] = [
-    'label'      => &$GLOBALS['TL_LANG']['tl_module']['formLayout'],
+$GLOBALS['TL_DCA']['tl_content']['fields']['formLayout'] = [
+    'label'      => &$GLOBALS['TL_LANG']['tl_content']['formLayout'],
     'inputType'  => 'select',
     'eval'       => [
         'tl_class' => 'w50',

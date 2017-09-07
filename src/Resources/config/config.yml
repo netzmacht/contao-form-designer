@@ -40,4 +40,10 @@ parameters:
     upload:
       control: 'fd_control_upload'
 
-  netzmacht.contao_form_designer.form_designer.modules: []
+  netzmacht.contao_form_designer.form_designer.modules:
+    - comments
+    - form
+
+  netzmacht.contao_form_designer.form_designer.elements:
+    - comments
+    - form

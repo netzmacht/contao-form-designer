@@ -8,6 +8,7 @@ services:
       - '@netzmacht.contao_form_designer.repository.form'
       - '@logger'
       - '%netzmacht.contao_form_designer.form_designer.modules%'
+      - '%netzmacht.contao_form_designer.form_designer.elements%'
 
   netzmacht.contao_form_designer.listener.theme_form_layout:
     class: Netzmacht\Contao\FormDesigner\Listener\ThemeFormLayoutListener
@@ -23,3 +24,13 @@ services:
       - '@netzmacht.contao_form_designer.repository.layout'
       - '@netzmacht.contao_form_designer.layout_factory'
       - '@contao.framework'
+
+  netzmacht.contao_form_designer.listener.dca.module:
+    class: Netzmacht\Contao\FormDesigner\Listener\Dca\ModuleListener
+    arguments:
+      - '%netzmacht.contao_form_designer.form_designer.modules%'
+
+  netzmacht.contao_form_designer.listener.dca.content:
+    class: Netzmacht\Contao\FormDesigner\Listener\Dca\ContentListener
+    arguments:
+      - '%netzmacht.contao_form_designer.form_designer.elements%'

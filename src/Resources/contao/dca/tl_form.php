@@ -8,13 +8,10 @@
  *
  */
 
-$GLOBALS['TL_DCA']['tl_module']['config']['onload_callback'][] = [
-    'netzmacht.contao_form_designer.listener.dca.module',
-    'initialize'
-];
+\Bit3\Contao\MetaPalettes\MetaPalettes::appendFields('tl_form', 'template', ['formLayout']);
 
-$GLOBALS['TL_DCA']['tl_module']['fields']['formLayout'] = [
-    'label'      => &$GLOBALS['TL_LANG']['tl_module']['formLayout'],
+$GLOBALS['TL_DCA']['tl_form']['fields']['formLayout'] = [
+    'label'      => &$GLOBALS['TL_LANG']['tl_form']['formLayout'],
     'inputType'  => 'select',
     'eval'       => [
         'tl_class' => 'w50',
