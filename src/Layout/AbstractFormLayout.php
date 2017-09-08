@@ -12,6 +12,7 @@ namespace Netzmacht\Contao\FormDesigner\Layout;
 
 use Contao\FrontendTemplate;
 use Contao\Widget;
+use Netzmacht\Html\Attributes;
 
 /**
  * Class AbstractFormLayout.
@@ -53,6 +54,46 @@ abstract class AbstractFormLayout implements FormLayout
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function renderHelpText(Widget $widget)
+    {
+        return $this->renderBlock($widget, $this->getHelpTextTemplate($widget));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getContainerAttributes(Widget $widget)
+    {
+        $attributes = new Attributes();
+        $attributes
+            ->addClass('form-widget')
+            ->addClass('form-' . $widget->type);
+
+        if ($widget->class) {
+            $attributes->addClass($widget->class);
+        }
+
+        return $attributes;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getLabelAttributes(Widget $widget)
+    {
+        $attributes = new Attributes();
+        $attributes->setAttribute('for', 'ctrl_' . $widget->id);
+
+        if ($widget->class) {
+            $attributes->addClass($widget->class);
+        }
+
+        return $attributes;
+    }
+
+    /**
      * Render the widget.
      *
      * @param Widget $widget   Form widget.
@@ -62,6 +103,10 @@ abstract class AbstractFormLayout implements FormLayout
      */
     protected function renderBlock(Widget $widget, $template)
     {
+        if (!$template) {
+            return '';
+        }
+
         $template = new FrontendTemplate($template);
         $template->setData(
             [
@@ -108,4 +153,13 @@ abstract class AbstractFormLayout implements FormLayout
      * @return string
      */
     abstract protected function getErrorTemplate(Widget $widget);
+
+    /**
+     * Get the help text template.
+     *
+     * @param Widget $widget Form widget.
+     *
+     * @return string
+     */
+    abstract protected function getHelpTextTemplate(Widget $widget);
 }

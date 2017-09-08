@@ -12,6 +12,7 @@ The Contao Form Designer provides more flexibility to customize form rendering
  - Splitting form templates into separate template for the layout, label, control, help and error messages
  - Defining customized form layouts in the theme
  - Choose a custom form layout in the form, module or content element 
+ - Additional help message feature.
 
 Requirements
 ------------

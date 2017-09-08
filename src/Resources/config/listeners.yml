@@ -18,6 +18,11 @@ services:
       - '@netzmacht.contao_form_designer.layout_factory'
       - '@logger'
 
+  netzmacht.contao_form_designer.listener.dca.form_field:
+    class: Netzmacht\Contao\FormDesigner\Listener\Dca\FormFieldListener
+    arguments:
+      - '%netzmacht.contao_form_designer.widgets%'
+
   netzmacht.contao_form_designer.listener.dca.form_layout:
     class: Netzmacht\Contao\FormDesigner\Listener\Dca\FormLayoutListener
     arguments:

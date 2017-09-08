@@ -10,6 +10,10 @@
         </legend>
     <?php endif; ?>
 
+    <?php $this->block('help'); ?>
+    <?= $this->layout->renderHelpText($this->widget) ?>
+    <?php $this->endblock(); ?>
+
     <?php if ($this->widget->hasErrors()): ?>
         <p class="error"><?= $this->widget->getErrorAsString() ?></p>
     <?php endif; ?>

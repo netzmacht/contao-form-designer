@@ -2,5 +2,5 @@
        name="<?= $this->widget->name ?>"
        id="ctrl_<?= $this->widget->id ?>"
        class="text<?php if ($this->widget->hideInput) echo ' password'; ?><?php if ($this->widget->class) echo ' ' . $this->widget->class; ?>"
-       value="<?= StringUtil::specialchars($this->widget->value) ?>"<?= $this->widget->getAttributes() ?>
->
+       value="<?= StringUtil::specialchars($this->widget->value) ?>"<?= $this->widget->getAttributes() ?>>
+

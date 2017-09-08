@@ -57,6 +57,15 @@ interface FormLayout
     public function renderErrors(Widget $widget);
 
     /**
+     * Render the help text.
+     *
+     * @param Widget $widget Form widget.
+     *
+     * @return string
+     */
+    public function renderHelpText(Widget $widget);
+
+    /**
      * Get container attributes.
      *
      * @param Widget $widget Form widget.

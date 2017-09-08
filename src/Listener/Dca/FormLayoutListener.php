@@ -93,7 +93,7 @@ class FormLayoutListener
     /**
      * Generate the row label.
      *
-     * @param array  $row   Data row.
+     * @param array $row Data row.
      *
      * @return string
      * @SuppressWarnings(PHPMD.Superglobals)
