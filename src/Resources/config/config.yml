@@ -12,6 +12,7 @@ parameters:
       help: true
       templates:
         control: 'fd_control_captcha'
+        layout:  'fd_layout_row_control'
     checkbox:
       help: true
       templates:
