@@ -18,7 +18,7 @@
     "source":"https://github.com/netzmacht/contao-form-designer/"
   },
   "require":{
-    "php":">=5.6.0",
+    "php":">=7.0",
     "contao/core-bundle":"~4.4",
     "contao-community-alliance/meta-palettes":"~1.10",
     "netzmacht/html": "^1.2",
