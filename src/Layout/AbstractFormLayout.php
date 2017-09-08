@@ -127,7 +127,10 @@ abstract class AbstractFormLayout implements FormLayout
      *
      * @return string
      */
-    abstract protected function getLayoutTemplate(Widget $widget): string;
+    protected function getLayoutTemplate(Widget $widget): string
+    {
+        return $this->getTemplate($widget, 'layout');
+    }
 
     /**
      * Get the control template.
@@ -136,7 +139,10 @@ abstract class AbstractFormLayout implements FormLayout
      *
      * @return string
      */
-    abstract protected function getControlTemplate(Widget $widget): string;
+    protected function getControlTemplate(Widget $widget): string
+    {
+        return $this->getTemplate($widget, 'control');
+    }
 
     /**
      * Get the label template.
@@ -145,7 +151,10 @@ abstract class AbstractFormLayout implements FormLayout
      *
      * @return string
      */
-    abstract protected function getLabelTemplate(Widget $widget): string;
+    protected function getLabelTemplate(Widget $widget): string
+    {
+        return $this->getTemplate($widget, 'label');
+    }
 
     /**
      * Get the error template.
@@ -154,14 +163,26 @@ abstract class AbstractFormLayout implements FormLayout
      *
      * @return string
      */
-    abstract protected function getErrorTemplate(Widget $widget): string;
+    protected function getErrorTemplate(Widget $widget): string
+    {
+        return $this->getTemplate($widget, 'error');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getHelpTextTemplate(Widget $widget): string
+    {
+        return $this->getTemplate($widget, 'help');
+    }
 
     /**
      * Get the help text template.
      *
-     * @param Widget $widget Form widget.
+     * @param Widget $widget  Form widget.
+     * @param string $section Form widget section.
      *
      * @return string
      */
-    abstract protected function getHelpTextTemplate(Widget $widget): string;
+    abstract protected function getTemplate(Widget $widget, string $section): string;
 }

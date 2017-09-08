@@ -48,50 +48,6 @@ final class ContaoFormLayout extends AbstractFormLayout
     }
 
     /**
-     * {@inheritdoc}
-     */
-    protected function getLayoutTemplate(Widget $widget): string
-    {
-        return $this->getTemplate($widget, 'layout');
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function getControlTemplate(Widget $widget): string
-    {
-        return $this->getTemplate($widget, 'control');
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function getLabelTemplate(Widget $widget): string
-    {
-        return $this->getTemplate($widget, 'label');
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function getErrorTemplate(Widget $widget): string
-    {
-        return $this->getTemplate($widget, 'error');
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function getHelpTextTemplate(Widget $widget): string
-    {
-        if (empty($this->widgetConfig[$widget->type]['help'])) {
-            return '';
-        }
-
-        return $this->getTemplate($widget, 'help');
-    }
-
-    /**
      * Get a template for a section.
      *
      * @param Widget $widget  Widget.
@@ -99,8 +55,12 @@ final class ContaoFormLayout extends AbstractFormLayout
      *
      * @return string
      */
-    private function getTemplate(Widget $widget, $section): string
+    protected function getTemplate(Widget $widget, string $section): string
     {
+        if ($section === 'help' && empty($this->widgetConfig[$widget->type]['help'])) {
+            return '';
+        }
+
         if (isset($this->widgetConfig[$widget->type]['templates'][$section])) {
             return $this->widgetConfig[$widget->type]['templates'][$section];
         }
