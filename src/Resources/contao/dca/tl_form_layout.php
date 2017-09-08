@@ -177,42 +177,6 @@ $GLOBALS['TL_DCA']['tl_form_layout'] = [
                             'chosen' => true,
                         ]
                     ],
-                    'label' => [
-                        'label'            => &$GLOBALS['TL_LANG']['tl_form_layout']['label'],
-                        'inputType'        => 'select',
-                        'options_callback' => [
-                            'netzmacht.contao_form_designer.listener.dca.form_layout',
-                            'getLabelTemplates',
-                        ],
-                        'eval' => [
-                            'includeBlankOption' => true,
-                            'chosen' => true,
-                        ]
-                    ],
-                    'error' => [
-                        'label'            => &$GLOBALS['TL_LANG']['tl_form_layout']['error'],
-                        'inputType'        => 'select',
-                        'options_callback' => [
-                            'netzmacht.contao_form_designer.listener.dca.form_layout',
-                            'getErrorTemplates',
-                        ],
-                        'eval' => [
-                            'includeBlankOption' => true,
-                            'chosen' => true,
-                        ]
-                    ],
-                    'help' => [
-                        'label'            => &$GLOBALS['TL_LANG']['tl_form_layout']['help'],
-                        'inputType'        => 'select',
-                        'options_callback' => [
-                            'netzmacht.contao_form_designer.listener.dca.form_layout',
-                            'getHelpTemplates',
-                        ],
-                        'eval' => [
-                            'includeBlankOption' => true,
-                            'chosen' => true,
-                        ]
-                    ],
                 ],
             ],
             'sql'       => "blob NULL",
