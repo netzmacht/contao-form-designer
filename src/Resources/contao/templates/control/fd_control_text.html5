@@ -1,6 +1,8 @@
-<input type="<?= $this->widget->type ?>"
-       name="<?= $this->widget->name ?>"
-       id="ctrl_<?= $this->widget->id ?>"
-       class="text<?php if ($this->widget->hideInput) echo ' password'; ?><?php if ($this->widget->class) echo ' ' . $this->widget->class; ?>"
-       value="<?= StringUtil::specialchars($this->widget->value) ?>"<?= $this->widget->getAttributes() ?>>
+<?php $attributes = $this->layout->getControlAttributes($this->widget);
+if ($this->widget->hideInput) {
+    $attributes->addClass('password');
+}
+?>
+
+<input type="<?= $this->widget->type ?>" <?= $attributes ?> value="<?= StringUtil::specialchars($this->widget->value) ?>" >
 

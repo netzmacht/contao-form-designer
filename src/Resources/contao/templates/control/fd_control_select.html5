@@ -2,7 +2,7 @@
     <input type="hidden" name="<?= rtrim($this->widget->name, '[]') ?>" value="">
 <?php endif; ?>
 
-<select name="<?= $this->widget->name ?>" id="ctrl_<?= $this->widget->id ?>" class="<?= $this->widget->class ?>"<?= $this->widget->getAttributes() ?>>
+<select <?= $this->layout->getControlAttributes($this->widget) ?>>
     <?php foreach (\Netzmacht\Contao\FormDesigner\Util\WidgetUtil::getOptions($this->widget) as $option): ?>
         <?php if ($option['type'] == 'group_start'): ?>
             <optgroup label="<?= $option['label'] ?>">
