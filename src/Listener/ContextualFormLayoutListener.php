@@ -8,6 +8,8 @@
  *
  */
 
+declare(strict_types=1);
+
 namespace Netzmacht\Contao\FormDesigner\Listener;
 
 use Contao\ContentModel;
@@ -39,7 +41,7 @@ class ContextualFormLayoutListener extends AbstractListener
      *
      * @var array
      */
-    private $supportedContentElements;
+    private $supportedElements;
 
     /**
      * Form repository.
@@ -52,13 +54,13 @@ class ContextualFormLayoutListener extends AbstractListener
     /**
      * HookListener constructor.
      *
-     * @param LayoutManager        $manager                  Layout manager.
-     * @param FormLayoutRepository $repository               Form layout repository.
-     * @param FormLayoutFactory    $factory                  Form layout factory.
-     * @param FormRepository       $formRepository           Form repository.
-     * @param LoggerInterface      $logger                   Logger.
-     * @param array                $supportedModules         Supported modules.
-     * @param array                $supportedContentElements Supported content elements.
+     * @param LayoutManager        $manager           Layout manager.
+     * @param FormLayoutRepository $repository        Form layout repository.
+     * @param FormLayoutFactory    $factory           Form layout factory.
+     * @param FormRepository       $formRepository    Form repository.
+     * @param LoggerInterface      $logger            Logger.
+     * @param array                $supportedModules  Supported modules.
+     * @param array                $supportedElements Supported content elements.
      */
     public function __construct(
         LayoutManager $manager,
@@ -67,13 +69,13 @@ class ContextualFormLayoutListener extends AbstractListener
         FormRepository $formRepository,
         LoggerInterface $logger,
         array $supportedModules,
-        array $supportedContentElements
+        array $supportedElements
     ) {
         parent::__construct($manager, $repository, $factory, $logger);
 
-        $this->supportedModules         = $supportedModules;
-        $this->supportedContentElements = $supportedContentElements;
-        $this->formRepository           = $formRepository;
+        $this->supportedModules  = $supportedModules;
+        $this->supportedElements = $supportedElements;
+        $this->formRepository    = $formRepository;
     }
 
     /**
@@ -84,7 +86,7 @@ class ContextualFormLayoutListener extends AbstractListener
      *
      * @return bool
      */
-    public function onIsVisibleElement(Model $model, $visible)
+    public function onIsVisibleElement(Model $model, $visible): bool
     {
         if (TL_MODE === 'BE') {
             return $visible;
@@ -120,7 +122,7 @@ class ContextualFormLayoutListener extends AbstractListener
      * @return string
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function onPostGenerateElement(Model $model, $buffer)
+    public function onPostGenerateElement(Model $model, $buffer): string
     {
         $this->manager->removeContextLayout();
 
@@ -134,7 +136,7 @@ class ContextualFormLayoutListener extends AbstractListener
      *
      * @return bool
      */
-    private function handleForm(Model $model)
+    private function handleForm(Model $model): bool
     {
         $form = $this->formRepository->find($model->form);
         if (!$form) {
@@ -151,7 +153,7 @@ class ContextualFormLayoutListener extends AbstractListener
      *
      * @return bool
      */
-    private function handleModule(ModuleModel $model)
+    private function handleModule(ModuleModel $model): bool
     {
         if (!in_array($model->type, $this->supportedModules)) {
             return false;
@@ -167,9 +169,9 @@ class ContextualFormLayoutListener extends AbstractListener
      *
      * @return bool
      */
-    private function handleContentElement(ContentModel $model)
+    private function handleContentElement(ContentModel $model): bool
     {
-        if (!in_array($model->type, $this->supportedContentElements)) {
+        if (!in_array($model->type, $this->supportedElements)) {
             return false;
         }
 
@@ -181,9 +183,9 @@ class ContextualFormLayoutListener extends AbstractListener
      *
      * @param int $layoutId Form layout id.
      *
-     * @return false
+     * @return bool
      */
-    private function registerContextLayout($layoutId)
+    private function registerContextLayout($layoutId): bool
     {
         $layoutId = (int) $layoutId;
         if (!$layoutId) {

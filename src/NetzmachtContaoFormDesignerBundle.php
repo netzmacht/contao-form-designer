@@ -8,6 +8,8 @@
  *
  */
 
+declare(strict_types=1);
+
 namespace Netzmacht\Contao\FormDesigner;
 
 use Netzmacht\Contao\FormDesigner\DependencyInjection\FormLayoutFactoryCompilerPass;

@@ -8,6 +8,8 @@
  *
  */
 
+declare(strict_types=1);
+
 namespace Netzmacht\Contao\FormDesigner\Layout;
 
 use Contao\FrontendTemplate;
@@ -24,7 +26,7 @@ abstract class AbstractFormLayout implements FormLayout
     /**
      * {@inheritdoc}
      */
-    public function render(Widget $widget)
+    public function render(Widget $widget): string
     {
         return $this->renderBlock($widget, $this->getLayoutTemplate($widget));
     }
@@ -32,7 +34,7 @@ abstract class AbstractFormLayout implements FormLayout
     /**
      * {@inheritdoc}
      */
-    public function renderControl(Widget $widget)
+    public function renderControl(Widget $widget): string
     {
         return $this->renderBlock($widget, $this->getControlTemplate($widget));
     }
@@ -40,7 +42,7 @@ abstract class AbstractFormLayout implements FormLayout
     /**
      * {@inheritdoc}
      */
-    public function renderLabel(Widget $widget)
+    public function renderLabel(Widget $widget): string
     {
         return $this->renderBlock($widget, $this->getLabelTemplate($widget));
     }
@@ -48,7 +50,7 @@ abstract class AbstractFormLayout implements FormLayout
     /**
      * {@inheritdoc}
      */
-    public function renderErrors(Widget $widget)
+    public function renderErrors(Widget $widget): string
     {
         return $this->renderBlock($widget, $this->getErrorTemplate($widget));
     }
@@ -56,7 +58,7 @@ abstract class AbstractFormLayout implements FormLayout
     /**
      * {@inheritdoc}
      */
-    public function renderHelpText(Widget $widget)
+    public function renderHelpText(Widget $widget): string
     {
         return $this->renderBlock($widget, $this->getHelpTextTemplate($widget));
     }
@@ -64,7 +66,7 @@ abstract class AbstractFormLayout implements FormLayout
     /**
      * {@inheritdoc}
      */
-    public function getContainerAttributes(Widget $widget)
+    public function getContainerAttributes(Widget $widget): Attributes
     {
         $attributes = new Attributes();
         $attributes
@@ -81,7 +83,7 @@ abstract class AbstractFormLayout implements FormLayout
     /**
      * {@inheritdoc}
      */
-    public function getLabelAttributes(Widget $widget)
+    public function getLabelAttributes(Widget $widget): Attributes
     {
         $attributes = new Attributes();
         $attributes->setAttribute('for', 'ctrl_' . $widget->id);
@@ -101,7 +103,7 @@ abstract class AbstractFormLayout implements FormLayout
      *
      * @return string
      */
-    protected function renderBlock(Widget $widget, $template)
+    protected function renderBlock(Widget $widget, $template): string
     {
         if (!$template) {
             return '';
@@ -125,7 +127,7 @@ abstract class AbstractFormLayout implements FormLayout
      *
      * @return string
      */
-    abstract protected function getLayoutTemplate(Widget $widget);
+    abstract protected function getLayoutTemplate(Widget $widget): string;
 
     /**
      * Get the control template.
@@ -134,7 +136,7 @@ abstract class AbstractFormLayout implements FormLayout
      *
      * @return string
      */
-    abstract protected function getControlTemplate(Widget $widget);
+    abstract protected function getControlTemplate(Widget $widget): string;
 
     /**
      * Get the label template.
@@ -143,7 +145,7 @@ abstract class AbstractFormLayout implements FormLayout
      *
      * @return string
      */
-    abstract protected function getLabelTemplate(Widget $widget);
+    abstract protected function getLabelTemplate(Widget $widget): string;
 
     /**
      * Get the error template.
@@ -152,7 +154,7 @@ abstract class AbstractFormLayout implements FormLayout
      *
      * @return string
      */
-    abstract protected function getErrorTemplate(Widget $widget);
+    abstract protected function getErrorTemplate(Widget $widget): string;
 
     /**
      * Get the help text template.
@@ -161,5 +163,5 @@ abstract class AbstractFormLayout implements FormLayout
      *
      * @return string
      */
-    abstract protected function getHelpTextTemplate(Widget $widget);
+    abstract protected function getHelpTextTemplate(Widget $widget): string;
 }

@@ -8,6 +8,8 @@
  *
  */
 
+declare(strict_types=1);
+
 namespace Netzmacht\Contao\FormDesigner\Layout;
 
 use Contao\Widget;
@@ -48,7 +50,7 @@ final class ContaoFormLayout extends AbstractFormLayout
     /**
      * {@inheritdoc}
      */
-    protected function getLayoutTemplate(Widget $widget)
+    protected function getLayoutTemplate(Widget $widget): string
     {
         return $this->getTemplate($widget, 'layout');
     }
@@ -56,7 +58,7 @@ final class ContaoFormLayout extends AbstractFormLayout
     /**
      * {@inheritdoc}
      */
-    protected function getControlTemplate(Widget $widget)
+    protected function getControlTemplate(Widget $widget): string
     {
         return $this->getTemplate($widget, 'control');
     }
@@ -64,7 +66,7 @@ final class ContaoFormLayout extends AbstractFormLayout
     /**
      * {@inheritdoc}
      */
-    protected function getLabelTemplate(Widget $widget)
+    protected function getLabelTemplate(Widget $widget): string
     {
         return $this->getTemplate($widget, 'label');
     }
@@ -72,7 +74,7 @@ final class ContaoFormLayout extends AbstractFormLayout
     /**
      * {@inheritdoc}
      */
-    protected function getErrorTemplate(Widget $widget)
+    protected function getErrorTemplate(Widget $widget): string
     {
         return $this->getTemplate($widget, 'error');
     }
@@ -80,7 +82,7 @@ final class ContaoFormLayout extends AbstractFormLayout
     /**
      * {@inheritdoc}
      */
-    protected function getHelpTextTemplate(Widget $widget)
+    protected function getHelpTextTemplate(Widget $widget): string
     {
         if (empty($this->widgetConfig[$widget->type]['help'])) {
             return '';
@@ -97,7 +99,7 @@ final class ContaoFormLayout extends AbstractFormLayout
      *
      * @return string
      */
-    private function getTemplate(Widget $widget, $section)
+    private function getTemplate(Widget $widget, $section): string
     {
         if (isset($this->widgetConfig[$widget->type]['templates'][$section])) {
             return $this->widgetConfig[$widget->type]['templates'][$section];

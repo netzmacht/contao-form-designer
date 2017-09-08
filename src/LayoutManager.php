@@ -8,6 +8,8 @@
  *
  */
 
+declare(strict_types=1);
+
 namespace Netzmacht\Contao\FormDesigner;
 
 use Contao\Widget;
@@ -69,7 +71,7 @@ class LayoutManager
      *
      * @return FormLayout
      */
-    public function getLayout(Widget $widget)
+    public function getLayout(Widget $widget): FormLayout
     {
         $event = new SelectLayoutEvent($widget);
         $this->eventDispatcher->dispatch($event::NAME, $event);
@@ -96,7 +98,7 @@ class LayoutManager
      *
      * @return void
      */
-    public function setContextLayout(FormLayout $formLayout)
+    public function setContextLayout(FormLayout $formLayout): void
     {
         $this->contextLayout = $formLayout;
     }
@@ -106,7 +108,7 @@ class LayoutManager
      *
      * @return void
      */
-    public function removeContextLayout()
+    public function removeContextLayout(): void
     {
         $this->contextLayout = null;
     }
@@ -118,7 +120,7 @@ class LayoutManager
      *
      * @return void
      */
-    public function setDefaultThemeLayout(FormLayout $layout)
+    public function setDefaultThemeLayout(FormLayout $layout): void
     {
         $this->defaultThemeLayout = $layout;
     }

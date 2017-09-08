@@ -8,6 +8,8 @@
  *
  */
 
+declare(strict_types=1);
+
 namespace Netzmacht\Contao\FormDesigner\Exception;
 
 /**
@@ -24,7 +26,7 @@ class CreatingLayoutFailed extends Exception
      *
      * @return static
      */
-    public static function unsupportedType($type)
+    public static function unsupportedType($type): self
     {
         return new static(sprintf('Creating layout failed. Unsupported layout type "%s".', $type));
     }

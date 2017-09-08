@@ -22,10 +22,10 @@
     "contao/core-bundle":"~4.4",
     "contao-community-alliance/meta-palettes":"~1.10",
     "netzmacht/html": "^1.2",
-    "menatwork/contao-multicolumnwizard": "~3.3"
+    "menatwork/contao-multicolumnwizard": "~3.3",
+    "phpcq/all-tasks": "^1.2"
   },
   "require-dev": {
-    "netzmacht/contao-build-tools": "~1.1",
     "contao/manager-plugin": "^2.1"
   },
   "autoload": {

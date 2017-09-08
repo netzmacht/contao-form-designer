@@ -8,6 +8,8 @@
  *
  */
 
+declare(strict_types=1);
+
 namespace Netzmacht\Contao\FormDesigner\Listener;
 
 use Contao\CoreBundle\Monolog\ContaoContext;
@@ -82,7 +84,7 @@ abstract class AbstractListener
      *
      * @return void
      */
-    protected function createFormLayout(FormLayoutModel $model, callable $callback)
+    protected function createFormLayout(FormLayoutModel $model, callable $callback): void
     {
         try {
             $formLayout = $this->factory->create((string) $model->type, $model->row());

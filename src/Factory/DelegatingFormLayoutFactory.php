@@ -8,9 +8,12 @@
  *
  */
 
+declare(strict_types=1);
+
 namespace Netzmacht\Contao\FormDesigner\Factory;
 
 use Netzmacht\Contao\FormDesigner\Exception\CreatingLayoutFailed;
+use Netzmacht\Contao\FormDesigner\Layout\FormLayout;
 
 /**
  * Class FormLayoutFactory.
@@ -40,7 +43,7 @@ class DelegatingFormLayoutFactory implements FormLayoutFactory
      * {@inheritdoc}
      * @throws CreatingLayoutFailed When type is not supported.
      */
-    public function create($type, array $config)
+    public function create($type, array $config): FormLayout
     {
         foreach ($this->factories as $factory) {
             if (in_array($type, $factory->supportedTypes())) {
@@ -56,7 +59,7 @@ class DelegatingFormLayoutFactory implements FormLayoutFactory
      *
      * @return array
      */
-    public function supportedTypes()
+    public function supportedTypes(): array
     {
         return array_reduce(
             $this->factories,

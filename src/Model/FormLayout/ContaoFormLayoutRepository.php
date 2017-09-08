@@ -55,7 +55,7 @@ class ContaoFormLayoutRepository implements FormLayoutRepository
     /**
      * {@inheritdoc}
      */
-    public function setDefaultLayout($themeId, $defaultLayoutId)
+    public function setDefaultLayout($themeId, $defaultLayoutId): void
     {
         $statement = $this->connection->prepare('UPDATE tl_form_layout SET defaultLayout=? WHERE pid=? AND id!=?');
         $statement->bindValue(1, '');

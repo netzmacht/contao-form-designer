@@ -8,6 +8,8 @@
  *
  */
 
+declare(strict_types=1);
+
 namespace Netzmacht\Contao\FormDesigner\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;

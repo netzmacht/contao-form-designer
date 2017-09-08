@@ -8,6 +8,8 @@
  *
  */
 
+declare(strict_types=1);
+
 namespace Netzmacht\Contao\FormDesigner\Exception;
 
 use Contao\Widget;
@@ -28,7 +30,7 @@ class NoLayoutFound extends Exception
      *
      * @return NoLayoutFound
      */
-    public static function forWidget(Widget $widget, $code = 0, \Throwable $previous = null)
+    public static function forWidget(Widget $widget, $code = 0, \Throwable $previous = null): self
     {
         $message = sprintf('No layout found for form widget type "%s"', $widget->type);
 

@@ -8,6 +8,8 @@
  *
  */
 
+declare(strict_types=1);
+
 namespace Netzmacht\Contao\FormDesigner\ContaoManager;
 
 use Contao\CoreBundle\ContaoCoreBundle;

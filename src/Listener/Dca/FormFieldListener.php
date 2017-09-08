@@ -8,6 +8,8 @@
  *
  */
 
+declare(strict_types=1);
+
 namespace Netzmacht\Contao\FormDesigner\Listener\Dca;
 
 use Bit3\Contao\MetaPalettes\MetaPalettes;
@@ -42,7 +44,7 @@ class FormFieldListener
      * @return void
      * @SuppressWarnings(PHPMD.Superglobals)
      */
-    public function initialize()
+    public function initialize(): void
     {
         foreach ($this->widgetConfig as $widget => $config) {
             if (empty($config['help']) || !isset($GLOBALS['TL_DCA']['tl_form_field']['palettes'][$widget])) {

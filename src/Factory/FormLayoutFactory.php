@@ -8,6 +8,8 @@
  *
  */
 
+declare(strict_types=1);
+
 namespace Netzmacht\Contao\FormDesigner\Factory;
 
 use Netzmacht\Contao\FormDesigner\Exception\CreatingLayoutFailed;
@@ -29,12 +31,12 @@ interface FormLayoutFactory
      * @return FormLayout
      * @throws CreatingLayoutFailed When layout could not be created.
      */
-    public function create($type, array $config);
+    public function create($type, array $config): FormLayout;
 
     /**
      * Get the list of supported types.
      *
      * @return array
      */
-    public function supportedTypes();
+    public function supportedTypes(): array;
 }

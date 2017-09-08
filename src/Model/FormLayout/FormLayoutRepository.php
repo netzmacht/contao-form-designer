@@ -8,6 +8,8 @@
  *
  */
 
+declare(strict_types=1);
+
 namespace Netzmacht\Contao\FormDesigner\Model\FormLayout;
 
 /**
@@ -43,5 +45,5 @@ interface FormLayoutRepository
      *
      * @return void
      */
-    public function setDefaultLayout($themeId, $defaultLayoutId);
+    public function setDefaultLayout($themeId, $defaultLayoutId): void;
 }

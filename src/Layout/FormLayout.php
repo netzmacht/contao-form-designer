@@ -8,6 +8,8 @@
  *
  */
 
+declare(strict_types=1);
+
 namespace Netzmacht\Contao\FormDesigner\Layout;
 
 use Contao\Widget;
@@ -27,7 +29,7 @@ interface FormLayout
      *
      * @return string
      */
-    public function render(Widget $widget);
+    public function render(Widget $widget): string;
 
     /**
      * Get the layout template.
@@ -36,7 +38,7 @@ interface FormLayout
      *
      * @return string
      */
-    public function renderControl(Widget $widget);
+    public function renderControl(Widget $widget): string;
 
     /**
      * Get the layout template.
@@ -45,7 +47,7 @@ interface FormLayout
      *
      * @return string
      */
-    public function renderLabel(Widget $widget);
+    public function renderLabel(Widget $widget): string;
 
     /**
      * Get the layout template.
@@ -63,7 +65,7 @@ interface FormLayout
      *
      * @return string
      */
-    public function renderHelpText(Widget $widget);
+    public function renderHelpText(Widget $widget): string;
 
     /**
      * Get container attributes.
@@ -72,7 +74,7 @@ interface FormLayout
      *
      * @return Attributes
      */
-    public function getContainerAttributes(Widget $widget);
+    public function getContainerAttributes(Widget $widget): Attributes;
 
     /**
      * Get label attributes.
@@ -81,5 +83,5 @@ interface FormLayout
      *
      * @return Attributes
      */
-    public function getLabelAttributes(Widget $widget);
+    public function getLabelAttributes(Widget $widget): Attributes;
 }

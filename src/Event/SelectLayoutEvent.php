@@ -8,6 +8,8 @@
  *
  */
 
+declare(strict_types=1);
+
 namespace Netzmacht\Contao\FormDesigner\Event;
 
 use Contao\Widget;
@@ -52,7 +54,7 @@ class SelectLayoutEvent extends Event
      *
      * @return Widget
      */
-    public function getWidget()
+    public function getWidget(): Widget
     {
         return $this->widget;
     }
@@ -64,7 +66,7 @@ class SelectLayoutEvent extends Event
      *
      * @return void
      */
-    public function setLayout(FormLayout $formLayout)
+    public function setLayout(FormLayout $formLayout): void
     {
         $this->layout = $formLayout;
     }

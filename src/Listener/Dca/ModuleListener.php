@@ -8,6 +8,8 @@
  *
  */
 
+declare(strict_types=1);
+
 namespace Netzmacht\Contao\FormDesigner\Listener\Dca;
 
 use Bit3\Contao\MetaPalettes\MetaPalettes;
@@ -41,7 +43,7 @@ class ModuleListener
      *
      * @return void
      */
-    public function initialize()
+    public function initialize(): void
     {
         foreach ($this->supportedModules as $module) {
             MetaPalettes::appendFields('tl_module', $module, 'include', ['formLayout']);
