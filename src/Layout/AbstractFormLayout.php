@@ -70,8 +70,8 @@ abstract class AbstractFormLayout implements FormLayout
     {
         $attributes = new Attributes();
         $attributes
-            ->addClass('form-widget')
-            ->addClass('form-' . $widget->type);
+            ->addClass('widget')
+            ->addClass('widget-' . $widget->type);
 
         if ($widget->class) {
             $attributes->addClass($widget->class);
@@ -87,6 +87,23 @@ abstract class AbstractFormLayout implements FormLayout
     {
         $attributes = new Attributes();
         $attributes->setAttribute('for', 'ctrl_' . $widget->id);
+
+        if ($widget->class) {
+            $attributes->addClass($widget->class);
+        }
+
+        return $attributes;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getControlAttributes(Widget $widget): Attributes
+    {
+        $attributes = new Attributes();
+        $attributes->setId('ctrl_' . $widget->id);
+        $attributes->setAttribute('name', $widget->name);
+        $this->parseWidgetAttributes($widget, $attributes);
 
         if ($widget->class) {
             $attributes->addClass($widget->class);
@@ -185,4 +202,32 @@ abstract class AbstractFormLayout implements FormLayout
      * @return string
      */
     abstract protected function getTemplate(Widget $widget, string $section): string;
+
+    /**
+     * Parse widget attributes.
+     *
+     * @param Widget     $widget     Widget.
+     * @param Attributes $attributes Attributes.
+     *
+     * @return void
+     */
+    private function parseWidgetAttributes(Widget $widget, Attributes $attributes): void
+    {
+        array_map(
+            function ($attribute) use ($attributes) {
+                $attribute = trim($attribute);
+
+                if (!$attribute) {
+                    return;
+                }
+
+                if (preg_match('/([^=]*)="([^"]*)"/', $attribute, $matches)) {
+                    $attributes->setAttribute($matches[1], $matches[2]);
+                } else {
+                    $attributes->setAttribute($attribute, true);
+                }
+            },
+            explode(' ', $widget->getAttributes())
+        );
+    }
 }

@@ -84,4 +84,13 @@ interface FormLayout
      * @return Attributes
      */
     public function getLabelAttributes(Widget $widget): Attributes;
+
+    /**
+     * Get form control attributes.
+     *
+     * @param Widget $widget Form widget.
+     *
+     * @return Attributes
+     */
+    public function getControlAttributes(Widget $widget): Attributes;
 }
