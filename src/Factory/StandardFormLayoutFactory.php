@@ -27,11 +27,11 @@ class StandardFormLayoutFactory implements FormLayoutFactory
     private $widgetConfig;
 
     /**
-     * Fallback templates map.
+     * Fallback config.
      *
      * @var array
      */
-    private $fallbackTemplates;
+    private $fallbackConfig;
 
     /**
      * Sections of the form.
@@ -43,13 +43,13 @@ class StandardFormLayoutFactory implements FormLayoutFactory
     /**
      * AbstractFormLayout constructor.
      *
-     * @param array $widgetConfig      Control template map.
-     * @param array $fallbackTemplates Control fallback template.
+     * @param array $widgetConfig   Widget config map.
+     * @param array $fallbackConfig Control fallback config.
      */
-    public function __construct(array $widgetConfig, array $fallbackTemplates)
+    public function __construct(array $widgetConfig, array $fallbackConfig)
     {
-        $this->widgetConfig      = $widgetConfig;
-        $this->fallbackTemplates = $fallbackTemplates;
+        $this->widgetConfig   = $widgetConfig;
+        $this->fallbackConfig = $fallbackConfig;
     }
 
     /**
@@ -58,7 +58,7 @@ class StandardFormLayoutFactory implements FormLayoutFactory
     public function create($type, array $config)
     {
         $widgetConfig      = $this->buildWidgetConfig($config);
-        $fallbackTemplates = $this->buildFallbackTemplates($config);
+        $fallbackTemplates = $this->buildFallbackConfig($config);
 
         return new ContaoFormLayout($widgetConfig, $fallbackTemplates);
     }
@@ -89,7 +89,7 @@ class StandardFormLayoutFactory implements FormLayoutFactory
 
             foreach ($this->sections as $section) {
                 if ($widget[$section]) {
-                    $widgetConfig[$widget['widget']][$section] = $widget[$section];
+                    $widgetConfig[$widget['widget']]['templates'][$section] = $widget[$section];
                 }
             }
         }
@@ -98,24 +98,24 @@ class StandardFormLayoutFactory implements FormLayoutFactory
     }
 
     /**
-     * Build the fallback templates.
+     * Build the fallback config.
      *
      * @param array $config Configuration.
      *
      * @return array
      */
-    private function buildFallbackTemplates(array $config)
+    private function buildFallbackConfig(array $config)
     {
-        $fallbackTemplates = $this->fallbackTemplates;
+        $fallbackConfig = $this->fallbackConfig;
 
         foreach ($this->sections as $section) {
             $name = 'fallback' . ucfirst($section);
 
             if ($config[$name]) {
-                $fallbackTemplates[$section] = $config[$name];
+                $fallbackConfig[$section] = $config[$name];
             }
         }
 
-        return $fallbackTemplates;
+        return $fallbackConfig;
     }
 }

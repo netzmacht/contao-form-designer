@@ -1,49 +1,65 @@
 parameters:
   netzmacht.contao_form_designer.defaults:
-    layout: 'fd_layout_row'
-    error:  'fd_error_latest'
-    control: 'fd_control_default'
-    label:  'fd_label_default'
+    templates:
+      layout: 'fd_layout_row'
+      error:  'fd_error_latest'
+      control: 'fd_control_default'
+      label:  'fd_label_default'
+      help:   'fd_help_default'
     
   netzmacht.contao_form_designer.widgets:
     captcha:
-      control: 'fd_control_captcha'
+      templates:
+        control: 'fd_control_captcha'
     checkbox:
-      control: 'fd_control_checkbox'
-      layout:  'fd_layout_row_field'
+      templates:
+        control: 'fd_control_checkbox'
+        layout:  'fd_layout_row_field'
     explanation:
-      control: 'fd_control_explanation'
-      layout:  'fd_layout_row_field'
+      templates:
+        control: 'fd_control_explanation'
+        layout:  'fd_layout_row_field'
     message:
-      control: 'fd_control_message'
+      templates:
+        control: 'fd_control_message'
     password:
-      control: 'fd_control_password'
-      layout:   'fd_layout_row_password'
+      templates:
+        control: 'fd_control_password'
+        layout:  'fd_layout_row_password'
     radio:
-      control: 'fd_control_radio'
-      layout:  'fd_layout_row_field'
+      templates:
+        control: 'fd_control_radio'
+        layout:  'fd_layout_row_field'
     select:
-      control: 'fd_control_select'
+      templates:
+        control: 'fd_control_select'
     submit:
-      control: 'fd_control_submit'
-      layout:  'fd_layout_row_field'
+      templates:
+        control: 'fd_control_submit'
+        layout:  'fd_layout_row_field'
     textarea:
-      control: 'fd_control_textarea'
+      templates:
+        control: 'fd_control_textarea'
     text:
-      control: 'fd_control_text'
+      templates:
+        control: 'fd_control_text'
     url:
-      control: 'fd_control_text'
+      templates:
+        control: 'fd_control_text'
     email:
-      control: 'fd_control_text'
+      templates:
+        control: 'fd_control_text'
     number:
-      control: 'fd_control_text'
+      templates:
+        control: 'fd_control_text'
     upload:
-      control: 'fd_control_upload'
+      templates:
+        control: 'fd_control_upload'
 
   netzmacht.contao_form_designer.form_designer.modules:
-    - comments
-    - form
+    - 'comments'
+    - 'form'
 
   netzmacht.contao_form_designer.form_designer.elements:
-    - comments
-    - form
+    - 'comments'
+    - 'form'

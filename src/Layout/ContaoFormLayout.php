@@ -28,22 +28,22 @@ final class ContaoFormLayout extends AbstractFormLayout
     private $widgetConfig;
 
     /**
-     * Fallback templates map.
+     * Fallback templates config.
      *
      * @var array
      */
-    private $fallbackTemplates;
+    private $fallbackConfig;
 
     /**
      * AbstractFormLayout constructor.
      *
-     * @param array $widgetConfig      Control template map.
-     * @param array $fallbackTemplates Control fallback template.
+     * @param array $widgetConfig   Widget config map.
+     * @param array $fallbackConfig Control fallback config.
      */
-    public function __construct(array $widgetConfig, array $fallbackTemplates)
+    public function __construct(array $widgetConfig, array $fallbackConfig)
     {
-        $this->widgetConfig      = $widgetConfig;
-        $this->fallbackTemplates = $fallbackTemplates;
+        $this->widgetConfig   = $widgetConfig;
+        $this->fallbackConfig = $fallbackConfig;
     }
 
     /**
@@ -120,12 +120,12 @@ final class ContaoFormLayout extends AbstractFormLayout
      */
     private function getTemplate(Widget $widget, $section)
     {
-        if (isset($this->widgetConfig[$widget->type][$section])) {
-            return $this->widgetConfig[$widget->type][$section];
+        if (isset($this->widgetConfig[$widget->type]['templates'][$section])) {
+            return $this->widgetConfig[$widget->type]['templates'][$section];
         }
 
-        if (isset($this->fallbackTemplates[$section])) {
-            return $this->fallbackTemplates[$section];
+        if (isset($this->fallbackConfig['templates'][$section])) {
+            return $this->fallbackConfig['templates'][$section];
         }
 
         return '';
