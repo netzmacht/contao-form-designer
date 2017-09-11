@@ -8,7 +8,7 @@
     <?= $this->layout->renderControl($this->widget) ?>
     <?php $this->endblock(); ?>
 
-    <?php $this->block('help2'); ?>
+    <?php $this->block('help'); ?>
     <?= $this->layout->renderHelpText($this->widget) ?>
     <?php $this->endblock(); ?>
 
