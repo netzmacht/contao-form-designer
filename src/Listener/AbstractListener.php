@@ -47,7 +47,7 @@ abstract class AbstractListener
      *
      * @var FormLayoutFactory
      */
-    private $factory;
+    protected $factory;
 
     /**
      * Error logger.
