@@ -1,5 +1,1 @@
-<textarea name="<?= $this->widget->name ?>"
-          <?= $this->layout->getControlAttributes($this->widget) ?>
-          rows="<?= $this->widget->rows ?>"
-          cols="<?= $this->widget->cols ?>"
-    ><?= $this->widget->value ?></textarea>
+<textarea <?= $this->layout->getControlAttributes($this->widget) ?>><?= $this->widget->value ?></textarea>

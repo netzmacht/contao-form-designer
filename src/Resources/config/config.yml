@@ -12,63 +12,112 @@ parameters:
       help: true
       templates:
         control: 'fd_control_captcha'
+
     checkbox:
       help: true
       templates:
         control: 'fd_control_checkbox'
         layout:  'fd_layout_row_field'
+
     explanation:
       help: false
       templates:
         control: 'fd_control_explanation'
         layout:  'fd_layout_row_field'
+
     message:
       help: false
       templates:
         control: 'fd_control_message'
+
     password:
       help: true
       templates:
         control: 'fd_control_password'
         layout:  'fd_layout_row_password'
+      attributes:
+        type: 'type'
+        value:
+          value: ''
+
     radio:
       help: true
       templates:
         control: 'fd_control_radio'
         layout:  'fd_layout_row_field'
+
     select:
       help: true
       templates:
         control: 'fd_control_select'
+
     submit:
       help: false
       templates:
         control: 'fd_control_submit'
         layout:  'fd_layout_row_field'
+
     textarea:
       help: true
       templates:
         control: 'fd_control_textarea'
+      attributes:
+        rows: 'rows'
+        cols: 'cols'
+
     text:
       help: true
       templates:
         control: 'fd_control_text'
+      attributes:
+        type: 'type'
+        value:
+          key: value
+          filters:
+            - specialchars
+
     url:
       help: true
       templates:
         control: 'fd_control_text'
+      attributes:
+        type: 'type'
+        value:
+          key: value
+          filters:
+            - specialchars
+
     email:
       help: true
       templates:
         control: 'fd_control_text'
+      attributes:
+        type: 'type'
+        value:
+          key: value
+          filters:
+            - specialchars
+
     number:
       help: true
       templates:
         control: 'fd_control_text'
+      attributes:
+        type: 'type'
+        value:
+          key: value
+          filters:
+            - specialchars
+
     upload:
       help: true
       templates:
         control: 'fd_control_upload'
+      attributes:
+        type:
+          value: 'file'
+        class:
+          value: ['upload']
 
   netzmacht.contao_form_designer.form_designer.modules:
     - 'comments'

@@ -22,13 +22,6 @@ use Contao\Widget;
 final class ContaoFormLayout extends AbstractFormLayout
 {
     /**
-     * Widget config.
-     *
-     * @var array
-     */
-    private $widgetConfig;
-
-    /**
      * Fallback templates config.
      *
      * @var array
@@ -43,7 +36,8 @@ final class ContaoFormLayout extends AbstractFormLayout
      */
     public function __construct(array $widgetConfig, array $fallbackConfig)
     {
-        $this->widgetConfig   = $widgetConfig;
+        parent::__construct($widgetConfig);
+
         $this->fallbackConfig = $fallbackConfig;
     }
 

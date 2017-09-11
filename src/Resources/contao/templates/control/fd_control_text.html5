@@ -4,5 +4,4 @@ if ($this->widget->hideInput) {
 }
 ?>
 
-<input type="<?= $this->widget->type ?>" <?= $attributes ?> value="<?= StringUtil::specialchars($this->widget->value) ?>" >
-
+<input <?= $attributes ?>>

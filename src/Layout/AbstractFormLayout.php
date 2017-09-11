@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace Netzmacht\Contao\FormDesigner\Layout;
 
 use Contao\FrontendTemplate;
+use Contao\StringUtil;
 use Contao\Widget;
 use Netzmacht\Html\Attributes;
 
@@ -23,6 +24,23 @@ use Netzmacht\Html\Attributes;
  */
 abstract class AbstractFormLayout implements FormLayout
 {
+    /**
+     * Widget config.
+     *
+     * @var array
+     */
+    protected $widgetConfig;
+
+    /**
+     * AbstractFormLayout constructor.
+     *
+     * @param array $widgetConfig Widget config.
+     */
+    public function __construct(array $widgetConfig)
+    {
+        $this->widgetConfig = $widgetConfig;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -103,6 +121,7 @@ abstract class AbstractFormLayout implements FormLayout
         $attributes = new Attributes();
         $attributes->setId('ctrl_' . $widget->id);
         $attributes->setAttribute('name', $widget->name);
+        $this->addConfiguredAttributes($widget, $attributes);
         $this->parseWidgetAttributes($widget, $attributes);
 
         if ($widget->class) {
@@ -204,6 +223,32 @@ abstract class AbstractFormLayout implements FormLayout
     abstract protected function getTemplate(Widget $widget, string $section): string;
 
     /**
+     * Add attributes which got configured.
+     *
+     * @param Widget     $widget     Widget.
+     * @param Attributes $attributes Attributes.
+     *
+     * @return void
+     */
+    private function addConfiguredAttributes(Widget $widget, Attributes $attributes): void
+    {
+        if (empty($this->widgetConfig[$widget->type]['attributes'])) {
+            return;
+        }
+
+        foreach ($this->widgetConfig[$widget->type]['attributes'] as $attribute => $key) {
+            switch (gettype($key)) {
+                case 'array':
+                    $attributes->setAttribute($attribute, $this->parseArrayAttributeConfig($widget, $key));
+                    break;
+
+                default:
+                    $attributes->setAttribute($attribute, $widget->$key);
+            }
+        }
+    }
+
+    /**
      * Parse widget attributes.
      *
      * @param Widget     $widget     Widget.
@@ -229,5 +274,48 @@ abstract class AbstractFormLayout implements FormLayout
             },
             explode(' ', $widget->getAttributes())
         );
+    }
+
+    /**
+     * Parse array attribute config.
+     *
+     * @param Widget $widget
+     * @param array  $config
+     *
+     * @return mixed
+     */
+    private function parseArrayAttributeConfig(Widget $widget, array $config)
+    {
+        if (!empty($config['value'])) {
+            $value = $config['value'];
+        } else {
+            $value = $widget->{$config['key']};
+        }
+
+        if (empty(($config['filters']))) {
+            return $value;
+        }
+
+        return $this->evaluateAttributeFilters($value, $config['filters']);
+    }
+
+    /**
+     * Evaluate attribute filters.
+     *
+     * @param mixed $value   Given values.
+     * @param array $filters Given filters
+     *
+     * @return mixed
+     */
+    protected function evaluateAttributeFilters($value, $filters)
+    {
+        foreach ($filters as $filter) {
+            switch ($filter) {
+                case 'specialchars':
+                    $value = StringUtil::specialchars($value);
+            }
+        }
+
+        return $value;
     }
 }
