@@ -124,4 +124,14 @@ class LayoutManager
     {
         $this->defaultThemeLayout = $layout;
     }
+
+    /**
+     * Check if the default form layout isset.
+     *
+     * @return bool
+     */
+    public function hasDefaultThemeLayout(): bool
+    {
+        return (bool) $this->defaultThemeLayout;
+    }
 }
