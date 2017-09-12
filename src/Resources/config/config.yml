@@ -57,6 +57,18 @@ parameters:
         control: 'fd_control_submit'
         layout:  'fd_layout_row_field'
 
+      attributes:
+        class:
+          value: ['submit']
+        alt:
+          key: 'slabel'
+          filters:
+            - specialchars
+        title:
+          key: 'slabel'
+          filters:
+            - specialchars
+
     textarea:
       help: true
       templates:

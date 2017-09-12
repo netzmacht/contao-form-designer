@@ -1,5 +1,11 @@
 <?php if ($this->widget->src): ?>
-    <input type="image" src="<?= $this->widget->src ?>" id="ctrl_<?= $this->widget->id ?>" class="submit<?php if ($this->widget->class) echo ' ' . $this->widget->class; ?>" title="<?= StringUtil::specialchars($this->widget->slabel) ?>" alt="<?= StringUtil::specialchars($this->widget->slabel) ?>"<?= $this->widget->getAttributes() ?>>
+    <?php
+    $attributes = $this->layout->getControlAttributes($this->widget)
+        ->setAttribute('type', 'image')
+        ->setAttribute('src', $this->widget->src)
+    ?>
+
+    <input <?= $attributes ?>>
 <?php else: ?>
-    <button type="submit" id="ctrl_<?= $this->widget->id ?>" class="submit<?php if ($this->widget->class) echo ' ' . $this->widget->class; ?>"<?= $this->widget->getAttributes() ?>><?= $this->widget->slabel ?></button>
+    <button <?= $this->layout->getControlAttributes($this->widget) ?>><?= $this->widget->slabel ?></button>
 <?php endif; ?>
