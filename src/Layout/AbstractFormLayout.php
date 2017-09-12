@@ -128,6 +128,10 @@ abstract class AbstractFormLayout implements FormLayout
             $attributes->addClass($widget->class);
         }
 
+        if ($widget->controlClass) {
+            $attributes->addClass($widget->controlClass);
+        }
+
         return $attributes;
     }
 
