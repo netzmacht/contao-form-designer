@@ -55,9 +55,7 @@ class FormFieldListener
                 ->addField('controlClass', 'class');
 
             if (!empty($config['help'])) {
-                $manipulator
-                    ->addField('helpMessage', 'fconfig_legend', PaletteManipulator::POSITION_APPEND)
-                    ->applyToPalette($widget, 'tl_form_field');
+                $manipulator->addField('helpMessage', 'fconfig_legend', PaletteManipulator::POSITION_APPEND);
             }
 
             $manipulator->applyToPalette($widget, 'tl_form_field');
