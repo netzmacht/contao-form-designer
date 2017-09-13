@@ -21,7 +21,7 @@
     "php":">=7.1",
     "contao/core-bundle":"~4.4",
     "contao-community-alliance/meta-palettes":"~1.10",
-    "netzmacht/html": "^2.0@beta",
+    "netzmacht/html": "~2.0@beta",
     "menatwork/contao-multicolumnwizard": "~3.3"
   },
   "require-dev": {
