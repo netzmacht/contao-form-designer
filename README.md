@@ -19,7 +19,7 @@ Requirements
 ------------
 
  - min. Contao 4.4
- - min. PHP 7.0 
+ - min. PHP 7.1 
  
  
 Install
