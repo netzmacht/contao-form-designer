@@ -1,11 +1,13 @@
 <?php
 
 /**
+ * Contao Form Designer.
+ *
  * @package    contao-form-designer
  * @author     David Molineus <david.molineus@netzmacht.de>
  * @copyright  2017 netzmacht David Molineus. All rights reserved.
+ * @license    LGPL 3.0
  * @filesource
- *
  */
 
 declare(strict_types=1);
@@ -27,6 +29,7 @@ class Plugin implements BundlePluginInterface
 {
     /**
      * {@inheritdoc}
+     *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function getBundles(ParserInterface $parser)

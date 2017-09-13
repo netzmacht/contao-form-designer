@@ -1,11 +1,13 @@
 <?php
 
 /**
+ * Contao Form Designer.
+ *
  * @package    contao-form-designer
  * @author     David Molineus <david.molineus@netzmacht.de>
  * @copyright  2017 netzmacht David Molineus. All rights reserved.
+ * @license    LGPL 3.0
  * @filesource
- *
  */
 
 declare(strict_types=1);
@@ -114,7 +116,7 @@ abstract class AbstractFormLayout implements FormLayout
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function getControlAttributes(Widget $widget): Attributes
     {
@@ -283,8 +285,8 @@ abstract class AbstractFormLayout implements FormLayout
     /**
      * Parse array attribute config.
      *
-     * @param Widget $widget
-     * @param array  $config
+     * @param Widget $widget Form widget.
+     * @param array  $config Attribute config.
      *
      * @return mixed
      */
@@ -307,7 +309,7 @@ abstract class AbstractFormLayout implements FormLayout
      * Evaluate attribute filters.
      *
      * @param mixed $value   Given values.
-     * @param array $filters Given filters
+     * @param array $filters Given filters.
      *
      * @return mixed
      */
@@ -317,6 +319,10 @@ abstract class AbstractFormLayout implements FormLayout
             switch ($filter) {
                 case 'specialchars':
                     $value = StringUtil::specialchars($value);
+                    break;
+
+                default:
+                    // Do nothing.
             }
         }
 
