@@ -46,7 +46,7 @@ class DelegatingFormLayoutFactory implements FormLayoutFactory
      *
      * @throws CreatingLayoutFailed When type is not supported.
      */
-    public function create($type, array $config): FormLayout
+    public function create(string $type, array $config): FormLayout
     {
         foreach ($this->factories as $factory) {
             if (in_array($type, $factory->supportedTypes())) {
