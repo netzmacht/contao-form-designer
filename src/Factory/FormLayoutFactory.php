@@ -33,7 +33,7 @@ interface FormLayoutFactory
      * @return FormLayout
      * @throws CreatingLayoutFailed When layout could not be created.
      */
-    public function create($type, array $config): FormLayout;
+    public function create(string $type, array $config): FormLayout;
 
     /**
      * Get the list of supported types.

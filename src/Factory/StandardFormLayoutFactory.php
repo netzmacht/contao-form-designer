@@ -60,7 +60,7 @@ class StandardFormLayoutFactory implements FormLayoutFactory
     /**
      * {@inheritdoc}
      */
-    public function create($type, array $config): FormLayout
+    public function create(string $type, array $config): FormLayout
     {
         $widgetConfig      = $this->buildWidgetConfig($config);
         $fallbackTemplates = $this->buildFallbackConfig($config);
