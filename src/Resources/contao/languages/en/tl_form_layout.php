@@ -14,6 +14,17 @@ $GLOBALS['TL_LANG']['tl_form_layout']['title_legend']    = 'Title';
 $GLOBALS['TL_LANG']['tl_form_layout']['widgets_legend']  = 'Widget templates';
 $GLOBALS['TL_LANG']['tl_form_layout']['fallback_legend'] = 'Fallback templates';
 
+$GLOBALS['TL_LANG']['tl_form_layout']['new'][0]    = 'New form layout';
+$GLOBALS['TL_LANG']['tl_form_layout']['new'][1]    = 'Create a new form layout';
+$GLOBALS['TL_LANG']['tl_form_layout']['edit'][0]   = 'Edit form layout';
+$GLOBALS['TL_LANG']['tl_form_layout']['edit'][1]   = 'Edit form layout ID "%s"';
+$GLOBALS['TL_LANG']['tl_form_layout']['copy'][0]   = 'Duplicate form layout';
+$GLOBALS['TL_LANG']['tl_form_layout']['copy'][1]   = 'Duplicate form layout ID "%s"';
+$GLOBALS['TL_LANG']['tl_form_layout']['delete'][0] = 'Delete form layout';
+$GLOBALS['TL_LANG']['tl_form_layout']['delete'][1] = 'Delete form layout ID "%s"';
+$GLOBALS['TL_LANG']['tl_form_layout']['show'][0]   = 'Show form layout details';
+$GLOBALS['TL_LANG']['tl_form_layout']['show'][1]   = 'Show form layout ID "%s" details';
+
 $GLOBALS['TL_LANG']['tl_form_layout']['title'][0]           = 'Title';
 $GLOBALS['TL_LANG']['tl_form_layout']['title'][1]           = 'Title of the form layout configuration.';
 $GLOBALS['TL_LANG']['tl_form_layout']['type'][0]            = 'Type';
