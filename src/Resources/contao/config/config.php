@@ -38,3 +38,9 @@ $GLOBALS['TL_HOOKS']['getPageLayout'][] = [
     'netzmacht.contao_form_designer.listener.theme_form_layout',
     'onPageLayout'
 ];
+
+// Easy themes
+$GLOBALS['TL_EASY_THEMES_MODULES']['form_layout'] = array
+(
+    'href_fragment' => 'table=tl_form_layout',
+);
