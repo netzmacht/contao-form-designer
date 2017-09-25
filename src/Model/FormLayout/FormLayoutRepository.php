@@ -42,11 +42,29 @@ interface FormLayoutRepository
     public function find(int $layoutId): ?FormLayoutModel;
 
     /**
+     * Find form layout by theme.
+     *
+     * @param int $themeId Theme id.
+     *
+     * @return FormLayoutModel[]|Collection|null
+     */
+    public function findByTheme(int $themeId): ?Collection;
+
+    /**
      * Find all form layouts.
      *
-     * @return FormLayoutModel[]|Collection
+     * @return FormLayoutModel[]|Collection|null
      */
-    public function findAll(): Collection;
+    public function findAll(): ?Collection;
+
+    /**
+     * Add a form layout model to the repository.
+     *
+     * @param FormLayoutModel $model Form layout model.
+     *
+     * @return void
+     */
+    public function add(FormLayoutModel $model): void;
 
     /**
      * Set the default layout setting.

@@ -101,7 +101,10 @@ class FormLayoutListener
     public function setDefaultLayout($dataContainer): void
     {
         if ($dataContainer->activeRecord->defaultLayout) {
-            $this->repository->setDefaultLayout($dataContainer->activeRecord->pid, $dataContainer->activeRecord->id);
+            $this->repository->setDefaultLayout(
+                (int) $dataContainer->activeRecord->pid,
+                (int) $dataContainer->activeRecord->id
+            );
         }
     }
 

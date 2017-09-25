@@ -18,6 +18,16 @@ services:
       - '@netzmacht.contao_form_designer.layout_factory'
       - '@logger'
 
+  netzmacht.contao_form_designer.listener.theme_export:
+    class: Netzmacht\Contao\FormDesigner\Listener\ThemeExportListener
+    arguments:
+      - '@netzmacht.contao_form_designer.repository.layout'
+
+  netzmacht.contao_form_designer.listener.theme_import:
+    class: Netzmacht\Contao\FormDesigner\Listener\ThemeImportListener
+    arguments:
+      - '@netzmacht.contao_form_designer.repository.layout'
+
   netzmacht.contao_form_designer.listener.dca.form:
     class: Netzmacht\Contao\FormDesigner\Listener\Dca\FormListener
     arguments:

@@ -56,11 +56,27 @@ class ContaoFormLayoutRepository implements FormLayoutRepository
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public function findByTheme(int $themeId): ?Collection
+    {
+        return FormLayoutModel::findBy('pid', $themeId);
+    }
+
+    /**
      * {@inheritdoc}
      */
-    public function findAll(): Collection
+    public function findAll(): ?Collection
     {
         return FormLayoutModel::findAll();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function add(FormLayoutModel $model): void
+    {
+        $model->save();
     }
 
     /**

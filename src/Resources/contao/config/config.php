@@ -39,6 +39,16 @@ $GLOBALS['TL_HOOKS']['getPageLayout'][] = [
     'onPageLayout'
 ];
 
+$GLOBALS['TL_HOOKS']['exportTheme'][] = [
+    'netzmacht.contao_form_designer.listener.theme_export',
+    'onExportTheme'
+];
+
+$GLOBALS['TL_HOOKS']['extractThemeFiles'][] = [
+    'netzmacht.contao_form_designer.listener.theme_import',
+    'onExtractThemeFiles'
+];
+
 // Easy themes
 $GLOBALS['TL_EASY_THEMES_MODULES']['form_layout'] = array
 (
