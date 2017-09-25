@@ -313,7 +313,7 @@ abstract class AbstractFormLayout implements FormLayout
      *
      * @return mixed
      */
-    protected function evaluateAttributeFilters($value, $filters)
+    protected function evaluateAttributeFilters($value, array $filters)
     {
         foreach ($filters as $filter) {
             switch ($filter) {

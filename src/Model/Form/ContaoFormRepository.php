@@ -26,7 +26,7 @@ class ContaoFormRepository implements FormRepository
     /**
      * {@inheritdoc}
      */
-    public function find($formId)
+    public function find(int $formId): ?FormModel
     {
         return FormModel::findByPk($formId);
     }

@@ -28,7 +28,7 @@ interface FormLayoutRepository
      *
      * @return FormLayoutModel|null
      */
-    public function findDefaultByTheme($themeId);
+    public function findDefaultByTheme(int $themeId): ?FormLayoutModel;
 
     /**
      * Find by id.
@@ -37,7 +37,7 @@ interface FormLayoutRepository
      *
      * @return FormLayoutModel|null
      */
-    public function find($layoutId);
+    public function find(int $layoutId): ?FormLayoutModel;
 
     /**
      * Set the default layout setting.
@@ -47,5 +47,5 @@ interface FormLayoutRepository
      *
      * @return void
      */
-    public function setDefaultLayout($themeId, $defaultLayoutId): void;
+    public function setDefaultLayout(int $themeId, int $defaultLayoutId): void;
 }

@@ -30,5 +30,5 @@ interface FormRepository
      *
      * @return FormModel|null
      */
-    public function find($formId);
+    public function find(int $formId): ?FormModel;
 }

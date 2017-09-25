@@ -28,7 +28,7 @@ class CreatingLayoutFailed extends Exception
      *
      * @return static
      */
-    public static function unsupportedType($type): self
+    public static function unsupportedType(string $type): self
     {
         return new static(sprintf('Creating layout failed. Unsupported layout type "%s".', $type));
     }

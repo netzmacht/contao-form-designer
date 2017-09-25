@@ -41,7 +41,7 @@ class ContaoFormLayoutRepository implements FormLayoutRepository
     /**
      * {@inheritdoc}
      */
-    public function findDefaultByTheme($themeId)
+    public function findDefaultByTheme(int $themeId): ?FormLayoutModel
     {
         return FormLayoutModel::findOneBy(['tl_form_layout.pid=?', 'tl_form_layout.defaultLayout=1'], [$themeId]);
     }
@@ -49,7 +49,7 @@ class ContaoFormLayoutRepository implements FormLayoutRepository
     /**
      * {@inheritdoc}
      */
-    public function find($layoutId)
+    public function find(int $layoutId):? FormLayoutModel
     {
         return FormLayoutModel::findByPk($layoutId);
     }
@@ -57,7 +57,7 @@ class ContaoFormLayoutRepository implements FormLayoutRepository
     /**
      * {@inheritdoc}
      */
-    public function setDefaultLayout($themeId, $defaultLayoutId): void
+    public function setDefaultLayout(int $themeId, int $defaultLayoutId): void
     {
         $statement = $this->connection->prepare('UPDATE tl_form_layout SET defaultLayout=? WHERE pid=? AND id!=?');
         $statement->bindValue(1, '');

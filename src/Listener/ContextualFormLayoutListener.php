@@ -141,12 +141,12 @@ class ContextualFormLayoutListener extends AbstractListener
      */
     private function handleForm(Model $model): bool
     {
-        $form = $this->formRepository->find($model->form);
+        $form = $this->formRepository->find((int) $model->form);
         if (!$form) {
             return false;
         }
 
-        return $this->registerContextLayout($form->formLayout);
+        return $this->registerContextLayout((int) $form->formLayout);
     }
 
     /**
@@ -162,7 +162,7 @@ class ContextualFormLayoutListener extends AbstractListener
             return false;
         }
 
-        return $this->registerContextLayout($model->formLayout);
+        return $this->registerContextLayout((int) $model->formLayout);
     }
 
     /**
@@ -178,7 +178,7 @@ class ContextualFormLayoutListener extends AbstractListener
             return false;
         }
 
-        return $this->registerContextLayout($model->formLayout);
+        return $this->registerContextLayout((int) $model->formLayout);
     }
 
     /**
@@ -188,7 +188,7 @@ class ContextualFormLayoutListener extends AbstractListener
      *
      * @return bool
      */
-    private function registerContextLayout($layoutId): bool
+    private function registerContextLayout(int $layoutId): bool
     {
         $layoutId = (int) $layoutId;
         if (!$layoutId) {

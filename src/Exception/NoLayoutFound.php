@@ -32,7 +32,7 @@ class NoLayoutFound extends Exception
      *
      * @return NoLayoutFound
      */
-    public static function forWidget(Widget $widget, $code = 0, \Throwable $previous = null): self
+    public static function forWidget(Widget $widget, int $code = 0, \Throwable $previous = null): self
     {
         $message = sprintf('No layout found for form widget type "%s"', $widget->type);
 

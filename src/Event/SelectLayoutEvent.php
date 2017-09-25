@@ -78,7 +78,7 @@ class SelectLayoutEvent extends Event
      *
      * @return FormLayout|null
      */
-    public function getLayout()
+    public function getLayout(): ?FormLayout
     {
         return $this->layout;
     }
