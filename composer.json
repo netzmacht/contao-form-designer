@@ -15,7 +15,7 @@
   "support":{
     "email":"mail@netzmacht.de",
     "issues":"https://github.com/netzmacht/contao-form-designer/issues",
-    "source":"https://github.com/netzmacht/contao-form-designer/"
+    "source":"https://github.com/netzmacht/contao-form-designer"
   },
   "require":{
     "php":">=7.1",
