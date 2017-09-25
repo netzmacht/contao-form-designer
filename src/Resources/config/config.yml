@@ -121,6 +121,17 @@ parameters:
           filters:
             - specialchars
 
+    tel:
+      help: true
+      templates:
+        control: 'fd_control_text'
+      attributes:
+        type: 'type'
+        value:
+          key: value
+          filters:
+            - specialchars
+
     upload:
       help: true
       templates:
@@ -130,6 +141,12 @@ parameters:
           value: 'file'
         class:
           value: ['upload']
+
+  netzmacht.contao_form_designer.form_designer.virtual_widgets:
+    - 'email'
+    - 'number'
+    - 'tel'
+    - 'url'
 
   netzmacht.contao_form_designer.form_designer.modules:
     - 'comments'

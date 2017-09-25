@@ -49,20 +49,30 @@ class FormLayoutListener
     private $repository;
 
     /**
+     * List of virtual widget names.
+     *
+     * @var array
+     */
+    private $virtualWidgets;
+
+    /**
      * FormLayoutListener constructor.
      *
      * @param FormLayoutRepository     $repository      Form layout repository.
      * @param FormLayoutFactory        $factory         Form layout factory.
      * @param ContaoFrameworkInterface $contaoFramework Contao framework.
+     * @param array                    $virtualWidgets  List of virtual widget names.
      */
     public function __construct(
         FormLayoutRepository $repository,
         FormLayoutFactory $factory,
-        ContaoFrameworkInterface $contaoFramework
+        ContaoFrameworkInterface $contaoFramework,
+        array $virtualWidgets
     ) {
         $this->factory         = $factory;
         $this->contaoFramework = $contaoFramework;
         $this->repository      = $repository;
+        $this->virtualWidgets  = $virtualWidgets;
     }
 
     /**
@@ -136,11 +146,7 @@ class FormLayoutListener
     {
         return array_merge(
             array_keys($GLOBALS['TL_FFL']),
-            [
-                'number',
-                'email',
-                'url',
-            ]
+            $this->virtualWidgets
         );
     }
 
