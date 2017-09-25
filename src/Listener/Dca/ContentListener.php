@@ -15,6 +15,8 @@ declare(strict_types=1);
 namespace Netzmacht\Contao\FormDesigner\Listener\Dca;
 
 use Bit3\Contao\MetaPalettes\MetaPalettes;
+use Netzmacht\Contao\FormDesigner\Listener\Dca\Plugin\FormLayoutOptionsPlugin;
+use Netzmacht\Contao\FormDesigner\Model\FormLayout\FormLayoutRepository;
 
 /**
  * Class ModuleListener.
@@ -23,6 +25,8 @@ use Bit3\Contao\MetaPalettes\MetaPalettes;
  */
 class ContentListener
 {
+    use FormLayoutOptionsPlugin;
+
     /**
      * List of supported content elements.
      *
@@ -33,11 +37,13 @@ class ContentListener
     /**
      * ModuleListener constructor.
      *
-     * @param array $supportedElements List of supported content elements.
+     * @param FormLayoutRepository $formLayoutRepository Form layout repository.
+     * @param array                $supportedElements    List of supported content elements.
      */
-    public function __construct(array $supportedElements)
+    public function __construct(FormLayoutRepository $formLayoutRepository, array $supportedElements)
     {
-        $this->supportedElements = $supportedElements;
+        $this->supportedElements    = $supportedElements;
+        $this->formLayoutRepository = $formLayoutRepository;
     }
 
     /**

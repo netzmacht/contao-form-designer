@@ -14,47 +14,25 @@ declare(strict_types=1);
 
 namespace Netzmacht\Contao\FormDesigner\Listener\Dca;
 
-use Bit3\Contao\MetaPalettes\MetaPalettes;
 use Netzmacht\Contao\FormDesigner\Listener\Dca\Plugin\FormLayoutOptionsPlugin;
 use Netzmacht\Contao\FormDesigner\Model\FormLayout\FormLayoutRepository;
 
 /**
- * Class ModuleListener.
+ * Class FormListener
  *
  * @package Netzmacht\Contao\FormDesigner\Listener\Dca
  */
-class ModuleListener
+class FormListener
 {
     use FormLayoutOptionsPlugin;
 
     /**
-     * List of supported modules.
-     *
-     * @var array
-     */
-    private $supportedModules;
-
-    /**
-     * ModuleListener constructor.
+     * FormListener constructor.
      *
      * @param FormLayoutRepository $formLayoutRepository Form layout repository.
-     * @param array                $supportedModules     Supported modules.
      */
-    public function __construct(FormLayoutRepository $formLayoutRepository, array $supportedModules)
+    public function __construct(FormLayoutRepository $formLayoutRepository)
     {
-        $this->supportedModules     = $supportedModules;
         $this->formLayoutRepository = $formLayoutRepository;
-    }
-
-    /**
-     * Initialize.
-     *
-     * @return void
-     */
-    public function initialize(): void
-    {
-        foreach ($this->supportedModules as $module) {
-            MetaPalettes::appendFields('tl_module', $module, 'include', ['formLayout']);
-        }
     }
 }

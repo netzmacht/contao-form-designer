@@ -18,6 +18,11 @@ services:
       - '@netzmacht.contao_form_designer.layout_factory'
       - '@logger'
 
+  netzmacht.contao_form_designer.listener.dca.form:
+    class: Netzmacht\Contao\FormDesigner\Listener\Dca\FormListener
+    arguments:
+      - '@netzmacht.contao_form_designer.repository.layout'
+
   netzmacht.contao_form_designer.listener.dca.form_field:
     class: Netzmacht\Contao\FormDesigner\Listener\Dca\FormFieldListener
     arguments:
@@ -34,9 +39,11 @@ services:
   netzmacht.contao_form_designer.listener.dca.module:
     class: Netzmacht\Contao\FormDesigner\Listener\Dca\ModuleListener
     arguments:
+      - '@netzmacht.contao_form_designer.repository.layout'
       - '%netzmacht.contao_form_designer.form_designer.modules%'
 
   netzmacht.contao_form_designer.listener.dca.content:
     class: Netzmacht\Contao\FormDesigner\Listener\Dca\ContentListener
     arguments:
+      - '@netzmacht.contao_form_designer.repository.layout'
       - '%netzmacht.contao_form_designer.form_designer.elements%'

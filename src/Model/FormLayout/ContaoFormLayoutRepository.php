@@ -12,6 +12,7 @@
 
 namespace Netzmacht\Contao\FormDesigner\Model\FormLayout;
 
+use Contao\Model\Collection;
 use Doctrine\DBAL\Connection;
 
 /**
@@ -52,6 +53,14 @@ class ContaoFormLayoutRepository implements FormLayoutRepository
     public function find(int $layoutId):? FormLayoutModel
     {
         return FormLayoutModel::findByPk($layoutId);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findAll(): Collection
+    {
+        return FormLayoutModel::findAll();
     }
 
     /**

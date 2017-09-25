@@ -14,6 +14,8 @@ declare(strict_types=1);
 
 namespace Netzmacht\Contao\FormDesigner\Model\FormLayout;
 
+use Contao\Model\Collection;
+
 /**
  * Interface FormLayoutRepository.
  *
@@ -38,6 +40,13 @@ interface FormLayoutRepository
      * @return FormLayoutModel|null
      */
     public function find(int $layoutId): ?FormLayoutModel;
+
+    /**
+     * Find all form layouts.
+     *
+     * @return FormLayoutModel[]|Collection
+     */
+    public function findAll(): Collection;
 
     /**
      * Set the default layout setting.

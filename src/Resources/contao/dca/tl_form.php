@@ -13,14 +13,15 @@
 \Bit3\Contao\MetaPalettes\MetaPalettes::appendFields('tl_form', 'template', ['formLayout']);
 
 $GLOBALS['TL_DCA']['tl_form']['fields']['formLayout'] = [
-    'label'      => &$GLOBALS['TL_LANG']['tl_form']['formLayout'],
-    'inputType'  => 'select',
-    'eval'       => [
-        'tl_class' => 'w50',
+    'label'            => &$GLOBALS['TL_LANG']['tl_form']['formLayout'],
+    'inputType'        => 'select',
+    'eval'             => [
+        'tl_class'           => 'w50',
         'includeBlankOption' => true,
         'chosen'             => true,
     ],
-    'foreignKey' => 'tl_form_layout.title',
-    'relation'   => ['type' => 'belongsTo', 'load' => 'lazy'],
-    'sql'        => "int(10) unsigned NOT NULL default '0'",
+    'options_callback' => ['netzmacht.contao_form_designer.listener.dca.form', 'getFormLayoutOptions'],
+    'foreignKey'       => 'tl_form_layout.title',
+    'relation'         => ['type' => 'belongsTo', 'load' => 'lazy'],
+    'sql'              => "int(10) unsigned NOT NULL default '0'",
 ];
