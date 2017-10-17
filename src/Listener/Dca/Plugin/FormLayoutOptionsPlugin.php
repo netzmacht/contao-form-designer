@@ -40,10 +40,12 @@ trait FormLayoutOptionsPlugin
         $collection = $this->formLayoutRepository->findAll();
         $options    = [];
 
-        foreach ($collection as $model) {
-            $themeName = $model->getRelated('pid')->name . ' [ID ' . $model->pid . ']';
+        if ($collection) {
+            foreach ($collection as $model) {
+                $themeName = $model->getRelated('pid')->name . ' [ID ' . $model->pid . ']';
 
-            $options[$themeName][$model->id] = $model->title . ' [ID ' . $model->id . ']';
+                $options[$themeName][$model->id] = $model->title . ' [ID ' . $model->id . ']';
+            }
         }
 
         return $options;
