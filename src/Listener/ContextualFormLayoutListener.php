@@ -118,18 +118,18 @@ class ContextualFormLayoutListener extends AbstractListener
     /**
      * Remove the contextual form element.
      *
-     * @param Model  $model  Element model.
-     * @param string $buffer Generated content.
+     * @param Model       $model  Element model.
+     * @param string|bool $buffer Generated content.
      *
-     * @return string
+     * @return string|bool
      *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function onPostGenerateElement(Model $model, $buffer): string
+    public function onPostGenerateElement(Model $model, $buffer)
     {
         $this->manager->removeContextLayout();
 
-        return $buffer;
+        return (string) $buffer;
     }
 
     /**
