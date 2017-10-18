@@ -31,6 +31,11 @@
   "autoload": {
     "psr-4": { "Netzmacht\\Contao\\FormDesigner\\": "src/" }
   },
+  "autoload-dev": {
+    "files": [
+      "vendor/phpcq/autoload-validation/hacks/contao-hack.php"
+    ]
+  },
   "extra":{
     "contao-manager-plugin": "Netzmacht\\Contao\\FormDesigner\\ContaoManager\\Plugin",
     "branch-alias": {
