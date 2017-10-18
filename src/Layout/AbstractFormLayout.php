@@ -261,25 +261,42 @@ abstract class AbstractFormLayout implements FormLayout
      * @param Attributes $attributes Attributes.
      *
      * @return void
+     *
+     * @see https://stackoverflow.com/questions/16173267/matching-key-value-pattern-in-php-string
      */
     private function parseWidgetAttributes(Widget $widget, Attributes $attributes): void
     {
-        array_map(
-            function ($attribute) use ($attributes) {
-                $attribute = trim($attribute);
+        $attributesString = $widget->getAttributes();
 
-                if (!$attribute) {
-                    return;
-                }
+        if (!$attributesString) {
+            return;
+        }
 
-                if (preg_match('/([^=]*)="([^"]*)"/', $attribute, $matches)) {
-                    $attributes->setAttribute($matches[1], $matches[2]);
-                } else {
-                    $attributes->setAttribute($attribute, true);
-                }
-            },
-            explode(' ', $widget->getAttributes())
-        );
+        $matchExpression   = '/(?<=^|\\s)([^=\\s]+)(="((?:[^\\\\"]|\\\\.)*)")?/';
+        $replaceExpression = '/\\\\./';
+        $replaceCallback   = function ($match) {
+            switch ($match[0][1]) {
+                case 'r':
+                    return "\r";
+
+                case 'n':
+                    return "\n";
+
+                default:
+                    return $match[0][1];
+            }
+        };
+
+        preg_match_all($matchExpression, $attributesString, $matches);
+
+        foreach ($matches[1] as $i => $key) {
+            if (isset($matches[3][$i])) {
+                $value = preg_replace_callback($replaceExpression, $replaceCallback, $matches[3][$i]);
+                $attributes->setAttribute($key, $value);
+            } else {
+                $attributes->setAttribute($key, true);
+            }
+        }
     }
 
     /**
