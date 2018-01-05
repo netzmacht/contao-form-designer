@@ -15,6 +15,12 @@ The Contao Form Designer provides more flexibility to customize form rendering
  - Additional help message feature.
  - Custom css class for form control element.
 
+
+Changelog
+---------
+
+See the [CHANGELOG.md](CHANGELOG.md)
+
 Requirements
 ------------
 
@@ -37,22 +43,3 @@ $ php contao-manager.phar.php composer require netzmacht/contao-form-designer
 # Using composer directly
 $ php composer.phar require netzmacht/contao-form-designer
 ```
-
-### Standard edition
-
-Without the contao manager you also have to register the bundle
-
-```php
-
-class AppKernel
-{
-    public function registerBundles()
-    {
-        $bundles = [
-            // ...
-            new Contao\CoreBundle\HttpKernel\Bundle\ContaoModuleBundle('metapalettes', $this->getRootDir()),
-            new Contao\CoreBundle\HttpKernel\Bundle\ContaoModuleBundle('multicolumnwizard', $this->getRootDir()),
-            new Netzmacht\Contao\FormDesigner\NetzmachtContaoFormDesignerBundle(),
-        ];
-    }
-}
