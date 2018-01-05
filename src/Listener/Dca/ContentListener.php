@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 namespace Netzmacht\Contao\FormDesigner\Listener\Dca;
 
-use Bit3\Contao\MetaPalettes\MetaPalettes;
+use ContaoCommunityAlliance\MetaPalettes\MetaPalettes;
 use Netzmacht\Contao\FormDesigner\Listener\Dca\Plugin\FormLayoutOptionsPlugin;
 use Netzmacht\Contao\FormDesigner\Model\FormLayout\FormLayoutRepository;
 

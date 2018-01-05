@@ -10,7 +10,7 @@
  * @filesource
  */
 
-\Bit3\Contao\MetaPalettes\MetaPalettes::appendFields('tl_form', 'template', ['formLayout']);
+\ContaoCommunityAlliance\MetaPalettes\MetaPalettes::appendFields('tl_form', 'template', ['formLayout']);
 
 $GLOBALS['TL_DCA']['tl_form']['fields']['formLayout'] = [
     'label'            => &$GLOBALS['TL_LANG']['tl_form']['formLayout'],

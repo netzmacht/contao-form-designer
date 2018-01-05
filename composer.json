@@ -20,7 +20,7 @@
   "require":{
     "php":">=7.1",
     "contao/core-bundle":"~4.4",
-    "contao-community-alliance/meta-palettes":"~1.10",
+    "contao-community-alliance/meta-palettes":"^2.0 || ^1.11",
     "netzmacht/html": "~2.0",
     "menatwork/contao-multicolumnwizard": "~3.3"
   },
