@@ -1,4 +1,7 @@
 services:
+  _defaults:
+    public: true
+
   netzmacht.contao_form_designer.listener.contextual_form_layout:
     class: Netzmacht\Contao\FormDesigner\Listener\ContextualFormLayoutListener
     arguments:
