@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace Netzmacht\Contao\FormDesigner\Listener\Dca;
 
+use Contao\CoreBundle\Exception\PaletteNotFoundException;
 use ContaoCommunityAlliance\MetaPalettes\MetaPalettes;
 use Netzmacht\Contao\FormDesigner\Listener\Dca\Plugin\FormLayoutOptionsPlugin;
 use Netzmacht\Contao\FormDesigner\Model\FormLayout\FormLayoutRepository;
@@ -54,7 +55,11 @@ class ContentListener
     public function initialize(): void
     {
         foreach ($this->supportedElements as $element) {
-            MetaPalettes::appendFields('tl_content', $element, 'include', ['formLayout']);
+            try {
+                MetaPalettes::appendFields('tl_content', $element, 'include', ['formLayout']);
+            } catch (PaletteNotFoundException $e) {
+                // Palette does not exist. So skip it.
+            }
         }
     }
 }
