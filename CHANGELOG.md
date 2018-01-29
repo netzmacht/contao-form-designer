@@ -5,6 +5,7 @@ Changelog
 ------------------
 
  - Fix broken tl_content view if supported palette does not exist (core module disabled).
+ - Fix old spdx license format.
 
 1.0.3 (2018-01-05)
 ------------------

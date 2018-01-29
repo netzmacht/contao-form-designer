@@ -3,7 +3,7 @@
   "description":"Contao form designer allows custom form styles",
   "keywords":["form", "contao"],
   "type":"contao-bundle",
-  "license":"LGPL-3.0+",
+  "license":"LGPL-3.0-or-later",
   "authors":[
     {
       "name":"David Molineus",
