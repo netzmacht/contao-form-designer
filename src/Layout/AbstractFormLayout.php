@@ -284,7 +284,7 @@ abstract class AbstractFormLayout implements FormLayout
      *
      * @return void
      *
-     * @see https://stackoverflow.com/questions/16173267/matching-key-value-pattern-in-php-string
+     * @throws \Netzmacht\Html\Exception\InvalidArgumentException If an invalid attribute value or name is given.
      */
     private function parseWidgetAttributes(Widget $widget, Attributes $attributes): void
     {
