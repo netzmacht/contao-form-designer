@@ -5,11 +5,10 @@
  *
  * @package    contao-form-designer
  * @author     David Molineus <david.molineus@netzmacht.de>
- * @copyright  2017 netzmacht David Molineus. All rights reserved.
+ * @copyright  2017-2018 netzmacht David Molineus. All rights reserved.
  * @license    LGPL 3.0
  * @filesource
  */
-
 
 declare(strict_types=1);
 
@@ -37,14 +36,48 @@ final class WidgetUtil
      */
     public static function __callStatic($name, $arguments)
     {
-        $widget  = array_shift($arguments);
-        $closure = function () use ($name, $arguments) {
-            // @codingStandardsIgnoreStart
-            return call_user_func_array([$this, $name], $arguments);
-            // @codingStandardsIgnoreEnd
-        };
+        $widget = array_shift($arguments);
 
-        $closure = $closure->bindTo($widget, Widget::class);
+        return static::invokeClosure(
+            $widget,
+            function () use ($name, $arguments) {
+                // @codingStandardsIgnoreStart
+                return call_user_func_array([$this, $name], $arguments);
+                // @codingStandardsIgnoreEnd
+            }
+        );
+    }
+
+    /**
+     * Get the attributes of an widget.
+     *
+     * @param Widget $widget Form widget.
+     *
+     * @return array
+     */
+    public static function getAttributes(Widget $widget): array
+    {
+        return static::invokeClosure(
+            $widget,
+            function () {
+                // @codingStandardsIgnoreStart
+                return $this->arrAttributes;
+                // @codingStandardsIgnoreEnd
+            }
+        );
+    }
+
+    /**
+     * Bind a closure to the widget and invoke it.
+     *
+     * @param Widget   $widget  The widget.
+     * @param \Closure $closure The closre.
+     *
+     * @return array
+     */
+    private static function invokeClosure(Widget $widget, \Closure $closure): array
+    {
+        $closure = $closure->bindTo($widget, get_class($widget));
 
         return $closure();
     }
