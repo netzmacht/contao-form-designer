@@ -17,6 +17,7 @@ namespace Netzmacht\Contao\FormDesigner\Layout;
 use Contao\FrontendTemplate;
 use Contao\StringUtil;
 use Contao\Widget;
+use Netzmacht\Contao\FormDesigner\Util\WidgetUtil;
 use Netzmacht\Html\Attributes;
 
 /**
@@ -32,6 +33,27 @@ abstract class AbstractFormLayout implements FormLayout
      * @var array
      */
     protected $widgetConfig;
+
+    /**
+     * If boolean attribute.
+     *
+     * @var array
+     */
+    protected static $booleanAttributes = [
+        'compact',
+        'declare',
+        'defer',
+        'disabled',
+        'formnovalidate',
+        'multiple',
+        'nowrap',
+        'novalidate',
+        'ismap',
+        'itemscope',
+        'readonly',
+        'required',
+        'selected',
+    ];
 
     /**
      * AbstractFormLayout constructor.
@@ -262,39 +284,17 @@ abstract class AbstractFormLayout implements FormLayout
      *
      * @return void
      *
-     * @see https://stackoverflow.com/questions/16173267/matching-key-value-pattern-in-php-string
+     * @throws \Netzmacht\Html\Exception\InvalidArgumentException If an invalid attribute value or name is given.
      */
     private function parseWidgetAttributes(Widget $widget, Attributes $attributes): void
     {
-        $attributesString = $widget->getAttributes();
+        $widgetAttributes = WidgetUtil::getAttributes($widget);
 
-        if (!$attributesString) {
-            return;
-        }
-
-        $matchExpression   = '/(?<=^|\\s)([^=\\s]+)(="((?:[^\\\\"]|\\\\.)*)")?/';
-        $replaceExpression = '/\\\\./';
-        $replaceCallback   = function ($match) {
-            switch ($match[0][1]) {
-                case 'r':
-                    return "\r";
-
-                case 'n':
-                    return "\n";
-
-                default:
-                    return $match[0][1];
-            }
-        };
-
-        preg_match_all($matchExpression, $attributesString, $matches);
-
-        foreach ($matches[1] as $i => $key) {
-            if (isset($matches[3][$i])) {
-                $value = preg_replace_callback($replaceExpression, $replaceCallback, $matches[3][$i]);
-                $attributes->setAttribute($key, $value);
-            } else {
-                $attributes->setAttribute($key, true);
+        foreach (($widgetAttributes) as $name => $value) {
+            if (in_array($name, static::$booleanAttributes)) {
+                $attributes->setAttribute($name, true);
+            } elseif ($value != '') {
+                $attributes->setAttribute($name, $value);
             }
         }
     }
