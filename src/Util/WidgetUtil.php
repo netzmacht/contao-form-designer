@@ -57,7 +57,7 @@ final class WidgetUtil
      */
     public static function getAttributes(Widget $widget): array
     {
-        return static::invokeClosure(
+        return (array) static::invokeClosure(
             $widget,
             function () {
                 // @codingStandardsIgnoreStart
@@ -73,9 +73,9 @@ final class WidgetUtil
      * @param Widget   $widget  The widget.
      * @param \Closure $closure The closre.
      *
-     * @return array
+     * @return mixed
      */
-    private static function invokeClosure(Widget $widget, \Closure $closure): array
+    private static function invokeClosure(Widget $widget, \Closure $closure)
     {
         $closure = $closure->bindTo($widget, get_class($widget));
 

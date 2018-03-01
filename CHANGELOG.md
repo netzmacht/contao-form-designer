@@ -1,6 +1,10 @@
 Changelog
 =========
+1.0.7 (2018-03-01)
+------------------
 
+ - Loosen type restrictions of WidgetUtil::invokeClosure.
+ 
 1.0.6 (2018-03-01)
 ------------------
 
