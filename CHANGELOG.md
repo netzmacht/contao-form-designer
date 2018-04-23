@@ -1,5 +1,11 @@
 Changelog
 =========
+
+1.0.8 (2018-04-23)
+------------------
+
+ - Fix naming issue of default control template (See #1).
+ 
 1.0.7 (2018-03-01)
 ------------------
 
