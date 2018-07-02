@@ -67,6 +67,24 @@ class LayoutManager
     }
 
     /**
+     * Get the default layout independent of a form widget.
+     *
+     * @return FormLayout
+     */
+    public function getDefaultLayout(): FormLayout
+    {
+        if ($this->contextLayout) {
+            return $this->contextLayout;
+        }
+
+        if ($this->defaultThemeLayout) {
+            return $this->defaultThemeLayout;
+        }
+
+        return $this->fallbackLayout;
+    }
+
+    /**
      * Get the layout.
      *
      * @param Widget $widget Form widget.
@@ -82,15 +100,7 @@ class LayoutManager
             return $event->getLayout();
         }
 
-        if ($this->contextLayout) {
-            return $this->contextLayout;
-        }
-
-        if ($this->defaultThemeLayout) {
-            return $this->defaultThemeLayout;
-        }
-
-        return $this->fallbackLayout;
+        return $this->getDefaultLayout();
     }
 
     /**
