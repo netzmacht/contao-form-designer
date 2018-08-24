@@ -7,6 +7,7 @@ services:
 
   netzmacht.contao_form_designer.layout_manager:
     class: Netzmacht\Contao\FormDesigner\LayoutManager
+    public: true
     arguments:
       - '@event_dispatcher'
       - '@netzmacht.contao_form_designer.fallback_layout'

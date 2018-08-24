@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace Netzmacht\Contao\FormDesigner\Factory;
 
+use Contao\StringUtil;
 use Netzmacht\Contao\FormDesigner\Layout\ContaoFormLayout;
 use Netzmacht\Contao\FormDesigner\Layout\FormLayout;
 
@@ -87,7 +88,7 @@ class StandardFormLayoutFactory implements FormLayoutFactory
     {
         $widgetConfig = $this->widgetConfig;
 
-        foreach (deserialize($config['widgets'], true) as $widget) {
+        foreach (StringUtil::deserialize($config['widgets'], true) as $widget) {
             if ($widget['widget'] === '') {
                 continue;
             }
