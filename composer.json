@@ -19,7 +19,14 @@
   },
   "require":{
     "php":">=7.1",
+    "ext-dom": "*",
     "contao/core-bundle":"~4.4",
+    "doctrine/dbal": "^2.5",
+    "symfony/config": "^3.3 || ^4.0",
+    "symfony/dependency-injection": "^3.3 || ^4.0",
+    "symfony/event-dispatcher": "^3.3 || ^4.0",
+    "symfony/http-kernel": "^3.3 || ^4.0",
+    "psr/log": "^1.0",
     "contao-community-alliance/meta-palettes":"^2.0 || ^1.11",
     "netzmacht/html": "~2.0",
     "menatwork/contao-multicolumnwizard": "^3.3.14"
