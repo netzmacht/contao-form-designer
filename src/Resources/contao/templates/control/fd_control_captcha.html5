@@ -1,5 +1,6 @@
 <input type="text" name="<?= $this->widget->name ?>" id="ctrl_<?= $this->widget->id ?>" class="captcha mandatory<?php if ($this->widget->class) echo ' ' . $this->widget->class; ?>" value="" aria-describedby="captcha_text_<?= $this->widget->id ?>"<?= $this->widget->getAttributes() ?>>
 <span id="captcha_text_<?= $this->widget->id ?>" class="captcha_text<?php if ($this->widget->class) echo ' ' . $this->widget->class; ?>"><?= $this->widget->question ?></span>
+<input type="hidden" name="<?= $this->widget->name ?>_hash" value="<?= \Netzmacht\Contao\FormDesigner\Util\WidgetUtil::getHash($this->widget) ?>">
 
 <?php if (!$this->widget->hasErrors()): ?>
     <div style="display:none">

@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace Netzmacht\Contao\FormDesigner\Util;
 
 use Contao\Widget;
+use function method_exists;
 
 /**
  * Class CaptchaUtil.
@@ -63,6 +64,29 @@ final class WidgetUtil
                 // @codingStandardsIgnoreStart
                 return $this->arrAttributes;
                 // @codingStandardsIgnoreEnd
+            }
+        );
+    }
+
+    /**
+     * Get the hash if method getHash method exists.
+     *
+     * @param Widget $widget The widget.
+     *
+     * @return null|string
+     */
+    public static function getHash(Widget $widget): ?string
+    {
+        return static::invokeClosure(
+            $widget,
+            function () {
+                // @codingStandardsIgnoreStart
+                if (method_exists($this, 'getHash')) {
+                    return $this->getHash();
+                }
+                // @codingStandardsIgnoreEnd
+
+                return null;
             }
         );
     }
