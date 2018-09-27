@@ -1,6 +1,21 @@
 Changelog
 =========
 
+1.1.2 (2018-09-27)
+------------------
+
+ - Fix broken captcha in Contao 4.6
+ 
+1.1.0 (2018-08-24)
+------------------
+
+ - Fix compatibility with Contao 4.6 / Symfony 4
+ 
+1.1.0 (2018-07-02)
+------------------
+
+ - Provide method to get the default layout without having a widget.
+
 1.0.8 (2018-04-23)
 ------------------
 
