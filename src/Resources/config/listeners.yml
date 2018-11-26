@@ -9,6 +9,7 @@ services:
       - '@netzmacht.contao_form_designer.repository.layout'
       - '@netzmacht.contao_form_designer.layout_factory'
       - '@netzmacht.contao_form_designer.repository.form'
+      - '@contao.framework'
       - '@logger'
       - '%netzmacht.contao_form_designer.form_designer.modules%'
       - '%netzmacht.contao_form_designer.form_designer.elements%'
