@@ -15,6 +15,8 @@ declare(strict_types=1);
 namespace Netzmacht\Contao\FormDesigner\Listener;
 
 use Contao\ContentModel;
+use Contao\CoreBundle\Framework\Adapter;
+use Contao\CoreBundle\Framework\ContaoFrameworkInterface as ContaoFramework;
 use Contao\Model;
 use Contao\ModuleModel;
 use Netzmacht\Contao\FormDesigner\Factory\FormLayoutFactory;
@@ -52,6 +54,12 @@ class ContextualFormLayoutListener extends AbstractListener
      */
     private $formRepository;
 
+    /**
+     * Contao framework.
+     *
+     * @var ContaoFramework
+     */
+    private $framework;
 
     /**
      * HookListener constructor.
@@ -60,6 +68,7 @@ class ContextualFormLayoutListener extends AbstractListener
      * @param FormLayoutRepository $repository        Form layout repository.
      * @param FormLayoutFactory    $factory           Form layout factory.
      * @param FormRepository       $formRepository    Form repository.
+     * @param ContaoFramework      $framework         Contao framework.
      * @param LoggerInterface      $logger            Logger.
      * @param array                $supportedModules  Supported modules.
      * @param array                $supportedElements Supported content elements.
@@ -69,6 +78,7 @@ class ContextualFormLayoutListener extends AbstractListener
         FormLayoutRepository $repository,
         FormLayoutFactory $factory,
         FormRepository $formRepository,
+        ContaoFramework $framework,
         LoggerInterface $logger,
         array $supportedModules,
         array $supportedElements
@@ -78,6 +88,7 @@ class ContextualFormLayoutListener extends AbstractListener
         $this->supportedModules  = $supportedModules;
         $this->supportedElements = $supportedElements;
         $this->formRepository    = $formRepository;
+        $this->framework         = $framework;
     }
 
     /**
@@ -96,12 +107,11 @@ class ContextualFormLayoutListener extends AbstractListener
 
         if ($model instanceof ContentModel) {
             if ($model->type === 'module') {
-                try {
-                    $model = $model->getRelated('module');
-                    if (!$model) {
-                        return $visible;
-                    }
-                } catch (\Exception $e) {
+                /** @var ModuleModel|Adapter $repository */
+                $repository = $this->framework->getAdapter(ModuleModel::class);
+                $model      = $repository->findByPk($model->module);
+
+                if (!$model) {
                     return $visible;
                 }
             } elseif ($this->handleContentElement($model)) {
