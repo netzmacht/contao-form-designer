@@ -95,7 +95,16 @@ class ContextualFormLayoutListener extends AbstractListener
         }
 
         if ($model instanceof ContentModel) {
-            if ($this->handleContentElement($model)) {
+            if ($model->type === 'module') {
+                try {
+                    $model = $model->getRelated('module');
+                    if (!$model) {
+                        return $visible;
+                    }
+                } catch (\Exception $e) {
+                    return $visible;
+                }
+            } elseif ($this->handleContentElement($model)) {
                 return $visible;
             }
         }
