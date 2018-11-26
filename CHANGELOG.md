@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.1.4 (2018-11-26)
+------------------
+
+ - Fix referenced module in content element not handled in contextual form layout listener.
+ 
 1.1.3 (2018-11-26)
 ------------------
 
