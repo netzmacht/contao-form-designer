@@ -47,8 +47,11 @@ class FormListener
     {
         try {
             MetaPalettes::appendFields('tl_form', 'template', ['formLayout']);
+
+            // @codingStandardsIgnoreStart
         } catch (PaletteNotFoundException $e) {
             // Palette does not exist. Skip it.
         }
+        // @codingStandardsIgnoreEnd
     }
 }

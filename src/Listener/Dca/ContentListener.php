@@ -57,9 +57,11 @@ class ContentListener
         foreach ($this->supportedElements as $element) {
             try {
                 MetaPalettes::appendFields('tl_content', $element, 'include', ['formLayout']);
+                // @codingStandardsIgnoreStart
             } catch (PaletteNotFoundException $e) {
                 // Palette does not exist. So skip it.
             }
+            // @codingStandardsIgnoreEnd
         }
     }
 }

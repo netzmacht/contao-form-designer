@@ -57,9 +57,12 @@ class ModuleListener
         foreach ($this->supportedModules as $module) {
             try {
                 MetaPalettes::appendFields('tl_module', $module, 'include', ['formLayout']);
+
+                // @codingStandardsIgnoreStart
             } catch (PaletteNotFoundException $e) {
                 // Palette does not exist. Skip it.
             }
+            // @codingStandardsIgnoreEnd
         }
     }
 }
