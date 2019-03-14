@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.1.5 (2019-03-14)
+------------------
+
+ - Fix incompatibility with PHP 7.3 in `ThemeImportListener`.
+
 1.1.4 (2018-11-26)
 ------------------
 
