@@ -1,6 +1,12 @@
 Changelog
 =========
 
+1.1.6 (2019-03-19)
+------------------
+
+ - Catch Contao\CoreBundle\DataContainer\PaletteNotFoundException for forward compatibility (#42). Resolves also 
+  contao/contao#378
+ 
 1.1.5 (2019-03-14)
 ------------------
 
