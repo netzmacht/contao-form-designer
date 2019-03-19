@@ -122,12 +122,12 @@ class ContextualFormLayoutListener extends AbstractListener
         if ($model instanceof ModuleModel) {
             if ($this->handleModule($model)) {
                 return $visible;
-            };
+            }
         }
 
 
         // Forms are hybrid elements. The hook getForm is not used for regular ces or modules, so use this workaround.
-        if (($model instanceof ContentModel || $model instanceof ModuleModel) && $model->type === 'form') {
+        if ($this->isOfTypeForm($model)) {
             $this->handleForm($model);
         }
 
@@ -227,5 +227,17 @@ class ContextualFormLayoutListener extends AbstractListener
         );
 
         return true;
+    }
+
+    /**
+     * Check if the configured type is a form element.
+     *
+     * @param Model $model The given model.
+     *
+     * @return bool
+     */
+    protected function isOfTypeForm(Model $model): bool
+    {
+        return ($model instanceof ContentModel || $model instanceof ModuleModel) && $model->type === 'form';
     }
 }
