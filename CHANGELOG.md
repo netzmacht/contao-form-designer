@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.1.7 (2021-03-09)
+------------------
+
+ - Fix widget type detection for widgets not defining `type` attribute
+
 1.1.6 (2019-03-19)
 ------------------
 

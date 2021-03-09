@@ -15,6 +15,9 @@ declare(strict_types=1);
 namespace Netzmacht\Contao\FormDesigner\Util;
 
 use Contao\Widget;
+use function array_key_exists;
+use function array_search;
+use function get_class;
 use function method_exists;
 
 /**
@@ -66,6 +69,32 @@ final class WidgetUtil
                 // @codingStandardsIgnoreEnd
             }
         );
+    }
+
+    /**
+     * Get the widget tye from the form widget
+     *
+     * @param Widget $widget Form widget.
+     *
+     * @return string|null
+     */
+    public static function getType(Widget $widget): ?string
+    {
+        static $types = [];
+
+        if ($widget->type) {
+            return $widget->type;
+        }
+
+        $widgetClass = get_class($widget);
+        if (array_key_exists($widgetClass, $types)) {
+            return $types[$widgetClass];
+        }
+
+        $found               = array_search($widgetClass, $GLOBALS['TL_FFL'] ?? [], true);
+        $types[$widgetClass] = $found ?: null;
+
+        return $types[$widgetClass];
     }
 
     /**

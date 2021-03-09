@@ -113,7 +113,7 @@ abstract class AbstractFormLayout implements FormLayout
         $attributes = new Attributes();
         $attributes
             ->addClass('widget')
-            ->addClass('widget-' . $widget->type);
+            ->addClass('widget-' . WidgetUtil::getType($widget));
 
         if ($widget->class) {
             $attributes->addClass($widget->class);
@@ -260,11 +260,13 @@ abstract class AbstractFormLayout implements FormLayout
      */
     private function addConfiguredAttributes(Widget $widget, Attributes $attributes): void
     {
-        if (empty($this->widgetConfig[$widget->type]['attributes'])) {
+        $type = WidgetUtil::getType($widget);
+
+        if (empty($this->widgetConfig[$type]['attributes'])) {
             return;
         }
 
-        foreach ($this->widgetConfig[$widget->type]['attributes'] as $attribute => $key) {
+        foreach ($this->widgetConfig[$type]['attributes'] as $attribute => $key) {
             switch (gettype($key)) {
                 case 'array':
                     $attributes->setAttribute($attribute, $this->parseArrayAttributeConfig($widget, $key));
