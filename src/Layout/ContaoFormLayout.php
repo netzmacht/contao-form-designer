@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace Netzmacht\Contao\FormDesigner\Layout;
 
 use Contao\Widget;
+use Netzmacht\Contao\FormDesigner\Util\WidgetUtil;
 
 /**
  * Class ContaoFormLayout.
@@ -53,12 +54,14 @@ final class ContaoFormLayout extends AbstractFormLayout
      */
     protected function getTemplate(Widget $widget, string $section): string
     {
-        if ($section === 'help' && empty($this->widgetConfig[$widget->type]['help'])) {
+        $type = WidgetUtil::getType($widget);
+
+        if ($section === 'help' && empty($this->widgetConfig[$type]['help'])) {
             return '';
         }
 
-        if (isset($this->widgetConfig[$widget->type]['templates'][$section])) {
-            return $this->widgetConfig[$widget->type]['templates'][$section];
+        if (isset($this->widgetConfig[$type]['templates'][$section])) {
+            return $this->widgetConfig[$type]['templates'][$section];
         }
 
         if (isset($this->fallbackConfig['templates'][$section])) {
