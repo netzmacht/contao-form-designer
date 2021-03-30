@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.1.8 (2021-03-30)
+------------------
+
+ - Always detect widget type from the registry insteadof using the `type attribute` (Fixes https://github.com/contao-bootstrap/form/issues/47) 
+
 1.1.7 (2021-03-09)
 ------------------
 

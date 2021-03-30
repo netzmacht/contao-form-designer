@@ -82,19 +82,15 @@ final class WidgetUtil
     {
         static $types = [];
 
-        if ($widget->type) {
-            return $widget->type;
-        }
-
         $widgetClass = get_class($widget);
         if (array_key_exists($widgetClass, $types)) {
             return $types[$widgetClass];
         }
 
         $found               = array_search($widgetClass, $GLOBALS['TL_FFL'] ?? [], true);
-        $types[$widgetClass] = $found ?: null;
+        $types[$widgetClass] = ($found ?: $widget->type);
 
-        return $types[$widgetClass];
+        return ($types[$widgetClass] ?: null);
     }
 
     /**
