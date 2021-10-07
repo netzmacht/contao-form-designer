@@ -42,7 +42,12 @@ class FormFieldListener
             }
 
             $manipulator = PaletteManipulator::create()
-                ->addField('controlClass', 'class');
+                ->addField('controlClass', 'class')
+                ->addField(
+                    ['formLayout', 'controlTemplate', 'layoutTemplate'],
+                    'template_legend',
+                    PaletteManipulator::POSITION_APPEND
+                );
 
             if (! empty($config['help'])) {
                 $manipulator->addField('helpMessage', 'fconfig_legend', PaletteManipulator::POSITION_APPEND);

@@ -19,7 +19,6 @@ use Netzmacht\Contao\FormDesigner\Model\FormLayout\FormLayoutRepository;
 
 use function array_keys;
 use function array_merge;
-use function assert;
 
 class FormLayoutListener
 {
@@ -76,8 +75,8 @@ class FormLayoutListener
      */
     public function initialize(): void
     {
+        /** @var Adapter<Controller> $controller */
         $controller = $this->contaoFramework->getAdapter(Controller::class);
-        assert($controller instanceof Controller);
         $controller->loadLanguageFile('tl_form_field');
 
         $GLOBALS['TL_CSS'][] = 'bundles/netzmachtcontaoformdesigner/style/backend.css';

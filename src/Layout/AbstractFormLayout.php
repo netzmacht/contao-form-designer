@@ -158,6 +158,10 @@ abstract class AbstractFormLayout implements FormLayout
      */
     protected function getLayoutTemplate(Widget $widget): string
     {
+        if ($widget->layoutTemplate) {
+            return $widget->layoutTemplate;
+        }
+
         return $this->getTemplate($widget, 'layout');
     }
 
@@ -168,6 +172,10 @@ abstract class AbstractFormLayout implements FormLayout
      */
     protected function getControlTemplate(Widget $widget): string
     {
+        if ($widget->controlTemplate) {
+            return $widget->controlTemplate;
+        }
+
         return $this->getTemplate($widget, 'control');
     }
 

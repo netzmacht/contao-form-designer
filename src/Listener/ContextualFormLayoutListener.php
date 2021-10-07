@@ -15,6 +15,7 @@ use Contao\CoreBundle\Framework\Adapter;
 use Contao\CoreBundle\Framework\ContaoFrameworkInterface as ContaoFramework;
 use Contao\Model;
 use Contao\ModuleModel;
+use Netzmacht\Contao\FormDesigner\Event\SelectLayoutEvent;
 use Netzmacht\Contao\FormDesigner\Factory\FormLayoutFactory;
 use Netzmacht\Contao\FormDesigner\Layout\FormLayout;
 use Netzmacht\Contao\FormDesigner\LayoutManager;
@@ -140,6 +141,30 @@ class ContextualFormLayoutListener extends AbstractListener
         $this->manager->removeContextLayout();
 
         return (string) $buffer;
+    }
+
+    /**
+     * Use a custom form layout based on widget.
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
+    public function onSelectLayout(SelectLayoutEvent $event): void
+    {
+        if ($event->getLayout() !== null || $event->getWidget()->formLayout < 1) {
+            return;
+        }
+
+        $model = $this->repository->find((int) $event->getWidget()->formLayout);
+        if (! $model) {
+            return;
+        }
+
+        $this->createFormLayout(
+            $model,
+            static function (LayoutManager $manager, FormLayout $formLayout) use ($event): void {
+                $event->setLayout($formLayout);
+            }
+        );
     }
 
     /**
