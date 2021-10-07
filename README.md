@@ -24,7 +24,7 @@ See the [CHANGELOG.md](CHANGELOG.md)
 Requirements
 ------------
 
- - min. Contao 4.4
+ - min. Contao 4.9
  - min. PHP 7.1 
  
  

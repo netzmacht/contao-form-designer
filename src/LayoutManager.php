@@ -3,10 +3,6 @@
 /**
  * Contao Form Designer.
  *
- * @package    contao-form-designer
- * @author     David Molineus <david.molineus@netzmacht.de>
- * @copyright  2017 netzmacht David Molineus. All rights reserved.
- * @license    LGPL 3.0
  * @filesource
  */
 
@@ -19,11 +15,6 @@ use Netzmacht\Contao\FormDesigner\Event\SelectLayoutEvent;
 use Netzmacht\Contao\FormDesigner\Layout\FormLayout;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface as EventDispatcher;
 
-/**
- * Class LayoutManager.
- *
- * @package Netzmacht\Contao\FormDesigner
- */
 class LayoutManager
 {
     /**
@@ -55,8 +46,6 @@ class LayoutManager
     private $defaultThemeLayout;
 
     /**
-     * LayoutManager constructor.
-     *
      * @param EventDispatcher $eventDispatcher Event dispatcher.
      * @param FormLayout      $fallbackLayout  Form layout.
      */
@@ -68,8 +57,6 @@ class LayoutManager
 
     /**
      * Get the default layout independent of a form widget.
-     *
-     * @return FormLayout
      */
     public function getDefaultLayout(): FormLayout
     {
@@ -88,8 +75,6 @@ class LayoutManager
      * Get the layout.
      *
      * @param Widget $widget Form widget.
-     *
-     * @return FormLayout
      */
     public function getLayout(Widget $widget): FormLayout
     {
@@ -107,8 +92,6 @@ class LayoutManager
      * Register a contextual form layout.
      *
      * @param FormLayout $formLayout Form layout.
-     *
-     * @return void
      */
     public function setContextLayout(FormLayout $formLayout): void
     {
@@ -117,8 +100,6 @@ class LayoutManager
 
     /**
      * Remove the context layout.
-     *
-     * @return void
      */
     public function removeContextLayout(): void
     {
@@ -129,8 +110,6 @@ class LayoutManager
      * Set default form Layout.
      *
      * @param FormLayout $layout DefaultThemeLayout.
-     *
-     * @return void
      */
     public function setDefaultThemeLayout(FormLayout $layout): void
     {
@@ -139,8 +118,6 @@ class LayoutManager
 
     /**
      * Check if the default form layout isset.
-     *
-     * @return bool
      */
     public function hasDefaultThemeLayout(): bool
     {

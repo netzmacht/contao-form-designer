@@ -3,10 +3,6 @@
 /**
  * Contao Form Designer.
  *
- * @package    contao-form-designer
- * @author     David Molineus <david.molineus@netzmacht.de>
- * @copyright  2017 netzmacht David Molineus. All rights reserved.
- * @license    LGPL 3.0
  * @filesource
  */
 
@@ -23,11 +19,6 @@ use Netzmacht\Contao\FormDesigner\Model\FormLayout\FormLayoutRepository;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 
-/**
- * Class AbstractListener.
- *
- * @package Netzmacht\Contao\FormDesigner\Listener
- */
 abstract class AbstractListener
 {
     /**
@@ -59,8 +50,6 @@ abstract class AbstractListener
     private $logger;
 
     /**
-     * HookListener constructor.
-     *
      * @param LayoutManager        $manager    Layout manager.
      * @param FormLayoutRepository $repository Form layout repository.
      * @param FormLayoutFactory    $factory    Form layout factory.
@@ -83,8 +72,6 @@ abstract class AbstractListener
      *
      * @param FormLayoutModel $model    Form layout model.
      * @param callable        $callback Callback to handle an created.
-     *
-     * @return void
      */
     protected function createFormLayout(FormLayoutModel $model, callable $callback): void
     {

@@ -3,10 +3,6 @@
 /**
  * Contao Form Designer.
  *
- * @package    contao-form-designer
- * @author     David Molineus <david.molineus@netzmacht.de>
- * @copyright  2017 netzmacht David Molineus. All rights reserved.
- * @license    LGPL 3.0
  * @filesource
  */
 
@@ -20,11 +16,6 @@ use ContaoCommunityAlliance\MetaPalettes\MetaPalettes;
 use Netzmacht\Contao\FormDesigner\Listener\Dca\Plugin\FormLayoutOptionsPlugin;
 use Netzmacht\Contao\FormDesigner\Model\FormLayout\FormLayoutRepository;
 
-/**
- * Class ModuleListener.
- *
- * @package Netzmacht\Contao\FormDesigner\Listener\Dca
- */
 class ModuleListener
 {
     use FormLayoutOptionsPlugin;
@@ -32,15 +23,13 @@ class ModuleListener
     /**
      * List of supported modules.
      *
-     * @var array
+     * @var list<string>
      */
     private $supportedModules;
 
     /**
-     * ModuleListener constructor.
-     *
      * @param FormLayoutRepository $formLayoutRepository Form layout repository.
-     * @param array                $supportedModules     Supported modules.
+     * @param list<string>         $supportedModules     Supported modules.
      */
     public function __construct(FormLayoutRepository $formLayoutRepository, array $supportedModules)
     {
@@ -50,20 +39,15 @@ class ModuleListener
 
     /**
      * Initialize.
-     *
-     * @return void
      */
     public function initialize(): void
     {
         foreach ($this->supportedModules as $module) {
             try {
                 MetaPalettes::appendFields('tl_module', $module, 'include', ['formLayout']);
-
-                // @codingStandardsIgnoreStart
             } catch (PaletteNotFoundException | LegacyPaletteNotFoundException $e) {
                 // Palette does not exist. Skip it.
             }
-            // @codingStandardsIgnoreEnd
         }
     }
 }

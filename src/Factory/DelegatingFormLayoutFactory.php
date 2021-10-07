@@ -3,10 +3,6 @@
 /**
  * Contao Form Designer.
  *
- * @package    contao-form-designer
- * @author     David Molineus <david.molineus@netzmacht.de>
- * @copyright  2017 netzmacht David Molineus. All rights reserved.
- * @license    LGPL 3.0
  * @filesource
  */
 
@@ -17,26 +13,22 @@ namespace Netzmacht\Contao\FormDesigner\Factory;
 use Netzmacht\Contao\FormDesigner\Exception\CreatingLayoutFailed;
 use Netzmacht\Contao\FormDesigner\Layout\FormLayout;
 
-/**
- * Class FormLayoutFactory.
- *
- * @package Netzmacht\Contao\FormDesigner
- */
+use function array_merge;
+use function in_array;
+
 class DelegatingFormLayoutFactory implements FormLayoutFactory
 {
     /**
-     * Factories map.
+     * Factories list.
      *
      * @var FormLayoutFactory[]
      */
-    private $factories = [];
+    private $factories;
 
     /**
-     * FormLayoutFactory constructor.
-     *
-     * @param array|FormLayoutFactory[] $factories Form layout factories.
+     * @param FormLayoutFactory[] $factories Form layout factories.
      */
-    public function __construct(array $factories)
+    public function __construct(iterable $factories)
     {
         $this->factories = $factories;
     }
@@ -60,16 +52,16 @@ class DelegatingFormLayoutFactory implements FormLayoutFactory
     /**
      * Get the list of supported types.
      *
-     * @return array
+     * @return list<string>
      */
     public function supportedTypes(): array
     {
-        return array_reduce(
-            $this->factories,
-            function ($types, FormLayoutFactory $factory) {
-                return array_merge($types, $factory->supportedTypes());
-            },
-            []
-        );
+        $types = [];
+
+        foreach ($this->factories as $factory) {
+            $types[] = $factory->supportedTypes();
+        }
+
+        return array_merge(...$types);
     }
 }

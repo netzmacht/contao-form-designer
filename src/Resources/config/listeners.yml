@@ -13,6 +13,8 @@ services:
       - '@logger'
       - '%netzmacht.contao_form_designer.form_designer.modules%'
       - '%netzmacht.contao_form_designer.form_designer.elements%'
+    tags:
+      - { name: kernel.event_listener, event: 'netzmacht.contao_form_designer.select_layout', method: onSelectLayout }
 
   netzmacht.contao_form_designer.listener.theme_form_layout:
     class: Netzmacht\Contao\FormDesigner\Listener\ThemeFormLayoutListener

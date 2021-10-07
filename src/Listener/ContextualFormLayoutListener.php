@@ -3,10 +3,6 @@
 /**
  * Contao Form Designer.
  *
- * @package    contao-form-designer
- * @author     David Molineus <david.molineus@netzmacht.de>
- * @copyright  2017 netzmacht David Molineus. All rights reserved.
- * @license    LGPL 3.0
  * @filesource
  */
 
@@ -19,6 +15,7 @@ use Contao\CoreBundle\Framework\Adapter;
 use Contao\CoreBundle\Framework\ContaoFrameworkInterface as ContaoFramework;
 use Contao\Model;
 use Contao\ModuleModel;
+use Netzmacht\Contao\FormDesigner\Event\SelectLayoutEvent;
 use Netzmacht\Contao\FormDesigner\Factory\FormLayoutFactory;
 use Netzmacht\Contao\FormDesigner\Layout\FormLayout;
 use Netzmacht\Contao\FormDesigner\LayoutManager;
@@ -26,24 +23,22 @@ use Netzmacht\Contao\FormDesigner\Model\Form\FormRepository;
 use Netzmacht\Contao\FormDesigner\Model\FormLayout\FormLayoutRepository;
 use Psr\Log\LoggerInterface;
 
-/**
- * Class IsVisibleElementListener.
- *
- * @package Netzmacht\Contao\FormDesigner\Listener
- */
+use function assert;
+use function in_array;
+
 class ContextualFormLayoutListener extends AbstractListener
 {
     /**
      * List of supported frontend modules.
      *
-     * @var array
+     * @var list<string>
      */
     private $supportedModules;
 
     /**
      * List of supported content elements.
      *
-     * @var array
+     * @var list<string>
      */
     private $supportedElements;
 
@@ -62,16 +57,14 @@ class ContextualFormLayoutListener extends AbstractListener
     private $framework;
 
     /**
-     * HookListener constructor.
-     *
      * @param LayoutManager        $manager           Layout manager.
      * @param FormLayoutRepository $repository        Form layout repository.
      * @param FormLayoutFactory    $factory           Form layout factory.
      * @param FormRepository       $formRepository    Form repository.
      * @param ContaoFramework      $framework         Contao framework.
      * @param LoggerInterface      $logger            Logger.
-     * @param array                $supportedModules  Supported modules.
-     * @param array                $supportedElements Supported content elements.
+     * @param list<string>         $supportedModules  Supported modules.
+     * @param list<string>         $supportedElements Supported content elements.
      */
     public function __construct(
         LayoutManager $manager,
@@ -97,9 +90,9 @@ class ContextualFormLayoutListener extends AbstractListener
      * @param Model $model   Model.
      * @param bool  $visible Visible flag.
      *
-     * @return bool
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
-    public function onIsVisibleElement(Model $model, $visible): bool
+    public function onIsVisibleElement(Model $model, bool $visible): bool
     {
         if (TL_MODE === 'BE') {
             return $visible;
@@ -107,11 +100,11 @@ class ContextualFormLayoutListener extends AbstractListener
 
         if ($model instanceof ContentModel) {
             if ($model->type === 'module') {
-                /** @var ModuleModel|Adapter $repository */
                 $repository = $this->framework->getAdapter(ModuleModel::class);
-                $model      = $repository->findByPk($model->module);
+                assert($repository instanceof ModuleModel || $repository instanceof Adapter);
+                $model = $repository->findByPk($model->module);
 
-                if (!$model) {
+                if (! $model) {
                     return $visible;
                 }
             } elseif ($this->handleContentElement($model)) {
@@ -124,7 +117,6 @@ class ContextualFormLayoutListener extends AbstractListener
                 return $visible;
             }
         }
-
 
         // Forms are hybrid elements. The hook getForm is not used for regular ces or modules, so use this workaround.
         if ($this->isOfTypeForm($model)) {
@@ -152,16 +144,38 @@ class ContextualFormLayoutListener extends AbstractListener
     }
 
     /**
+     * Use a custom form layout based on widget.
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
+    public function onSelectLayout(SelectLayoutEvent $event): void
+    {
+        if ($event->getLayout() !== null || $event->getWidget()->formLayout < 1) {
+            return;
+        }
+
+        $model = $this->repository->find((int) $event->getWidget()->formLayout);
+        if (! $model) {
+            return;
+        }
+
+        $this->createFormLayout(
+            $model,
+            static function (LayoutManager $manager, FormLayout $formLayout) use ($event): void {
+                $event->setLayout($formLayout);
+            }
+        );
+    }
+
+    /**
      * Handle a form.
      *
      * @param Model $model Form model.
-     *
-     * @return bool
      */
     private function handleForm(Model $model): bool
     {
         $form = $this->formRepository->find((int) $model->form);
-        if (!$form) {
+        if (! $form) {
             return false;
         }
 
@@ -172,12 +186,10 @@ class ContextualFormLayoutListener extends AbstractListener
      * Handle a module.
      *
      * @param ModuleModel $model Module model.
-     *
-     * @return bool
      */
     private function handleModule(ModuleModel $model): bool
     {
-        if (!in_array($model->type, $this->supportedModules)) {
+        if (! in_array($model->type, $this->supportedModules)) {
             return false;
         }
 
@@ -188,12 +200,10 @@ class ContextualFormLayoutListener extends AbstractListener
      * Handle a content element.
      *
      * @param ContentModel $model Content model.
-     *
-     * @return bool
      */
     private function handleContentElement(ContentModel $model): bool
     {
-        if (!in_array($model->type, $this->supportedElements)) {
+        if (! in_array($model->type, $this->supportedElements)) {
             return false;
         }
 
@@ -204,24 +214,22 @@ class ContextualFormLayoutListener extends AbstractListener
      * Register a form layout in a form context.
      *
      * @param int $layoutId Form layout id.
-     *
-     * @return bool
      */
     private function registerContextLayout(int $layoutId): bool
     {
         $layoutId = (int) $layoutId;
-        if (!$layoutId) {
+        if (! $layoutId) {
             return false;
         }
 
         $model = $this->repository->find($layoutId);
-        if (!$model) {
+        if (! $model) {
             return false;
         }
 
         $this->createFormLayout(
             $model,
-            function (LayoutManager $manager, FormLayout $formLayout) {
+            static function (LayoutManager $manager, FormLayout $formLayout): void {
                 $manager->setContextLayout($formLayout);
             }
         );
@@ -233,8 +241,6 @@ class ContextualFormLayoutListener extends AbstractListener
      * Check if the configured type is a form element.
      *
      * @param Model $model The given model.
-     *
-     * @return bool
      */
     protected function isOfTypeForm(Model $model): bool
     {

@@ -1,3 +1,12 @@
+parameters:
+  netzmacht.contao_form_designer.defaults:
+    templates:
+      layout: 'fd_layout_row'
+      error:  'fd_error_latest'
+      control: 'fd_control_default'
+      label:  'fd_label_default'
+      help:   'fd_help_default'
+
 services:
   netzmacht.contao_form_designer.fallback_layout:
     class: Netzmacht\Contao\FormDesigner\Layout\ContaoFormLayout
@@ -15,7 +24,7 @@ services:
   netzmacht.contao_form_designer.layout_factory:
     class: Netzmacht\Contao\FormDesigner\Factory\DelegatingFormLayoutFactory
     arguments:
-      - []
+      - !tagged_iterator 'netzmacht.contao_form_designer.factory'
 
   netzmacht.contao_form_designer.factory.default:
     class: Netzmacht\Contao\FormDesigner\Factory\StandardFormLayoutFactory

@@ -3,10 +3,6 @@
 /**
  * Contao Form Designer.
  *
- * @package    contao-form-designer
- * @author     David Molineus <david.molineus@netzmacht.de>
- * @copyright  2017 netzmacht David Molineus. All rights reserved.
- * @license    LGPL 3.0
  * @filesource
  */
 
@@ -18,39 +14,34 @@ use Contao\StringUtil;
 use Netzmacht\Contao\FormDesigner\Layout\ContaoFormLayout;
 use Netzmacht\Contao\FormDesigner\Layout\FormLayout;
 
-/**
- * Class DefaultFormLayoutFactory.
- *
- * @package Netzmacht\Contao\FormDesigner\Factory
- */
+use function ucfirst;
+
 class StandardFormLayoutFactory implements FormLayoutFactory
 {
     /**
      * Widget config.
      *
-     * @var array
+     * @var array<string,array<string,mixed>>
      */
     private $widgetConfig;
 
     /**
      * Fallback config.
      *
-     * @var array
+     * @var array<string,array<string,mixed>>
      */
     private $fallbackConfig;
 
     /**
      * Sections of the form.
      *
-     * @var array
+     * @var list<string>
      */
     private $sections = ['layout', 'label', 'control', 'error', 'help'];
 
     /**
-     * AbstractFormLayout constructor.
-     *
-     * @param array $widgetConfig   Widget config map.
-     * @param array $fallbackConfig Control fallback config.
+     * @param array<string,array<string,mixed>> $widgetConfig   Widget config map.
+     * @param array<string,array<string,mixed>> $fallbackConfig Control fallback config.
      */
     public function __construct(array $widgetConfig, array $fallbackConfig)
     {
@@ -80,9 +71,9 @@ class StandardFormLayoutFactory implements FormLayoutFactory
     /**
      * Build the widget config.
      *
-     * @param array $config Configuration.
+     * @param array<string,mixed> $config Configuration.
      *
-     * @return array
+     * @return array<string,mixed>
      */
     private function buildWidgetConfig(array $config): array
     {
@@ -94,9 +85,11 @@ class StandardFormLayoutFactory implements FormLayoutFactory
             }
 
             foreach ($this->sections as $section) {
-                if ($widget[$section]) {
-                    $widgetConfig[$widget['widget']]['templates'][$section] = $widget[$section];
+                if (! $widget[$section]) {
+                    continue;
                 }
+
+                $widgetConfig[$widget['widget']]['templates'][$section] = $widget[$section];
             }
         }
 
@@ -106,9 +99,9 @@ class StandardFormLayoutFactory implements FormLayoutFactory
     /**
      * Build the fallback config.
      *
-     * @param array $config Configuration.
+     * @param array<string,mixed> $config Configuration.
      *
-     * @return array
+     * @return array<string,mixed>
      */
     private function buildFallbackConfig(array $config): array
     {
@@ -117,9 +110,11 @@ class StandardFormLayoutFactory implements FormLayoutFactory
         foreach ($this->sections as $section) {
             $name = 'fallback' . ucfirst($section);
 
-            if ($config[$name]) {
-                $fallbackConfig[$section] = $config[$name];
+            if (! $config[$name]) {
+                continue;
             }
+
+            $fallbackConfig[$section] = $config[$name];
         }
 
         return $fallbackConfig;
