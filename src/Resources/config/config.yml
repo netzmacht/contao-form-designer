@@ -1,18 +1,20 @@
-parameters:
-  netzmacht.contao_form_designer.defaults:
-    templates:
-      layout: 'fd_layout_row'
-      error:  'fd_error_latest'
-      control: 'fd_control_default'
-      label:  'fd_label_default'
-      help:   'fd_help_default'
-    
-  netzmacht.contao_form_designer.widgets:
+netzmacht_contao_form_designer:
+  elements:
+    - 'comments'
+    - 'form'
+  modules:
+    - 'comments'
+    - 'form'
+  virtual_widgets:
+    - 'email'
+    - 'number'
+    - 'tel'
+    - 'url'
+  widgets:
     captcha:
       help: true
       templates:
         control: 'fd_control_captcha'
-
     checkbox:
       help: true
       templates:
@@ -36,7 +38,8 @@ parameters:
         control: 'fd_control_password'
         layout:  'fd_layout_row_password'
       attributes:
-        type: 'type'
+        type:
+          key: 'type'
         value:
           value: ''
 
@@ -56,7 +59,6 @@ parameters:
       templates:
         control: 'fd_control_submit'
         layout:  'fd_layout_row_field'
-
       attributes:
         class:
           value: ['submit']
@@ -74,15 +76,18 @@ parameters:
       templates:
         control: 'fd_control_textarea'
       attributes:
-        rows: 'rows'
-        cols: 'cols'
+        rows:
+          key: 'rows'
+        cols:
+          key: 'cols'
 
     text:
       help: true
       templates:
         control: 'fd_control_text'
       attributes:
-        type: 'type'
+        type:
+          key: 'type'
         value:
           key: value
           filters:
@@ -93,7 +98,8 @@ parameters:
       templates:
         control: 'fd_control_text'
       attributes:
-        type: 'type'
+        type:
+          key: 'type'
         value:
           key: value
           filters:
@@ -104,7 +110,8 @@ parameters:
       templates:
         control: 'fd_control_text'
       attributes:
-        type: 'type'
+        type:
+          key: 'type'
         value:
           key: value
           filters:
@@ -115,7 +122,8 @@ parameters:
       templates:
         control: 'fd_control_text'
       attributes:
-        type: 'type'
+        type:
+          key: 'type'
         value:
           key: value
           filters:
@@ -126,7 +134,8 @@ parameters:
       templates:
         control: 'fd_control_text'
       attributes:
-        type: 'type'
+        type:
+          key: 'type'
         value:
           key: value
           filters:
@@ -141,17 +150,3 @@ parameters:
           value: 'file'
         class:
           value: ['upload']
-
-  netzmacht.contao_form_designer.form_designer.virtual_widgets:
-    - 'email'
-    - 'number'
-    - 'tel'
-    - 'url'
-
-  netzmacht.contao_form_designer.form_designer.modules:
-    - 'comments'
-    - 'form'
-
-  netzmacht.contao_form_designer.form_designer.elements:
-    - 'comments'
-    - 'form'
