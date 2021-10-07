@@ -3,10 +3,6 @@
 /**
  * Contao Form Designer.
  *
- * @package    contao-form-designer
- * @author     David Molineus <david.molineus@netzmacht.de>
- * @copyright  2017 netzmacht David Molineus. All rights reserved.
- * @license    LGPL 3.0
  * @filesource
  */
 
@@ -18,11 +14,8 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 
-/**
- * Class FormLayoutFactoryCompilerPass.
- *
- * @package Netzmacht\Contao\FormDesigner\DependencyInjection
- */
+use function array_keys;
+
 class FormLayoutFactoryCompilerPass implements CompilerPassInterface
 {
     /**
@@ -30,7 +23,7 @@ class FormLayoutFactoryCompilerPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        if (!$container->has('netzmacht.contao_form_designer.layout_factory')) {
+        if (! $container->has('netzmacht.contao_form_designer.layout_factory')) {
             return;
         }
 

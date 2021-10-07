@@ -1,18 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Contao Form Designer.
  *
- * @package    contao-form-designer
- * @author     David Molineus <david.molineus@netzmacht.de>
- * @copyright  2017 netzmacht David Molineus. All rights reserved.
- * @license    LGPL 3.0
  * @filesource
  */
 
 $GLOBALS['TL_DCA']['tl_form']['config']['onload_callback'][] = [
     'netzmacht.contao_form_designer.listener.dca.form',
-    'preparePalette'
+    'preparePalette',
 ];
 
 $GLOBALS['TL_DCA']['tl_form']['fields']['formLayout'] = [

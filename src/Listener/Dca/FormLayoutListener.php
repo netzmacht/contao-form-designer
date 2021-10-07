@@ -3,10 +3,6 @@
 /**
  * Contao Form Designer.
  *
- * @package    contao-form-designer
- * @author     David Molineus <david.molineus@netzmacht.de>
- * @copyright  2017 netzmacht David Molineus. All rights reserved.
- * @license    LGPL 3.0
  * @filesource
  */
 
@@ -15,16 +11,16 @@ declare(strict_types=1);
 namespace Netzmacht\Contao\FormDesigner\Listener\Dca;
 
 use Contao\Controller;
+use Contao\CoreBundle\Framework\Adapter;
 use Contao\CoreBundle\Framework\ContaoFrameworkInterface;
 use Contao\DataContainer;
 use Netzmacht\Contao\FormDesigner\Factory\FormLayoutFactory;
 use Netzmacht\Contao\FormDesigner\Model\FormLayout\FormLayoutRepository;
 
-/**
- * Class FormLayoutListener.
- *
- * @package Netzmacht\Contao\FormDesigner\Listener\Dca
- */
+use function array_keys;
+use function array_merge;
+use function assert;
+
 class FormLayoutListener
 {
     /**
@@ -51,17 +47,15 @@ class FormLayoutListener
     /**
      * List of virtual widget names.
      *
-     * @var array
+     * @var list<string>
      */
     private $virtualWidgets;
 
     /**
-     * FormLayoutListener constructor.
-     *
      * @param FormLayoutRepository     $repository      Form layout repository.
      * @param FormLayoutFactory        $factory         Form layout factory.
      * @param ContaoFrameworkInterface $contaoFramework Contao framework.
-     * @param array                    $virtualWidgets  List of virtual widget names.
+     * @param list<string>             $virtualWidgets  List of virtual widget names.
      */
     public function __construct(
         FormLayoutRepository $repository,
@@ -78,14 +72,12 @@ class FormLayoutListener
     /**
      * Load styles.
      *
-     * @return void
-     *
      * @SuppressWarnings(PHPMD.Superglobals)
      */
     public function initialize(): void
     {
-        /** @var Controller $controller */
         $controller = $this->contaoFramework->getAdapter(Controller::class);
+        assert($controller instanceof Controller);
         $controller->loadLanguageFile('tl_form_field');
 
         $GLOBALS['TL_CSS'][] = 'bundles/netzmachtcontaoformdesigner/style/backend.css';
@@ -95,29 +87,27 @@ class FormLayoutListener
      * Set the default layout.
      *
      * @param DataContainer $dataContainer Data container driver.
-     *
-     * @return void
      */
-    public function setDefaultLayout($dataContainer): void
+    public function setDefaultLayout(DataContainer $dataContainer): void
     {
-        if ($dataContainer->activeRecord->defaultLayout) {
-            $this->repository->setDefaultLayout(
-                (int) $dataContainer->activeRecord->pid,
-                (int) $dataContainer->activeRecord->id
-            );
+        if (! $dataContainer->activeRecord->defaultLayout) {
+            return;
         }
+
+        $this->repository->setDefaultLayout(
+            (int) $dataContainer->activeRecord->pid,
+            (int) $dataContainer->activeRecord->id
+        );
     }
 
     /**
      * Generate the row label.
      *
-     * @param array $row Data row.
-     *
-     * @return string
+     * @param array<string,mixed> $row Data row.
      *
      * @SuppressWarnings(PHPMD.Superglobals)
      */
-    public function generateRowLabel($row): string
+    public function generateRowLabel(array $row): string
     {
         $label = $row['title'];
 
@@ -131,7 +121,7 @@ class FormLayoutListener
     /**
      * Get the layout types.
      *
-     * @return array
+     * @return list<string>
      */
     public function getTypes(): array
     {
@@ -141,7 +131,7 @@ class FormLayoutListener
     /**
      * Get all widget types.
      *
-     * @return array
+     * @return list<string>
      *
      * @SuppressWarnings(PHPMD.Superglobals)
      */
@@ -156,7 +146,7 @@ class FormLayoutListener
     /**
      * Get the layout templates.
      *
-     * @return array
+     * @return list<string>
      */
     public function getLayoutTemplates(): array
     {
@@ -166,7 +156,7 @@ class FormLayoutListener
     /**
      * Get the control templates.
      *
-     * @return array
+     * @return list<string>
      */
     public function getControlTemplates(): array
     {
@@ -176,7 +166,7 @@ class FormLayoutListener
     /**
      * Get the label templates.
      *
-     * @return array
+     * @return list<string>
      */
     public function getLabelTemplates(): array
     {
@@ -186,7 +176,7 @@ class FormLayoutListener
     /**
      * Get the error templates.
      *
-     * @return array
+     * @return list<string>
      */
     public function getErrorTemplates(): array
     {
@@ -196,7 +186,7 @@ class FormLayoutListener
     /**
      * Get the help templates.
      *
-     * @return array
+     * @return list<string>
      */
     public function getHelpTemplates(): array
     {
@@ -208,11 +198,11 @@ class FormLayoutListener
      *
      * @param string $groupName Group name.
      *
-     * @return array
+     * @return list<string>
      */
-    public function getTemplateGroup($groupName): array
+    public function getTemplateGroup(string $groupName): array
     {
-        /** @var Controller $controller */
+        /** @var Adapter<Controller> $controller */
         $controller = $this->contaoFramework->getAdapter(Controller::class);
 
         return $controller->getTemplateGroup($groupName . '_');

@@ -3,10 +3,6 @@
 /**
  * Contao Form Designer.
  *
- * @package    contao-form-designer
- * @author     David Molineus <david.molineus@netzmacht.de>
- * @copyright  2017 netzmacht David Molineus. All rights reserved.
- * @license    LGPL 3.0
  * @filesource
  */
 
@@ -15,14 +11,11 @@ declare(strict_types=1);
 namespace Netzmacht\Contao\FormDesigner\Listener;
 
 use Contao\ZipReader;
+use DOMDocument;
+use DOMElement;
 use Netzmacht\Contao\FormDesigner\Model\FormLayout\FormLayoutModel;
 use Netzmacht\Contao\FormDesigner\Model\FormLayout\FormLayoutRepository;
 
-/**
- * Class ThemeImportListener.
- *
- * @package Netzmacht\Contao\FormDesigner\Listener
- */
 class ThemeImportListener
 {
     /**
@@ -33,8 +26,6 @@ class ThemeImportListener
     private $formLayoutRepository;
 
     /**
-     * ThemeImportListener constructor.
-     *
      * @param FormLayoutRepository $formLayoutRepository Form layout repository.
      */
     public function __construct(FormLayoutRepository $formLayoutRepository)
@@ -45,15 +36,13 @@ class ThemeImportListener
     /**
      * Handle the extract theme files hook.
      *
-     * @param \DOMDocument $xml     Theme xml document.
-     * @param ZipReader    $archive Zip archive.
-     * @param int|string   $themeId Theme id.
-     *
-     * @return void
+     * @param DOMDocument $xml     Theme xml document.
+     * @param ZipReader   $archive Zip archive.
+     * @param int|string  $themeId Theme id.
      *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function onExtractThemeFiles(\DOMDocument $xml, ZipReader $archive, $themeId): void
+    public function onExtractThemeFiles(DOMDocument $xml, ZipReader $archive, $themeId): void
     {
         $tables = $xml->getElementsByTagName('table');
 
@@ -69,12 +58,10 @@ class ThemeImportListener
     /**
      * Import the form layout rows.
      *
-     * @param \DOMElement $item    Table item.
-     * @param int         $themeId Theme id.
-     *
-     * @return void
+     * @param DOMElement $item    Table item.
+     * @param int        $themeId Theme id.
      */
-    private function importFormLayout(\DOMElement $item, int $themeId): void
+    private function importFormLayout(DOMElement $item, int $themeId): void
     {
         $rows = $item->childNodes;
 
@@ -90,12 +77,12 @@ class ThemeImportListener
     /**
      * Prepare row values.
      *
-     * @param \DOMElement $item    Row item element.
-     * @param int         $themeId Theme id.
+     * @param DOMElement $item    Row item element.
+     * @param int        $themeId Theme id.
      *
-     * @return array
+     * @return array<string, mixed>
      */
-    private function getRowValues(\DOMElement $item, int $themeId): array
+    private function getRowValues(DOMElement $item, int $themeId): array
     {
         $fields = $item->childNodes;
         $values = [];

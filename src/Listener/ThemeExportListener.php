@@ -3,10 +3,6 @@
 /**
  * Contao Form Designer.
  *
- * @package    contao-form-designer
- * @author     David Molineus <david.molineus@netzmacht.de>
- * @copyright  2017 netzmacht David Molineus. All rights reserved.
- * @license    LGPL 3.0
  * @filesource
  */
 
@@ -19,11 +15,6 @@ use Contao\ZipWriter;
 use DOMDocument;
 use Netzmacht\Contao\FormDesigner\Model\FormLayout\FormLayoutRepository;
 
-/**
- * Class ThemeExportListener.
- *
- * @package Netzmacht\Contao\FormDesigner\Listener
- */
 class ThemeExportListener extends Theme
 {
     /**
@@ -34,8 +25,6 @@ class ThemeExportListener extends Theme
     private $formLayoutRepository;
 
     /**
-     * ThemeExportListener constructor.
-     *
      * @param FormLayoutRepository $formLayoutRepository Form layout repository.
      */
     public function __construct(FormLayoutRepository $formLayoutRepository)
@@ -52,8 +41,6 @@ class ThemeExportListener extends Theme
      * @param ZipWriter   $archive Zip archive.
      * @param int|string  $themeId Theme id.
      *
-     * @return void
-     *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function onExportTheme(DOMDocument $xml, ZipWriter $archive, $themeId): void
@@ -66,10 +53,12 @@ class ThemeExportListener extends Theme
         $formLayoutTable = $tables->appendChild($formLayoutTable);
         $collection      = $this->formLayoutRepository->findByTheme((int) $themeId);
 
-        if ($collection) {
-            foreach ($collection as $model) {
-                $this->addDataRow($xml, $formLayoutTable, $model->row());
-            }
+        if (! $collection) {
+            return;
+        }
+
+        foreach ($collection as $model) {
+            $this->addDataRow($xml, $formLayoutTable, $model->row());
         }
     }
 }

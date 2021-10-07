@@ -3,10 +3,6 @@
 /**
  * Contao Form Designer.
  *
- * @package    contao-form-designer
- * @author     David Molineus <david.molineus@netzmacht.de>
- * @copyright  2017 netzmacht David Molineus. All rights reserved.
- * @license    LGPL 3.0
  * @filesource
  */
 
@@ -20,11 +16,6 @@ use Contao\ManagerPlugin\Bundle\Config\BundleConfig;
 use Contao\ManagerPlugin\Bundle\Parser\ParserInterface;
 use Netzmacht\Contao\FormDesigner\NetzmachtContaoFormDesignerBundle;
 
-/**
- * Class Plugin.
- *
- * @package Netzmacht\Contao\FormDesigner\ContaoManager
- */
 class Plugin implements BundlePluginInterface
 {
     /**
@@ -36,7 +27,7 @@ class Plugin implements BundlePluginInterface
     {
         return [
             BundleConfig::create(NetzmachtContaoFormDesignerBundle::class)
-                ->setLoadAfter([ContaoCoreBundle::class])
+                ->setLoadAfter([ContaoCoreBundle::class]),
         ];
     }
 }

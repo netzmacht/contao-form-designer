@@ -1,4 +1,7 @@
-.idea
+# Composer
 /vendor
 composer.lock
-build.properties
+
+# PHPCQ
+/.phpcq
+.phpcs-cache

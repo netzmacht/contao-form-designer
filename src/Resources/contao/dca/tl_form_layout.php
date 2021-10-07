@@ -1,12 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Contao Form Designer.
  *
- * @package    contao-form-designer
- * @author     David Molineus <david.molineus@netzmacht.de>
- * @copyright  2017 netzmacht David Molineus. All rights reserved.
- * @license    LGPL 3.0
  * @filesource
  */
 
@@ -26,7 +24,7 @@ $GLOBALS['TL_DCA']['tl_form_layout'] = [
         ],
         'onsubmit_callback' => [
             ['netzmacht.contao_form_designer.listener.dca.form_layout', 'setDefaultLayout'],
-        ]
+        ],
     ],
     'palettes'     => [
         '__selector__' => ['type'],
@@ -82,7 +80,9 @@ $GLOBALS['TL_DCA']['tl_form_layout'] = [
                 'label'      => &$GLOBALS['TL_LANG']['tl_form_layout']['delete'],
                 'href'       => 'act=delete',
                 'icon'       => 'delete.svg',
-                'attributes' => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"',
+                'attributes' => 'onclick="if(!confirm(\''
+                    . $GLOBALS['TL_LANG']['MSC']['deleteConfirm']
+                    . '\'))return false;Backend.getScrollOffset()"',
             ],
             'show'   => [
                 'label' => &$GLOBALS['TL_LANG']['tl_form_layout']['show'],
@@ -95,16 +95,14 @@ $GLOBALS['TL_DCA']['tl_form_layout'] = [
         'id'              => [
             'label'  => ['ID'],
             'search' => true,
-            'sql'    => "int(10) unsigned NOT NULL auto_increment",
+            'sql'    => 'int(10) unsigned NOT NULL auto_increment',
         ],
         'pid'             => [
             'foreignKey' => 'tl_theme.name',
             'sql'        => "int(10) unsigned NOT NULL default '0'",
             'relation'   => ['type' => 'belongsTo', 'load' => 'lazy'],
         ],
-        'tstamp'          => [
-            'sql' => "int(10) unsigned NOT NULL default '0'",
-        ],
+        'tstamp'          => ['sql' => "int(10) unsigned NOT NULL default '0'"],
         'title'           => [
             'label'     => &$GLOBALS['TL_LANG']['tl_form_layout']['title'],
             'exclude'   => true,
@@ -153,7 +151,7 @@ $GLOBALS['TL_DCA']['tl_form_layout'] = [
                         'eval' => [
                             'includeBlankOption' => true,
                             'chosen' => true,
-                        ]
+                        ],
                     ],
                     'control' => [
                         'label'            => &$GLOBALS['TL_LANG']['tl_form_layout']['control'],
@@ -165,7 +163,7 @@ $GLOBALS['TL_DCA']['tl_form_layout'] = [
                         'eval' => [
                             'includeBlankOption' => true,
                             'chosen' => true,
-                        ]
+                        ],
                     ],
                     'layout' => [
                         'label'            => &$GLOBALS['TL_LANG']['tl_form_layout']['layout'],
@@ -177,18 +175,18 @@ $GLOBALS['TL_DCA']['tl_form_layout'] = [
                         'eval' => [
                             'includeBlankOption' => true,
                             'chosen' => true,
-                        ]
+                        ],
                     ],
                 ],
             ],
-            'sql'       => "blob NULL",
+            'sql'       => 'blob NULL',
         ],
         'fallbackLayout'  => [
             'label'            => &$GLOBALS['TL_LANG']['tl_form_layout']['fallbackLayout'],
             'exclude'          => true,
             'inputType'        => 'select',
             'options_callback' => ['netzmacht.contao_form_designer.listener.dca.form_layout', 'getLayoutTemplates'],
-            'eval'             => ['tl_class' => 'w50', 'includeBlankOption' => true, 'chosen' => true,],
+            'eval'             => ['tl_class' => 'w50', 'includeBlankOption' => true, 'chosen' => true],
             'sql'              => "varchar(64) NOT NULL default ''",
         ],
         'fallbackControl' => [
@@ -196,7 +194,7 @@ $GLOBALS['TL_DCA']['tl_form_layout'] = [
             'exclude'          => true,
             'inputType'        => 'select',
             'options_callback' => ['netzmacht.contao_form_designer.listener.dca.form_layout', 'getControlTemplates'],
-            'eval'             => ['tl_class' => 'w50', 'includeBlankOption' => true, 'chosen' => true,],
+            'eval'             => ['tl_class' => 'w50', 'includeBlankOption' => true, 'chosen' => true],
             'sql'              => "varchar(64) NOT NULL default ''",
         ],
         'fallbackLabel'   => [
@@ -204,7 +202,7 @@ $GLOBALS['TL_DCA']['tl_form_layout'] = [
             'exclude'          => true,
             'inputType'        => 'select',
             'options_callback' => ['netzmacht.contao_form_designer.listener.dca.form_layout', 'getLabelTemplates'],
-            'eval'             => ['tl_class' => 'w50', 'includeBlankOption' => true, 'chosen' => true,],
+            'eval'             => ['tl_class' => 'w50', 'includeBlankOption' => true, 'chosen' => true],
             'sql'              => "varchar(64) NOT NULL default ''",
         ],
         'fallbackError'   => [
@@ -212,7 +210,7 @@ $GLOBALS['TL_DCA']['tl_form_layout'] = [
             'exclude'          => true,
             'inputType'        => 'select',
             'options_callback' => ['netzmacht.contao_form_designer.listener.dca.form_layout', 'getErrorTemplates'],
-            'eval'             => ['tl_class' => 'w50', 'includeBlankOption' => true, 'chosen' => true,],
+            'eval'             => ['tl_class' => 'w50', 'includeBlankOption' => true, 'chosen' => true],
             'sql'              => "varchar(64) NOT NULL default ''",
         ],
         'fallbackHelp'    => [
@@ -220,7 +218,7 @@ $GLOBALS['TL_DCA']['tl_form_layout'] = [
             'exclude'          => true,
             'inputType'        => 'select',
             'options_callback' => ['netzmacht.contao_form_designer.listener.dca.form_layout', 'getHelpTemplates'],
-            'eval'             => ['tl_class' => 'w50', 'includeBlankOption' => true, 'chosen' => true,],
+            'eval'             => ['tl_class' => 'w50', 'includeBlankOption' => true, 'chosen' => true],
             'sql'              => "varchar(64) NOT NULL default ''",
         ],
     ],

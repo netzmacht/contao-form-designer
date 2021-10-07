@@ -3,10 +3,6 @@
 /**
  * Contao Form Designer.
  *
- * @package    contao-form-designer
- * @author     David Molineus <david.molineus@netzmacht.de>
- * @copyright  2017 netzmacht David Molineus. All rights reserved.
- * @license    LGPL 3.0
  * @filesource
  */
 
@@ -16,11 +12,6 @@ namespace Netzmacht\Contao\FormDesigner\Listener\Dca\Plugin;
 
 use Netzmacht\Contao\FormDesigner\Model\FormLayout\FormLayoutRepository;
 
-/**
- * Trait FormLayoutOptionsPlugin
- *
- * @package Netzmacht\Contao\FormDesigner\Listener\Dca\Plugin
- */
 trait FormLayoutOptionsPlugin
 {
     /**
@@ -33,7 +24,7 @@ trait FormLayoutOptionsPlugin
     /**
      * Get form layout options.
      *
-     * @return array
+     * @return array<string,array<int|string, string>>
      */
     public function getFormLayoutOptions(): array
     {

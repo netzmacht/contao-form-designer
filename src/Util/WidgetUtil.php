@@ -3,10 +3,6 @@
 /**
  * Contao Form Designer.
  *
- * @package    contao-form-designer
- * @author     David Molineus <david.molineus@netzmacht.de>
- * @copyright  2017-2018 netzmacht David Molineus. All rights reserved.
- * @license    LGPL 3.0
  * @filesource
  */
 
@@ -14,17 +10,16 @@ declare(strict_types=1);
 
 namespace Netzmacht\Contao\FormDesigner\Util;
 
+use Closure;
 use Contao\Widget;
+
 use function array_key_exists;
 use function array_search;
+use function array_shift;
 use function get_class;
 use function method_exists;
 
 /**
- * Class CaptchaUtil.
- *
- * @package Netzmacht\Contao\FormDesigner\Util
- *
  * @method static getOptions(Widget $widget)
  * @method static getSum(Widget $widget)
  */
@@ -33,12 +28,12 @@ final class WidgetUtil
     /**
      * Call a protected method of the widget.
      *
-     * @param string $name      Name of the method.
-     * @param array  $arguments Arguments. First argument has to be the widget.
+     * @param string      $name      Name of the method.
+     * @param list<mixed> $arguments Arguments. First argument has to be the widget.
      *
      * @return mixed
      */
-    public static function __callStatic($name, $arguments)
+    public static function __callStatic(string $name, array $arguments)
     {
         $widget = array_shift($arguments);
 
@@ -57,7 +52,7 @@ final class WidgetUtil
      *
      * @param Widget $widget Form widget.
      *
-     * @return array
+     * @return array<string,mixed>
      */
     public static function getAttributes(Widget $widget): array
     {
@@ -76,7 +71,7 @@ final class WidgetUtil
      *
      * @param Widget $widget Form widget.
      *
-     * @return string|null
+     * @SuppressWarnings(PHPMD.Superglobals)
      */
     public static function getType(Widget $widget): ?string
     {
@@ -90,15 +85,13 @@ final class WidgetUtil
         $found               = array_search($widgetClass, $GLOBALS['TL_FFL'] ?? [], true);
         $types[$widgetClass] = ($found ?: $widget->type);
 
-        return ($types[$widgetClass] ?: null);
+        return $types[$widgetClass] ?: null;
     }
 
     /**
      * Get the hash if method getHash method exists.
      *
      * @param Widget $widget The widget.
-     *
-     * @return null|string
      */
     public static function getHash(Widget $widget): ?string
     {
@@ -119,12 +112,12 @@ final class WidgetUtil
     /**
      * Bind a closure to the widget and invoke it.
      *
-     * @param Widget   $widget  The widget.
-     * @param \Closure $closure The closre.
+     * @param Widget  $widget  The widget.
+     * @param Closure $closure The closre.
      *
      * @return mixed
      */
-    private static function invokeClosure(Widget $widget, \Closure $closure)
+    private static function invokeClosure(Widget $widget, Closure $closure)
     {
         $closure = $closure->bindTo($widget, get_class($widget));
 

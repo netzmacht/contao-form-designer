@@ -3,10 +3,6 @@
 /**
  * Contao Form Designer.
  *
- * @package    contao-form-designer
- * @author     David Molineus <david.molineus@netzmacht.de>
- * @copyright  2017 netzmacht David Molineus. All rights reserved.
- * @license    LGPL 3.0
  * @filesource
  */
 
@@ -19,25 +15,24 @@ use Contao\StringUtil;
 use Contao\Widget;
 use Netzmacht\Contao\FormDesigner\Util\WidgetUtil;
 use Netzmacht\Html\Attributes;
+use Netzmacht\Html\Exception\InvalidArgumentException;
 
-/**
- * Class AbstractFormLayout.
- *
- * @package Netzmacht\Contao\FormDesigner\Layout
- */
+use function gettype;
+use function in_array;
+
 abstract class AbstractFormLayout implements FormLayout
 {
     /**
      * Widget config.
      *
-     * @var array
+     * @var array<string,array<string,mixed>>
      */
     protected $widgetConfig;
 
     /**
      * If boolean attribute.
      *
-     * @var array
+     * @var list<string>
      */
     protected static $booleanAttributes = [
         'compact',
@@ -56,58 +51,38 @@ abstract class AbstractFormLayout implements FormLayout
     ];
 
     /**
-     * AbstractFormLayout constructor.
-     *
-     * @param array $widgetConfig Widget config.
+     * @param array<string,array<string,mixed>> $widgetConfig Widget config.
      */
     public function __construct(array $widgetConfig)
     {
         $this->widgetConfig = $widgetConfig;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function render(Widget $widget): string
     {
         return $this->renderBlock($widget, $this->getLayoutTemplate($widget));
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function renderControl(Widget $widget): string
     {
         return $this->renderBlock($widget, $this->getControlTemplate($widget));
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function renderLabel(Widget $widget): string
     {
         return $this->renderBlock($widget, $this->getLabelTemplate($widget));
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function renderErrors(Widget $widget): string
     {
         return $this->renderBlock($widget, $this->getErrorTemplate($widget));
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function renderHelpText(Widget $widget): string
     {
         return $this->renderBlock($widget, $this->getHelpTextTemplate($widget));
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getContainerAttributes(Widget $widget): Attributes
     {
         $attributes = new Attributes();
@@ -122,9 +97,6 @@ abstract class AbstractFormLayout implements FormLayout
         return $attributes;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getLabelAttributes(Widget $widget): Attributes
     {
         $attributes = new Attributes();
@@ -137,9 +109,6 @@ abstract class AbstractFormLayout implements FormLayout
         return $attributes;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getControlAttributes(Widget $widget): Attributes
     {
         $attributes = new Attributes();
@@ -164,12 +133,10 @@ abstract class AbstractFormLayout implements FormLayout
      *
      * @param Widget $widget   Form widget.
      * @param string $template Template name.
-     *
-     * @return string
      */
-    protected function renderBlock(Widget $widget, $template): string
+    protected function renderBlock(Widget $widget, string $template): string
     {
-        if (!$template) {
+        if (! $template) {
             return '';
         }
 
@@ -177,7 +144,7 @@ abstract class AbstractFormLayout implements FormLayout
         $template->setData(
             [
                 'widget' => $widget,
-                'layout' => $this
+                'layout' => $this,
             ]
         );
 
@@ -188,8 +155,6 @@ abstract class AbstractFormLayout implements FormLayout
      * Get the layout template.
      *
      * @param Widget $widget Form widget.
-     *
-     * @return string
      */
     protected function getLayoutTemplate(Widget $widget): string
     {
@@ -200,8 +165,6 @@ abstract class AbstractFormLayout implements FormLayout
      * Get the control template.
      *
      * @param Widget $widget Form widget.
-     *
-     * @return string
      */
     protected function getControlTemplate(Widget $widget): string
     {
@@ -212,8 +175,6 @@ abstract class AbstractFormLayout implements FormLayout
      * Get the label template.
      *
      * @param Widget $widget Form widget.
-     *
-     * @return string
      */
     protected function getLabelTemplate(Widget $widget): string
     {
@@ -224,17 +185,12 @@ abstract class AbstractFormLayout implements FormLayout
      * Get the error template.
      *
      * @param Widget $widget Form widget.
-     *
-     * @return string
      */
     protected function getErrorTemplate(Widget $widget): string
     {
         return $this->getTemplate($widget, 'error');
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function getHelpTextTemplate(Widget $widget): string
     {
         return $this->getTemplate($widget, 'help');
@@ -245,8 +201,6 @@ abstract class AbstractFormLayout implements FormLayout
      *
      * @param Widget $widget  Form widget.
      * @param string $section Form widget section.
-     *
-     * @return string
      */
     abstract protected function getTemplate(Widget $widget, string $section): string;
 
@@ -255,8 +209,6 @@ abstract class AbstractFormLayout implements FormLayout
      *
      * @param Widget     $widget     Widget.
      * @param Attributes $attributes Attributes.
-     *
-     * @return void
      */
     private function addConfiguredAttributes(Widget $widget, Attributes $attributes): void
     {
@@ -284,18 +236,16 @@ abstract class AbstractFormLayout implements FormLayout
      * @param Widget     $widget     Widget.
      * @param Attributes $attributes Attributes.
      *
-     * @return void
-     *
-     * @throws \Netzmacht\Html\Exception\InvalidArgumentException If an invalid attribute value or name is given.
+     * @throws InvalidArgumentException If an invalid attribute value or name is given.
      */
     private function parseWidgetAttributes(Widget $widget, Attributes $attributes): void
     {
         $widgetAttributes = WidgetUtil::getAttributes($widget);
 
-        foreach (($widgetAttributes) as $name => $value) {
+        foreach ($widgetAttributes as $name => $value) {
             if (in_array($name, static::$booleanAttributes)) {
                 $attributes->setAttribute($name, true);
-            } elseif ($value != '') {
+            } elseif ($value !== '') {
                 $attributes->setAttribute($name, $value);
             }
         }
@@ -304,20 +254,20 @@ abstract class AbstractFormLayout implements FormLayout
     /**
      * Parse array attribute config.
      *
-     * @param Widget $widget Form widget.
-     * @param array  $config Attribute config.
+     * @param Widget              $widget Form widget.
+     * @param array<string,mixed> $config Attribute config.
      *
      * @return mixed
      */
     private function parseArrayAttributeConfig(Widget $widget, array $config)
     {
-        if (!empty($config['value'])) {
+        if (! empty($config['value'])) {
             $value = $config['value'];
         } else {
             $value = $widget->{$config['key']};
         }
 
-        if (empty(($config['filters']))) {
+        if (empty($config['filters'])) {
             return $value;
         }
 
@@ -327,8 +277,8 @@ abstract class AbstractFormLayout implements FormLayout
     /**
      * Evaluate attribute filters.
      *
-     * @param mixed $value   Given values.
-     * @param array $filters Given filters.
+     * @param mixed        $value   Given values.
+     * @param list<string> $filters Given filters.
      *
      * @return mixed
      */

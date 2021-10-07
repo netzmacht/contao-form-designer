@@ -3,10 +3,6 @@
 /**
  * Contao Form Designer.
  *
- * @package    contao-form-designer
- * @author     David Molineus <david.molineus@netzmacht.de>
- * @copyright  2017 netzmacht David Molineus. All rights reserved.
- * @license    LGPL 3.0
  * @filesource
  */
 
@@ -19,11 +15,6 @@ use Contao\PageModel;
 use Netzmacht\Contao\FormDesigner\Layout\FormLayout;
 use Netzmacht\Contao\FormDesigner\LayoutManager;
 
-/**
- * Class PageThemeListener.
- *
- * @package Netzmacht\Contao\FormDesigner\Listener
- */
 class ThemeFormLayoutListener extends AbstractListener
 {
     /**
@@ -32,20 +23,18 @@ class ThemeFormLayoutListener extends AbstractListener
      * @param PageModel   $pageModel   Page model.
      * @param LayoutModel $layoutModel Layout model.
      *
-     * @return void
-     *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function onPageLayout(PageModel $pageModel, LayoutModel $layoutModel)
+    public function onPageLayout(PageModel $pageModel, LayoutModel $layoutModel): void
     {
         $model = $this->repository->findDefaultByTheme((int) $layoutModel->pid);
-        if (!$model) {
+        if (! $model) {
             return;
         }
 
         $this->createFormLayout(
             $model,
-            function (LayoutManager $manager, FormLayout $formLayout) {
+            static function (LayoutManager $manager, FormLayout $formLayout): void {
                 $manager->setDefaultThemeLayout($formLayout);
             }
         );
