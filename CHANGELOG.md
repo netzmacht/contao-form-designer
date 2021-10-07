@@ -1,6 +1,13 @@
 Changelog
 =========
 
+1.2.0 (2021-10-07)
+------------------
+ 
+ - Add the option to override the form layout for a form field
+ - Add the option to override the form control and form layout template  for a form field
+ - Allow customizing supported elements, modules and widgets by the bundle configuration
+
 1.1.8 (2021-03-30)
 ------------------
 
