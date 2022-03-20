@@ -12,7 +12,7 @@ namespace Netzmacht\Contao\FormDesigner\Listener;
 
 use Contao\ContentModel;
 use Contao\CoreBundle\Framework\Adapter;
-use Contao\CoreBundle\Framework\ContaoFrameworkInterface as ContaoFramework;
+use Contao\CoreBundle\Framework\ContaoFramework;
 use Contao\Model;
 use Contao\ModuleModel;
 use Netzmacht\Contao\FormDesigner\Event\SelectLayoutEvent;
@@ -47,14 +47,14 @@ class ContextualFormLayoutListener extends AbstractListener
      *
      * @var FormRepository
      */
-    private $formRepository;
+    private FormRepository $formRepository;
 
     /**
      * Contao framework.
      *
      * @var ContaoFramework
      */
-    private $framework;
+    private ContaoFramework $framework;
 
     /**
      * @param LayoutManager        $manager           Layout manager.

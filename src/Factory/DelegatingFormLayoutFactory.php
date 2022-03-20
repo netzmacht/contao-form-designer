@@ -23,7 +23,7 @@ class DelegatingFormLayoutFactory implements FormLayoutFactory
      *
      * @var FormLayoutFactory[]
      */
-    private $factories;
+    private iterable $factories;
 
     /**
      * @param FormLayoutFactory[] $factories Form layout factories.

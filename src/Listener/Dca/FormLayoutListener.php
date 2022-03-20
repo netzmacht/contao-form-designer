@@ -12,6 +12,7 @@ namespace Netzmacht\Contao\FormDesigner\Listener\Dca;
 
 use Contao\Controller;
 use Contao\CoreBundle\Framework\Adapter;
+use Contao\CoreBundle\Framework\ContaoFramework;
 use Contao\CoreBundle\Framework\ContaoFrameworkInterface;
 use Contao\DataContainer;
 use Netzmacht\Contao\FormDesigner\Factory\FormLayoutFactory;
@@ -27,21 +28,21 @@ class FormLayoutListener
      *
      * @var FormLayoutFactory
      */
-    private $factory;
+    private FormLayoutFactory $factory;
 
     /**
      * Contao framework.
      *
-     * @var ContaoFrameworkInterface
+     * @var ContaoFramework
      */
-    private $contaoFramework;
+    private ContaoFramework $contaoFramework;
 
     /**
      * Form layout repository.
      *
      * @var FormLayoutRepository
      */
-    private $repository;
+    private FormLayoutRepository $repository;
 
     /**
      * List of virtual widget names.
@@ -53,13 +54,13 @@ class FormLayoutListener
     /**
      * @param FormLayoutRepository     $repository      Form layout repository.
      * @param FormLayoutFactory        $factory         Form layout factory.
-     * @param ContaoFrameworkInterface $contaoFramework Contao framework.
+     * @param ContaoFramework $contaoFramework Contao framework.
      * @param list<string>             $virtualWidgets  List of virtual widget names.
      */
     public function __construct(
         FormLayoutRepository $repository,
         FormLayoutFactory $factory,
-        ContaoFrameworkInterface $contaoFramework,
+        ContaoFramework $contaoFramework,
         array $virtualWidgets
     ) {
         $this->factory         = $factory;
