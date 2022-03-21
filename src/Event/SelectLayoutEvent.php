@@ -30,7 +30,7 @@ class SelectLayoutEvent extends Event
      *
      * @var FormLayout
      */
-    private FormLayout $layout;
+    private $layout;
 
     /**
      * @param Widget $widget Form element widget.
