@@ -13,21 +13,28 @@
       "email": "mail@netzmacht.de",
       "homepage": "https://netzmacht.de",
       "role": "Developer"
+    },
+    {
+      "name": "Alexander Kehr",
+      "email": "info@kehr-solutions.de",
+      "homepage": "https://www.kehr-solutions.de",
+      "role": "Developer"
     }
   ],
   "require": {
-    "php": ">=7.1",
+    "php": "^7.4",
     "ext-dom": "*",
     "contao-community-alliance/meta-palettes": "^2.0 || ^1.11",
     "contao/core-bundle": "^4.9",
-    "doctrine/dbal": "^2.5",
+    "doctrine/dbal": "^2.11 || ^3.3",
     "menatwork/contao-multicolumnwizard-bundle": "^3.5.0",
     "netzmacht/html": "^2.0.2",
     "psr/log": "^1.0",
-    "symfony/config": "^4.4 || ^5.1",
-    "symfony/dependency-injection": "^4.4 || ^5.1",
-    "symfony/event-dispatcher": "^4.4 || ^5.1",
-    "symfony/http-kernel": "^4.4 || ^5.1"
+    "symfony/config": "~4.4 || ^5.4",
+    "symfony/dependency-injection": "~4.4 || ^5.4",
+    "symfony/event-dispatcher": "~4.4 || ^5.4",
+    "symfony/event-dispatcher-contracts": "^1.1 || ^2.0",
+    "symfony/http-kernel": "~4.4 || ^5.4"
   },
   "require-dev": {
     "contao/manager-plugin": "^2.1",

@@ -22,14 +22,14 @@ class LayoutManager
      *
      * @var EventDispatcher
      */
-    private $eventDispatcher;
+    private EventDispatcher $eventDispatcher;
 
     /**
      * Fallback form layout.
      *
      * @var FormLayout
      */
-    private $fallbackLayout;
+    private FormLayout $fallbackLayout;
 
     /**
      * Contextual registered form layout.
@@ -79,7 +79,7 @@ class LayoutManager
     public function getLayout(Widget $widget): FormLayout
     {
         $event = new SelectLayoutEvent($widget);
-        $this->eventDispatcher->dispatch($event::NAME, $event);
+        $this->eventDispatcher->dispatch($event, $event::NAME);
 
         if ($event->getLayout()) {
             return $event->getLayout();

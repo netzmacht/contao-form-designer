@@ -26,28 +26,28 @@ abstract class AbstractListener
      *
      * @var LayoutManager
      */
-    protected $manager;
+    protected LayoutManager $manager;
 
     /**
      * Form layout repository.
      *
      * @var FormLayoutRepository
      */
-    protected $repository;
+    protected FormLayoutRepository $repository;
 
     /**
      * Form layout factory.
      *
      * @var FormLayoutFactory
      */
-    protected $factory;
+    protected FormLayoutFactory $factory;
 
     /**
      * Error logger.
      *
      * @var LoggerInterface
      */
-    private $logger;
+    private LoggerInterface $logger;
 
     /**
      * @param LayoutManager        $manager    Layout manager.
