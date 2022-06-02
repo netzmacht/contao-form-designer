@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Contao Form Designer.
- *
- * @filesource
- */
-
 declare(strict_types=1);
 
 namespace Netzmacht\Contao\FormDesigner\Listener;
@@ -20,10 +14,8 @@ class ThemeImportListener
 {
     /**
      * Form layout repository.
-     *
-     * @var FormLayoutRepository
      */
-    private $formLayoutRepository;
+    private FormLayoutRepository $formLayoutRepository;
 
     /**
      * @param FormLayoutRepository $formLayoutRepository Form layout repository.

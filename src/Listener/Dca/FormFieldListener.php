@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Contao Form Designer.
- *
- * @filesource
- */
-
 declare(strict_types=1);
 
 namespace Netzmacht\Contao\FormDesigner\Listener\Dca;
@@ -19,7 +13,7 @@ class FormFieldListener
      *
      * @var array<string,array<string,mixed>>
      */
-    private $widgetConfig;
+    private array $widgetConfig;
 
     /**
      * @param array<string,array<string,mixed>> $widgetConfig Widget config.

@@ -2,12 +2,6 @@
 
 declare(strict_types=1);
 
-/**
- * Contao Form Designer.
- *
- * @filesource
- */
-
 namespace Netzmacht\Contao\FormDesigner\Model\FormLayout;
 
 use Contao\Model\Collection;
@@ -17,10 +11,8 @@ class ContaoFormLayoutRepository implements FormLayoutRepository
 {
     /**
      * Database connection.
-     *
-     * @var Connection
      */
-    private $connection;
+    private Connection $connection;
 
     /**
      * @param Connection $connection Database connection.
@@ -61,11 +53,11 @@ class ContaoFormLayoutRepository implements FormLayoutRepository
         $statement->bindValue(1, '');
         $statement->bindValue(2, $themeId);
         $statement->bindValue(3, $defaultLayoutId);
-        $statement->execute();
+        $statement->executeStatement();
 
         $statement = $this->connection->prepare('UPDATE tl_form_layout SET defaultLayout=? WHERE id=?');
         $statement->bindValue(1, 1);
         $statement->bindValue(2, $defaultLayoutId);
-        $statement->execute();
+        $statement->executeStatement();
     }
 }

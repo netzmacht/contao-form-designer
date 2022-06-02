@@ -2,12 +2,6 @@
 
 declare(strict_types=1);
 
-/**
- * Contao Form Designer.
- *
- * @filesource
- */
-
 use Netzmacht\Contao\FormDesigner\Model\FormLayout\FormLayoutModel;
 
 // Backend modules

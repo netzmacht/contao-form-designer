@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Contao Form Designer.
- *
- * @filesource
- */
-
 declare(strict_types=1);
 
 namespace Netzmacht\Contao\FormDesigner\Factory;
@@ -23,7 +17,7 @@ class DelegatingFormLayoutFactory implements FormLayoutFactory
      *
      * @var FormLayoutFactory[]
      */
-    private $factories;
+    private iterable $factories;
 
     /**
      * @param FormLayoutFactory[] $factories Form layout factories.

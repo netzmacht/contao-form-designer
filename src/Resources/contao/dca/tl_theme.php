@@ -2,12 +2,6 @@
 
 declare(strict_types=1);
 
-/**
- * Contao Form Designer.
- *
- * @filesource
- */
-
 // Operations
 array_insert(
     $GLOBALS['TL_DCA']['tl_theme']['list']['operations'],

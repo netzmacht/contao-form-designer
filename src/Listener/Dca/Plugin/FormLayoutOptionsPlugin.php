@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Contao Form Designer.
- *
- * @filesource
- */
-
 declare(strict_types=1);
 
 namespace Netzmacht\Contao\FormDesigner\Listener\Dca\Plugin;
@@ -16,10 +10,8 @@ trait FormLayoutOptionsPlugin
 {
     /**
      * Form layout repository.
-     *
-     * @var FormLayoutRepository
      */
-    protected $formLayoutRepository;
+    protected FormLayoutRepository $formLayoutRepository;
 
     /**
      * Get form layout options.

@@ -1,18 +1,12 @@
 <?php
 
-/**
- * Contao Form Designer.
- *
- * @filesource
- */
-
 declare(strict_types=1);
 
 namespace Netzmacht\Contao\FormDesigner\Listener;
 
 use Contao\ContentModel;
 use Contao\CoreBundle\Framework\Adapter;
-use Contao\CoreBundle\Framework\ContaoFrameworkInterface as ContaoFramework;
+use Contao\CoreBundle\Framework\ContaoFramework;
 use Contao\Model;
 use Contao\ModuleModel;
 use Netzmacht\Contao\FormDesigner\Event\SelectLayoutEvent;
@@ -33,28 +27,24 @@ class ContextualFormLayoutListener extends AbstractListener
      *
      * @var list<string>
      */
-    private $supportedModules;
+    private array $supportedModules;
 
     /**
      * List of supported content elements.
      *
      * @var list<string>
      */
-    private $supportedElements;
+    private array $supportedElements;
 
     /**
      * Form repository.
-     *
-     * @var FormRepository
      */
-    private $formRepository;
+    private FormRepository $formRepository;
 
     /**
      * Contao framework.
-     *
-     * @var ContaoFramework
      */
-    private $framework;
+    private ContaoFramework $framework;
 
     /**
      * @param LayoutManager        $manager           Layout manager.

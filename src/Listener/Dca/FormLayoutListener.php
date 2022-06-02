@@ -1,18 +1,12 @@
 <?php
 
-/**
- * Contao Form Designer.
- *
- * @filesource
- */
-
 declare(strict_types=1);
 
 namespace Netzmacht\Contao\FormDesigner\Listener\Dca;
 
 use Contao\Controller;
 use Contao\CoreBundle\Framework\Adapter;
-use Contao\CoreBundle\Framework\ContaoFrameworkInterface;
+use Contao\CoreBundle\Framework\ContaoFramework;
 use Contao\DataContainer;
 use Netzmacht\Contao\FormDesigner\Factory\FormLayoutFactory;
 use Netzmacht\Contao\FormDesigner\Model\FormLayout\FormLayoutRepository;
@@ -24,24 +18,18 @@ class FormLayoutListener
 {
     /**
      * Form layout factory.
-     *
-     * @var FormLayoutFactory
      */
-    private $factory;
+    private FormLayoutFactory $factory;
 
     /**
      * Contao framework.
-     *
-     * @var ContaoFrameworkInterface
      */
-    private $contaoFramework;
+    private ContaoFramework $contaoFramework;
 
     /**
      * Form layout repository.
-     *
-     * @var FormLayoutRepository
      */
-    private $repository;
+    private FormLayoutRepository $repository;
 
     /**
      * List of virtual widget names.
@@ -51,15 +39,15 @@ class FormLayoutListener
     private $virtualWidgets;
 
     /**
-     * @param FormLayoutRepository     $repository      Form layout repository.
-     * @param FormLayoutFactory        $factory         Form layout factory.
-     * @param ContaoFrameworkInterface $contaoFramework Contao framework.
-     * @param list<string>             $virtualWidgets  List of virtual widget names.
+     * @param FormLayoutRepository $repository      Form layout repository.
+     * @param FormLayoutFactory    $factory         Form layout factory.
+     * @param ContaoFramework      $contaoFramework Contao framework.
+     * @param list<string>         $virtualWidgets  List of virtual widget names.
      */
     public function __construct(
         FormLayoutRepository $repository,
         FormLayoutFactory $factory,
-        ContaoFrameworkInterface $contaoFramework,
+        ContaoFramework $contaoFramework,
         array $virtualWidgets
     ) {
         $this->factory         = $factory;
