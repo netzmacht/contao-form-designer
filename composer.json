@@ -29,6 +29,7 @@
   "require": {
     "php": "^7.4 || ^8.0",
     "ext-dom": "*",
+    "composer-runtime-api": "^2.0",
     "contao-community-alliance/meta-palettes": "^2.0",
     "contao/core-bundle": "^4.9",
     "doctrine/dbal": "^2.11 || ^3.3",

@@ -1,6 +1,12 @@
 Changelog
 =========
 
+1.3.1 (2022-06-02)
+------------------
+
+ - Fix form password in Contao 4.13
+ - Improve PHP 8 compatibility
+
 1.3.0 (2022-06-02)
 ------------------
 
