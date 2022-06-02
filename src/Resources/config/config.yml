@@ -36,7 +36,7 @@ netzmacht_contao_form_designer:
       help: true
       templates:
         control: 'fd_control_password'
-        layout:  'fd_layout_row_password'
+        layout:  'fd_layout_row'
       attributes:
         type:
           key: 'type'
