@@ -2,12 +2,6 @@
 
 declare(strict_types=1);
 
-/**
- * Contao Form Designer.
- *
- * @filesource
- */
-
 $GLOBALS['TL_DCA']['tl_form']['config']['onload_callback'][] = [
     'netzmacht.contao_form_designer.listener.dca.form',
     'preparePalette',

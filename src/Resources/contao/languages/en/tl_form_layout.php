@@ -2,12 +2,6 @@
 
 declare(strict_types=1);
 
-/**
- * Contao Form Designer.
- *
- * @filesource
- */
-
 $GLOBALS['TL_LANG']['tl_form_layout']['title_legend']    = 'Title';
 $GLOBALS['TL_LANG']['tl_form_layout']['widgets_legend']  = 'Widget templates';
 $GLOBALS['TL_LANG']['tl_form_layout']['fallback_legend'] = 'Fallback templates';

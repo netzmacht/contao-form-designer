@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Contao Form Designer.
- *
- * @filesource
- */
-
 declare(strict_types=1);
 
 namespace Netzmacht\Contao\FormDesigner\Layout;
@@ -20,7 +14,7 @@ final class ContaoFormLayout extends AbstractFormLayout
      *
      * @var array<string,array<string,mixed>>
      */
-    private $fallbackConfig;
+    private array $fallbackConfig;
 
     /**
      * @param array<string,array<string,mixed>> $widgetConfig   Widget config map.

@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Contao Form Designer.
- *
- * @filesource
- */
-
 declare(strict_types=1);
 
 namespace Netzmacht\Contao\FormDesigner\Factory;
@@ -23,21 +17,21 @@ class StandardFormLayoutFactory implements FormLayoutFactory
      *
      * @var array<string,array<string,mixed>>
      */
-    private $widgetConfig;
+    private array $widgetConfig;
 
     /**
      * Fallback config.
      *
      * @var array<string,array<string,mixed>>
      */
-    private $fallbackConfig;
+    private array $fallbackConfig;
 
     /**
      * Sections of the form.
      *
      * @var list<string>
      */
-    private $sections = ['layout', 'label', 'control', 'error', 'help'];
+    private array $sections = ['layout', 'label', 'control', 'error', 'help'];
 
     /**
      * @param array<string,array<string,mixed>> $widgetConfig   Widget config map.

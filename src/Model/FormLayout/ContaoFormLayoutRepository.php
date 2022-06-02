@@ -2,12 +2,6 @@
 
 declare(strict_types=1);
 
-/**
- * Contao Form Designer.
- *
- * @filesource
- */
-
 namespace Netzmacht\Contao\FormDesigner\Model\FormLayout;
 
 use Contao\Model\Collection;
@@ -17,8 +11,6 @@ class ContaoFormLayoutRepository implements FormLayoutRepository
 {
     /**
      * Database connection.
-     *
-     * @var Connection
      */
     private Connection $connection;
 

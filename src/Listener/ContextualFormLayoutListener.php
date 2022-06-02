@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Contao Form Designer.
- *
- * @filesource
- */
-
 declare(strict_types=1);
 
 namespace Netzmacht\Contao\FormDesigner\Listener;
@@ -33,26 +27,22 @@ class ContextualFormLayoutListener extends AbstractListener
      *
      * @var list<string>
      */
-    private $supportedModules;
+    private array $supportedModules;
 
     /**
      * List of supported content elements.
      *
      * @var list<string>
      */
-    private $supportedElements;
+    private array $supportedElements;
 
     /**
      * Form repository.
-     *
-     * @var FormRepository
      */
     private FormRepository $formRepository;
 
     /**
      * Contao framework.
-     *
-     * @var ContaoFramework
      */
     private ContaoFramework $framework;
 

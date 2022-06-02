@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Contao Form Designer.
- *
- * @filesource
- */
-
 declare(strict_types=1);
 
 namespace Netzmacht\Contao\FormDesigner\Model\FormLayout;
@@ -19,5 +13,6 @@ class FormLayoutModel extends Model
      *
      * @var string
      */
+    // phpcs:ignore SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
     protected static $strTable = 'tl_form_layout';
 }

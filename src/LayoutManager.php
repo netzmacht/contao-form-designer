@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Contao Form Designer.
- *
- * @filesource
- */
-
 declare(strict_types=1);
 
 namespace Netzmacht\Contao\FormDesigner;
@@ -19,31 +13,23 @@ class LayoutManager
 {
     /**
      * Event dispatcher.
-     *
-     * @var EventDispatcher
      */
     private EventDispatcher $eventDispatcher;
 
     /**
      * Fallback form layout.
-     *
-     * @var FormLayout
      */
     private FormLayout $fallbackLayout;
 
     /**
      * Contextual registered form layout.
-     *
-     * @var FormLayout
      */
-    private $contextLayout;
+    private ?FormLayout $contextLayout = null;
 
     /**
      * Default form layout.
-     *
-     * @var FormLayout
      */
-    private $defaultThemeLayout;
+    private ?FormLayout $defaultThemeLayout = null;
 
     /**
      * @param EventDispatcher $eventDispatcher Event dispatcher.

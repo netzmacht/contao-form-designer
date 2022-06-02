@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Contao Form Designer.
- *
- * @filesource
- */
-
 declare(strict_types=1);
 
 namespace Netzmacht\Contao\FormDesigner\Listener;
@@ -19,8 +13,6 @@ class ThemeExportListener extends Theme
 {
     /**
      * Form layout repository.
-     *
-     * @var FormLayoutRepository
      */
     private FormLayoutRepository $formLayoutRepository;
 

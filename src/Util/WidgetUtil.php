@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Contao Form Designer.
- *
- * @filesource
- */
-
 declare(strict_types=1);
 
 namespace Netzmacht\Contao\FormDesigner\Util;
@@ -33,6 +27,7 @@ final class WidgetUtil
      *
      * @return mixed
      */
+    // phpcs:ignore SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingNativeTypeHint
     public static function __callStatic(string $name, array $arguments)
     {
         $widget = array_shift($arguments);
@@ -56,7 +51,7 @@ final class WidgetUtil
      */
     public static function getAttributes(Widget $widget): array
     {
-        return (array) static::invokeClosure(
+        return (array) self::invokeClosure(
             $widget,
             function () {
                 // @codingStandardsIgnoreStart

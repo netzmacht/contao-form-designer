@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Contao Form Designer.
- *
- * @filesource
- */
-
 declare(strict_types=1);
 
 namespace Netzmacht\Contao\FormDesigner\Listener;
@@ -23,29 +17,21 @@ abstract class AbstractListener
 {
     /**
      * Layout manager.
-     *
-     * @var LayoutManager
      */
     protected LayoutManager $manager;
 
     /**
      * Form layout repository.
-     *
-     * @var FormLayoutRepository
      */
     protected FormLayoutRepository $repository;
 
     /**
      * Form layout factory.
-     *
-     * @var FormLayoutFactory
      */
     protected FormLayoutFactory $factory;
 
     /**
      * Error logger.
-     *
-     * @var LoggerInterface
      */
     private LoggerInterface $logger;
 

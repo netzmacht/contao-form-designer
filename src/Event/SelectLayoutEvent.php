@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Contao Form Designer.
- *
- * @filesource
- */
-
 declare(strict_types=1);
 
 namespace Netzmacht\Contao\FormDesigner\Event;
@@ -20,17 +14,13 @@ class SelectLayoutEvent extends Event
 
     /**
      * Form widget.
-     *
-     * @var Widget
      */
     private Widget $widget;
 
     /**
      * Form layout.
-     *
-     * @var FormLayout
      */
-    private $layout;
+    private ?FormLayout $layout = null;
 
     /**
      * @param Widget $widget Form element widget.

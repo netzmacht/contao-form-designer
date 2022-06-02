@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Contao Form Designer.
- *
- * @filesource
- */
-
 declare(strict_types=1);
 
 namespace Netzmacht\Contao\FormDesigner\Layout;
@@ -27,6 +21,7 @@ abstract class AbstractFormLayout implements FormLayout
      *
      * @var array<string,array<string,mixed>>
      */
+    // phpcs:ignore SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
     protected $widgetConfig;
 
     /**
