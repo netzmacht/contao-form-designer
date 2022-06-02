@@ -11,6 +11,7 @@ use Netzmacht\Contao\FormDesigner\Util\WidgetUtil;
 use Netzmacht\Html\Attributes;
 use Netzmacht\Html\Exception\InvalidArgumentException;
 
+use function array_key_exists;
 use function gettype;
 use function in_array;
 
@@ -264,10 +265,12 @@ abstract class AbstractFormLayout implements FormLayout
      */
     private function parseArrayAttributeConfig(Widget $widget, array $config)
     {
-        if (! empty($config['value'])) {
+        if (array_key_exists('value', $config)) {
             $value = $config['value'];
-        } else {
+        } elseif (array_key_exists('key', $config)) {
             $value = $widget->{$config['key']};
+        } else {
+            $value = null;
         }
 
         if (empty($config['filters'])) {
