@@ -19,7 +19,7 @@ trait FormLayoutOptionsPlugin
      *
      * @var FormLayoutRepository
      */
-    protected $formLayoutRepository;
+    protected FormLayoutRepository $formLayoutRepository;
 
     /**
      * Get form layout options.
