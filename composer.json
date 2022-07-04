@@ -33,7 +33,7 @@
     "contao-community-alliance/meta-palettes": "^2.0",
     "contao/core-bundle": "^4.9",
     "doctrine/dbal": "^2.11 || ^3.3",
-    "menatwork/contao-multicolumnwizard-bundle": "^3.5.0",
+    "menatwork/contao-multicolumnwizard-bundle": "^3.5.5",
     "netzmacht/html": "^2.0.2",
     "psr/log": "^1.0",
     "symfony/config": "~4.4 || ^5.4",
