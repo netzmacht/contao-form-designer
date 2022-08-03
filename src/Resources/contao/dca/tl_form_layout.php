@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+\Contao\System::loadLanguageFile('default');
+
 $GLOBALS['TL_DCA']['tl_form_layout'] = [
     'config'       => [
         'dataContainer'    => 'Table',
