@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.3.3 (2022-08-15)
+------------------
+
+ - Support custom palettes for form fields
+
 1.3.2 (2022-08-15)
 ------------------
 

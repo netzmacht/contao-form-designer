@@ -60,6 +60,10 @@ final class Configuration implements ConfigurationInterface
                                     ->end()
                                 ->end()
                             ->end()
+                            ->arrayNode('palettes')
+                                ->info('Extra palettes assigned with this widget type')
+                                ->scalarPrototype()->end()
+                            ->end()
                     ->end()
                 ->end()
             ->end();

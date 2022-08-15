@@ -42,6 +42,8 @@ netzmacht_contao_form_designer:
           key: 'type'
         value:
           value: ''
+      palettes:
+        - passwordcustom
 
     radio:
       help: true
@@ -80,6 +82,8 @@ netzmacht_contao_form_designer:
           key: 'rows'
         cols:
           key: 'cols'
+      palettes:
+        - textareacustom
 
     text:
       help: true
@@ -92,6 +96,9 @@ netzmacht_contao_form_designer:
           key: value
           filters:
             - specialchars
+      palettes:
+        - textcustom
+        - textdigit
 
     url:
       help: true
