@@ -6,6 +6,9 @@ namespace Netzmacht\Contao\FormDesigner\Model\FormLayout;
 
 use Contao\Model;
 
+/**
+ * @property string $type
+ */
 class FormLayoutModel extends Model
 {
     /**

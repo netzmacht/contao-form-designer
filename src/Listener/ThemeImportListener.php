@@ -10,6 +10,8 @@ use DOMElement;
 use Netzmacht\Contao\FormDesigner\Model\FormLayout\FormLayoutModel;
 use Netzmacht\Contao\FormDesigner\Model\FormLayout\FormLayoutRepository;
 
+use function assert;
+
 class ThemeImportListener
 {
     /**
@@ -58,6 +60,7 @@ class ThemeImportListener
         $rows = $item->childNodes;
 
         for ($index = 0; $index < $rows->length; $index++) {
+            /** @psalm-suppress ArgumentTypeCoercion */
             $values = $this->getRowValues($rows->item($index), $themeId);
             $model  = new FormLayoutModel();
 
@@ -80,8 +83,11 @@ class ThemeImportListener
         $values = [];
 
         for ($index = 0; $index < $fields->length; $index++) {
-            $value = $fields->item($index)->nodeValue;
-            $name  = $fields->item($index)->getAttribute('name');
+            $child = $fields->item($index);
+            assert($child instanceof DOMElement);
+
+            $value = $child->nodeValue;
+            $name  = $child->getAttribute('name');
 
             switch ($name) {
                 case 'id':

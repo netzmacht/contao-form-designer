@@ -32,8 +32,10 @@ final class WidgetUtil
     {
         $widget = array_shift($arguments);
 
+        /** @psalm-suppress InvalidScope */
         return static::invokeClosure(
             $widget,
+            /** @return mixed */
             function () use ($name, $arguments) {
                 // @codingStandardsIgnoreStart
                 return call_user_func_array([$this, $name], $arguments);
@@ -51,8 +53,10 @@ final class WidgetUtil
      */
     public static function getAttributes(Widget $widget): array
     {
+        /** @psalm-suppress InvalidScope */
         return (array) self::invokeClosure(
             $widget,
+            /** @return mixed */
             function () {
                 // @codingStandardsIgnoreStart
                 return $this->arrAttributes;
@@ -90,6 +94,7 @@ final class WidgetUtil
      */
     public static function getHash(Widget $widget): ?string
     {
+        /** @psalm-suppress InvalidScope */
         return static::invokeClosure(
             $widget,
             function () {
@@ -108,14 +113,17 @@ final class WidgetUtil
      * Bind a closure to the widget and invoke it.
      *
      * @param Widget  $widget  The widget.
-     * @param Closure $closure The closre.
+     * @param Closure $closure The closure.
      *
      * @return mixed
      */
     private static function invokeClosure(Widget $widget, Closure $closure)
     {
         $closure = $closure->bindTo($widget, get_class($widget));
+        if ($closure instanceof Closure) {
+            return $closure();
+        }
 
-        return $closure();
+        return null;
     }
 }

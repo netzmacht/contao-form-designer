@@ -2,18 +2,20 @@
 
 declare(strict_types=1);
 
+use Contao\DC_Table;
+
 $GLOBALS['TL_DCA']['tl_form_layout'] = [
     'config'       => [
-        'dataContainer'    => 'Table',
-        'ptable'           => 'tl_theme',
-        'enableVersioning' => true,
-        'sql'              => [
+        'dataContainer'     => DC_Table::class,
+        'ptable'            => 'tl_theme',
+        'enableVersioning'  => true,
+        'sql'               => [
             'keys' => [
                 'id'  => 'primary',
                 'pid' => 'index',
             ],
         ],
-        'onload_callback' => [
+        'onload_callback'   => [
             ['netzmacht.contao_form_designer.listener.dca.form_layout', 'initialize'],
         ],
         'onsubmit_callback' => [
@@ -34,10 +36,10 @@ $GLOBALS['TL_DCA']['tl_form_layout'] = [
     ],
     'list'         => [
         'sorting'           => [
-            'mode'        => 4,
-            'fields'      => ['type', 'title'],
-            'headerFields' => ['name', 'author', 'tstamp'],
-            'panelLayout' => 'filter;search',
+            'mode'                  => 4,
+            'fields'                => ['type', 'title'],
+            'headerFields'          => ['name', 'author', 'tstamp'],
+            'panelLayout'           => 'filter;search',
             'child_record_callback' => ['netzmacht.contao_form_designer.listener.dca.form_layout', 'generateRowLabel'],
         ],
         'label'             => [
@@ -75,7 +77,7 @@ $GLOBALS['TL_DCA']['tl_form_layout'] = [
                 'href'       => 'act=delete',
                 'icon'       => 'delete.svg',
                 'attributes' => 'onclick="if(!confirm(\''
-                    . $GLOBALS['TL_LANG']['MSC']['deleteConfirm']
+                    . ($GLOBALS['TL_LANG']['MSC']['deleteConfirm'] ?? '')
                     . '\'))return false;Backend.getScrollOffset()"',
             ],
             'show'   => [
@@ -120,7 +122,7 @@ $GLOBALS['TL_DCA']['tl_form_layout'] = [
             ],
             'sql'              => "varchar(32) NOT NULL default ''",
         ],
-        'defaultLayout'         => [
+        'defaultLayout'   => [
             'label'     => &$GLOBALS['TL_LANG']['tl_form_layout']['defaultLayout'],
             'exclude'   => true,
             'inputType' => 'checkbox',
@@ -130,49 +132,51 @@ $GLOBALS['TL_DCA']['tl_form_layout'] = [
         'widgets'         => [
             'label'     => &$GLOBALS['TL_LANG']['tl_form_layout']['widgets'],
             'exclude'   => true,
-            'inputType' => 'multiColumnWizard',
-            'eval'      => [
-                'tl_class'     => 'clr long widgets-wizard',
-                'columnFields' => [
-                    'widget' => [
-                        'label'            => &$GLOBALS['TL_LANG']['tl_form_layout']['widget'],
-                        'inputType'        => 'select',
-                        'options_callback' => [
-                            'netzmacht.contao_form_designer.listener.dca.form_layout',
-                            'getWidgetTypes',
-                        ],
-                        'reference'        => &$GLOBALS['TL_LANG']['FFL'],
-                        'eval' => [
-                            'includeBlankOption' => true,
-                            'chosen' => true,
-                        ],
+            'inputType' => 'group',
+            'palette'   => ['widget', 'control', 'layout'],
+            'fields'    => [
+                'widget'  => [
+                    'label'            => &$GLOBALS['TL_LANG']['tl_form_layout']['widget'],
+                    'inputType'        => 'select',
+                    'options_callback' => [
+                        'netzmacht.contao_form_designer.listener.dca.form_layout',
+                        'getWidgetTypes',
                     ],
-                    'control' => [
-                        'label'            => &$GLOBALS['TL_LANG']['tl_form_layout']['control'],
-                        'inputType'        => 'select',
-                        'options_callback' => [
-                            'netzmacht.contao_form_designer.listener.dca.form_layout',
-                            'getControlTemplates',
-                        ],
-                        'eval' => [
-                            'includeBlankOption' => true,
-                            'chosen' => true,
-                        ],
+                    'reference'        => &$GLOBALS['TL_LANG']['FFL'],
+                    'eval'             => [
+                        'includeBlankOption' => true,
+                        'chosen'             => true,
+                        'tl_class'           => 'w50',
                     ],
-                    'layout' => [
-                        'label'            => &$GLOBALS['TL_LANG']['tl_form_layout']['layout'],
-                        'inputType'        => 'select',
-                        'options_callback' => [
-                            'netzmacht.contao_form_designer.listener.dca.form_layout',
-                            'getLayoutTemplates',
-                        ],
-                        'eval' => [
-                            'includeBlankOption' => true,
-                            'chosen' => true,
-                        ],
+                ],
+                'control' => [
+                    'label'            => &$GLOBALS['TL_LANG']['tl_form_layout']['control'],
+                    'inputType'        => 'select',
+                    'options_callback' => [
+                        'netzmacht.contao_form_designer.listener.dca.form_layout',
+                        'getControlTemplates',
+                    ],
+                    'eval'             => [
+                        'includeBlankOption' => true,
+                        'chosen'             => true,
+                        'tl_class'           => 'w50',
+                    ],
+                ],
+                'layout'  => [
+                    'label'            => &$GLOBALS['TL_LANG']['tl_form_layout']['layout'],
+                    'inputType'        => 'select',
+                    'options_callback' => [
+                        'netzmacht.contao_form_designer.listener.dca.form_layout',
+                        'getLayoutTemplates',
+                    ],
+                    'eval'             => [
+                        'includeBlankOption' => true,
+                        'chosen'             => true,
+                        'tl_class'           => 'w50',
                     ],
                 ],
             ],
+            'eval'      => ['tl_class' => 'clr long'],
             'sql'       => 'blob NULL',
         ],
         'fallbackLayout'  => [

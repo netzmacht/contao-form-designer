@@ -62,13 +62,13 @@ abstract class AbstractListener
     protected function createFormLayout(FormLayoutModel $model, callable $callback): void
     {
         try {
-            $formLayout = $this->factory->create((string) $model->type, $model->row());
+            $formLayout = $this->factory->create($model->type, $model->row());
             $callback($this->manager, $formLayout);
         } catch (CreatingLayoutFailed $e) {
             $this->logger->log(
                 LogLevel::ERROR,
                 $e->getMessage(),
-                ['contao' => new ContaoContext(__METHOD__, TL_ERROR)]
+                ['contao' => new ContaoContext(__METHOD__, ContaoContext::ERROR)]
             );
         }
     }

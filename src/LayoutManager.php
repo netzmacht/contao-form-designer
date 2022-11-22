@@ -67,8 +67,9 @@ class LayoutManager
         $event = new SelectLayoutEvent($widget);
         $this->eventDispatcher->dispatch($event, $event::NAME);
 
-        if ($event->getLayout()) {
-            return $event->getLayout();
+        $layout = $event->getLayout();
+        if ($layout) {
+            return $layout;
         }
 
         return $this->getDefaultLayout();

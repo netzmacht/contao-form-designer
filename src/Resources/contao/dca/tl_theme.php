@@ -3,7 +3,9 @@
 declare(strict_types=1);
 
 // Operations
-array_insert(
+use Contao\ArrayUtil;
+
+ArrayUtil::arrayInsert(
     $GLOBALS['TL_DCA']['tl_theme']['list']['operations'],
     -1,
     [

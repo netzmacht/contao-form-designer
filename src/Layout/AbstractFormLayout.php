@@ -82,9 +82,12 @@ abstract class AbstractFormLayout implements FormLayout
     public function getContainerAttributes(Widget $widget): Attributes
     {
         $attributes = new Attributes();
-        $attributes
-            ->addClass('widget')
-            ->addClass('widget-' . WidgetUtil::getType($widget));
+        $attributes->addClass('widget');
+
+        $type = WidgetUtil::getType($widget);
+        if ($type) {
+            $attributes->addClass('widget-' . $type);
+        }
 
         if ($widget->class) {
             $attributes->addClass($widget->class);

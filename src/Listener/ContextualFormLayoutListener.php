@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Netzmacht\Contao\FormDesigner\Listener;
 
 use Contao\ContentModel;
-use Contao\CoreBundle\Framework\Adapter;
 use Contao\CoreBundle\Framework\ContaoFramework;
+use Contao\CoreBundle\Routing\ScopeMatcher;
 use Contao\Model;
 use Contao\ModuleModel;
 use Netzmacht\Contao\FormDesigner\Event\SelectLayoutEvent;
@@ -16,8 +16,8 @@ use Netzmacht\Contao\FormDesigner\LayoutManager;
 use Netzmacht\Contao\FormDesigner\Model\Form\FormRepository;
 use Netzmacht\Contao\FormDesigner\Model\FormLayout\FormLayoutRepository;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 
-use function assert;
 use function in_array;
 
 class ContextualFormLayoutListener extends AbstractListener
@@ -46,6 +46,10 @@ class ContextualFormLayoutListener extends AbstractListener
      */
     private ContaoFramework $framework;
 
+    private ScopeMatcher $scopeMatcher;
+
+    private RequestStack $requestStack;
+
     /**
      * @param LayoutManager        $manager           Layout manager.
      * @param FormLayoutRepository $repository        Form layout repository.
@@ -55,6 +59,8 @@ class ContextualFormLayoutListener extends AbstractListener
      * @param LoggerInterface      $logger            Logger.
      * @param list<string>         $supportedModules  Supported modules.
      * @param list<string>         $supportedElements Supported content elements.
+     *
+     * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
     public function __construct(
         LayoutManager $manager,
@@ -64,7 +70,9 @@ class ContextualFormLayoutListener extends AbstractListener
         ContaoFramework $framework,
         LoggerInterface $logger,
         array $supportedModules,
-        array $supportedElements
+        array $supportedElements,
+        ScopeMatcher $scopeMatcher,
+        RequestStack $requestStack
     ) {
         parent::__construct($manager, $repository, $factory, $logger);
 
@@ -72,6 +80,8 @@ class ContextualFormLayoutListener extends AbstractListener
         $this->supportedElements = $supportedElements;
         $this->formRepository    = $formRepository;
         $this->framework         = $framework;
+        $this->scopeMatcher      = $scopeMatcher;
+        $this->requestStack      = $requestStack;
     }
 
     /**
@@ -84,17 +94,18 @@ class ContextualFormLayoutListener extends AbstractListener
      */
     public function onIsVisibleElement(Model $model, bool $visible): bool
     {
-        if (TL_MODE === 'BE') {
+        $request = $this->requestStack->getMainRequest();
+        if ($request && $this->scopeMatcher->isBackendRequest($request)) {
             return $visible;
         }
 
         if ($model instanceof ContentModel) {
             if ($model->type === 'module') {
                 $repository = $this->framework->getAdapter(ModuleModel::class);
-                assert($repository instanceof ModuleModel || $repository instanceof Adapter);
-                $model = $repository->findByPk($model->module);
+                $model      = $repository->findByPk($model->module);
 
-                if (! $model) {
+                /** @psalm-suppress RedundantConditionGivenDocblockType */
+                if (! $model instanceof ModuleModel) {
                     return $visible;
                 }
             } elseif ($this->handleContentElement($model)) {
@@ -207,7 +218,6 @@ class ContextualFormLayoutListener extends AbstractListener
      */
     private function registerContextLayout(int $layoutId): bool
     {
-        $layoutId = (int) $layoutId;
         if (! $layoutId) {
             return false;
         }

@@ -58,16 +58,12 @@ class FormLayoutListener
 
     /**
      * Load styles.
-     *
-     * @SuppressWarnings(PHPMD.Superglobals)
      */
     public function initialize(): void
     {
         /** @var Adapter<Controller> $controller */
         $controller = $this->contaoFramework->getAdapter(Controller::class);
         $controller->loadLanguageFile('tl_form_field');
-
-        $GLOBALS['TL_CSS'][] = 'bundles/netzmachtcontaoformdesigner/style/backend.css';
     }
 
     /**
@@ -77,7 +73,7 @@ class FormLayoutListener
      */
     public function setDefaultLayout(DataContainer $dataContainer): void
     {
-        if (! $dataContainer->activeRecord->defaultLayout) {
+        if (! $dataContainer->activeRecord || ! $dataContainer->activeRecord->defaultLayout) {
             return;
         }
 

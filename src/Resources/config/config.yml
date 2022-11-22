@@ -49,6 +49,18 @@ netzmacht_contao_form_designer:
         control: 'fd_control_radio'
         layout:  'fd_layout_row_field'
 
+    range:
+      help: true
+      templates:
+        control: 'fd_control_range'
+      attributes:
+        type:
+          key: 'type'
+        value:
+          key: value
+          filters:
+            - specialchars
+
     select:
       help: true
       templates:

@@ -32,6 +32,10 @@ class ContaoFormLayoutRepository implements FormLayoutRepository
         return FormLayoutModel::findByPk($layoutId);
     }
 
+    /**
+     * @psalm-suppress InvalidReturnType
+     * @psalm-suppress InvalidReturnStatement
+     */
     public function findByTheme(int $themeId): ?Collection
     {
         return FormLayoutModel::findBy('pid', $themeId);
