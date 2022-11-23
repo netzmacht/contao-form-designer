@@ -41,3 +41,10 @@ services:
     class: Netzmacht\Contao\FormDesigner\Model\FormLayout\ContaoFormLayoutRepository
     arguments:
       - '@database_connection'
+
+  netzmacht.contao_form_designer.migration.widgets_group_index:
+    class: Netzmacht\Contao\FormDesigner\Migration\WidgetsGroupIndexMigration
+    arguments:
+      - '@database_connection'
+    tags:
+      - {name: 'contao.migration'}
