@@ -22,15 +22,14 @@ abstract class AbstractFormLayout implements FormLayout
      *
      * @var array<string,array<string,mixed>>
      */
-    // phpcs:ignore SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint
-    protected $widgetConfig;
+    protected array $widgetConfig;
 
     /**
      * If boolean attribute.
      *
      * @var list<string>
      */
-    protected static $booleanAttributes = [
+    protected static array $booleanAttributes = [
         'compact',
         'declare',
         'defer',
@@ -46,9 +45,7 @@ abstract class AbstractFormLayout implements FormLayout
         'selected',
     ];
 
-    /**
-     * @param array<string,array<string,mixed>> $widgetConfig Widget config.
-     */
+    /** @param array<string,array<string,mixed>> $widgetConfig Widget config. */
     public function __construct(array $widgetConfig)
     {
         $this->widgetConfig = $widgetConfig;
@@ -144,7 +141,7 @@ abstract class AbstractFormLayout implements FormLayout
             [
                 'widget' => $widget,
                 'layout' => $this,
-            ]
+            ],
         );
 
         return $template->parse();
@@ -263,10 +260,8 @@ abstract class AbstractFormLayout implements FormLayout
      *
      * @param Widget              $widget Form widget.
      * @param array<string,mixed> $config Attribute config.
-     *
-     * @return mixed
      */
-    private function parseArrayAttributeConfig(Widget $widget, array $config)
+    private function parseArrayAttributeConfig(Widget $widget, array $config): mixed
     {
         if (array_key_exists('value', $config)) {
             $value = $config['value'];
@@ -288,10 +283,8 @@ abstract class AbstractFormLayout implements FormLayout
      *
      * @param mixed        $value   Given values.
      * @param list<string> $filters Given filters.
-     *
-     * @return mixed
      */
-    protected function evaluateAttributeFilters($value, array $filters)
+    protected function evaluateAttributeFilters(mixed $value, array $filters): mixed
     {
         foreach ($filters as $filter) {
             switch ($filter) {

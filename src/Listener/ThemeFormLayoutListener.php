@@ -21,6 +21,7 @@ class ThemeFormLayoutListener extends AbstractListener
      */
     public function onPageLayout(PageModel $pageModel, LayoutModel $layoutModel): void
     {
+        /** @psalm-suppress RedundantCastGivenDocblockType */
         $model = $this->repository->findDefaultByTheme((int) $layoutModel->pid);
         if (! $model) {
             return;
@@ -30,7 +31,7 @@ class ThemeFormLayoutListener extends AbstractListener
             $model,
             static function (LayoutManager $manager, FormLayout $formLayout): void {
                 $manager->setDefaultThemeLayout($formLayout);
-            }
+            },
         );
     }
 }

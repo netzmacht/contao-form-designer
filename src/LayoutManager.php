@@ -24,12 +24,12 @@ class LayoutManager
     /**
      * Contextual registered form layout.
      */
-    private ?FormLayout $contextLayout = null;
+    private FormLayout|null $contextLayout = null;
 
     /**
      * Default form layout.
      */
-    private ?FormLayout $defaultThemeLayout = null;
+    private FormLayout|null $defaultThemeLayout = null;
 
     /**
      * @param EventDispatcher $eventDispatcher Event dispatcher.

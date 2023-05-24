@@ -40,7 +40,7 @@ final class WidgetUtil
                 // @codingStandardsIgnoreStart
                 return call_user_func_array([$this, $name], $arguments);
                 // @codingStandardsIgnoreEnd
-            }
+            },
         );
     }
 
@@ -61,7 +61,7 @@ final class WidgetUtil
                 // @codingStandardsIgnoreStart
                 return $this->arrAttributes;
                 // @codingStandardsIgnoreEnd
-            }
+            },
         );
     }
 
@@ -72,7 +72,7 @@ final class WidgetUtil
      *
      * @SuppressWarnings(PHPMD.Superglobals)
      */
-    public static function getType(Widget $widget): ?string
+    public static function getType(Widget $widget): string|null
     {
         static $types = [];
 
@@ -92,10 +92,10 @@ final class WidgetUtil
      *
      * @param Widget $widget The widget.
      */
-    public static function getHash(Widget $widget): ?string
+    public static function getHash(Widget $widget): string|null
     {
         /** @psalm-suppress InvalidScope */
-        return static::invokeClosure(
+        return self::invokeClosure(
             $widget,
             function () {
                 // @codingStandardsIgnoreStart
@@ -105,7 +105,7 @@ final class WidgetUtil
                 // @codingStandardsIgnoreEnd
 
                 return null;
-            }
+            },
         );
     }
 
@@ -114,10 +114,8 @@ final class WidgetUtil
      *
      * @param Widget  $widget  The widget.
      * @param Closure $closure The closure.
-     *
-     * @return mixed
      */
-    private static function invokeClosure(Widget $widget, Closure $closure)
+    private static function invokeClosure(Widget $widget, Closure $closure): mixed
     {
         $closure = $closure->bindTo($widget, get_class($widget));
         if ($closure instanceof Closure) {

@@ -21,7 +21,7 @@ class NetzmachtContaoFormDesignerExtension extends Extension
     {
         $loader = new YamlFileLoader(
             $container,
-            new FileLocator(__DIR__ . '/../Resources/config')
+            new FileLocator(__DIR__ . '/../Resources/config'),
         );
 
         $config = $this->processConfiguration(new Configuration(), $configs);
@@ -39,7 +39,7 @@ class NetzmachtContaoFormDesignerExtension extends Extension
         $container->setParameter('netzmacht.contao_form_designer.form_designer.modules', $config['modules']);
         $container->setParameter(
             'netzmacht.contao_form_designer.form_designer.virtual_widgets',
-            $config['virtual_widgets']
+            $config['virtual_widgets'],
         );
 
         $loader->load('services.yml');

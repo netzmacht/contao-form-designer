@@ -45,7 +45,7 @@ abstract class AbstractListener
         LayoutManager $manager,
         FormLayoutRepository $repository,
         FormLayoutFactory $factory,
-        LoggerInterface $logger
+        LoggerInterface $logger,
     ) {
         $this->manager    = $manager;
         $this->repository = $repository;
@@ -68,7 +68,7 @@ abstract class AbstractListener
             $this->logger->log(
                 LogLevel::ERROR,
                 $e->getMessage(),
-                ['contao' => new ContaoContext(__METHOD__, ContaoContext::ERROR)]
+                ['contao' => new ContaoContext(__METHOD__, ContaoContext::ERROR)],
             );
         }
     }

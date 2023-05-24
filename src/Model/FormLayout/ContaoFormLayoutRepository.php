@@ -14,20 +14,18 @@ class ContaoFormLayoutRepository implements FormLayoutRepository
      */
     private Connection $connection;
 
-    /**
-     * @param Connection $connection Database connection.
-     */
+    /** @param Connection $connection Database connection. */
     public function __construct(Connection $connection)
     {
         $this->connection = $connection;
     }
 
-    public function findDefaultByTheme(int $themeId): ?FormLayoutModel
+    public function findDefaultByTheme(int $themeId): FormLayoutModel|null
     {
         return FormLayoutModel::findOneBy(['tl_form_layout.pid=?', 'tl_form_layout.defaultLayout=1'], [$themeId]);
     }
 
-    public function find(int $layoutId): ?FormLayoutModel
+    public function find(int $layoutId): FormLayoutModel|null
     {
         return FormLayoutModel::findByPk($layoutId);
     }
@@ -36,12 +34,12 @@ class ContaoFormLayoutRepository implements FormLayoutRepository
      * @psalm-suppress InvalidReturnType
      * @psalm-suppress InvalidReturnStatement
      */
-    public function findByTheme(int $themeId): ?Collection
+    public function findByTheme(int $themeId): Collection|null
     {
         return FormLayoutModel::findBy('pid', $themeId);
     }
 
-    public function findAll(): ?Collection
+    public function findAll(): Collection|null
     {
         return FormLayoutModel::findAll();
     }

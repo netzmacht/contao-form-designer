@@ -16,9 +16,7 @@ class ThemeExportListener extends Theme
      */
     private FormLayoutRepository $formLayoutRepository;
 
-    /**
-     * @param FormLayoutRepository $formLayoutRepository Form layout repository.
-     */
+    /** @param FormLayoutRepository $formLayoutRepository Form layout repository. */
     public function __construct(FormLayoutRepository $formLayoutRepository)
     {
         parent::__construct();
@@ -35,7 +33,7 @@ class ThemeExportListener extends Theme
      *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function onExportTheme(DOMDocument $xml, ZipWriter $archive, $themeId): void
+    public function onExportTheme(DOMDocument $xml, ZipWriter $archive, int|string $themeId): void
     {
         // Add the tables
         $formLayoutTable = $xml->createElement('table');

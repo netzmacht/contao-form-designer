@@ -9,18 +9,18 @@ use Contao\CoreBundle\Migration\MigrationResult;
 use Contao\StringUtil;
 use Doctrine\DBAL\Connection;
 
+use function is_numeric;
+use function serialize;
+
 final class WidgetsGroupIndexMigration extends AbstractMigration
 {
-    private Connection $connection;
-
-    public function __construct(Connection $connection)
+    public function __construct(private Connection $connection)
     {
-        $this->connection = $connection;
     }
 
     public function shouldRun(): bool
     {
-        $schemaManager = $this->connection->getSchemaManager();
+        $schemaManager = $this->connection->createSchemaManager();
         if (! $schemaManager->tablesExist(['tl_form_layout'])) {
             return false;
         }
@@ -31,7 +31,7 @@ final class WidgetsGroupIndexMigration extends AbstractMigration
         }
 
         $affected = (int) $this->connection->fetchOne(
-            'SELECT COUNT(*) FROM tl_form_layout WHERE widgets LIKE \'a:1:{i:0;%\''
+            'SELECT COUNT(*) FROM tl_form_layout WHERE widgets LIKE \'a:1:{i:0;%\'',
         );
 
         return $affected > 0;
@@ -40,7 +40,7 @@ final class WidgetsGroupIndexMigration extends AbstractMigration
     public function run(): MigrationResult
     {
         $result = $this->connection->fetchAllAssociative(
-            'SELECT * FROM tl_form_layout WHERE widgets LIKE \'a:1:{i:0;%\''
+            'SELECT * FROM tl_form_layout WHERE widgets LIKE \'a:1:{i:0;%\'',
         );
 
         foreach ($result as $row) {
@@ -48,7 +48,7 @@ final class WidgetsGroupIndexMigration extends AbstractMigration
 
             foreach (StringUtil::deserialize($row['widgets'], true) as $key => $template) {
                 if (is_numeric($key)) {
-                    $key = $key + 1;
+                    $key += 1;
                 }
 
                 $templates[$key] = $template;
@@ -57,7 +57,7 @@ final class WidgetsGroupIndexMigration extends AbstractMigration
             $this->connection->update(
                 'tl_form_layout',
                 ['widgets' => serialize($templates)],
-                ['id' => $row['id']]
+                ['id' => $row['id']],
             );
         }
 

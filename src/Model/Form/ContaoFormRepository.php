@@ -8,7 +8,7 @@ use Contao\FormModel;
 
 class ContaoFormRepository implements FormRepository
 {
-    public function find(int $formId): ?FormModel
+    public function find(int $formId): FormModel|null
     {
         return FormModel::findByPk($formId);
     }

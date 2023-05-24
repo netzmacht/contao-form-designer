@@ -46,10 +46,6 @@ class ContextualFormLayoutListener extends AbstractListener
      */
     private ContaoFramework $framework;
 
-    private ScopeMatcher $scopeMatcher;
-
-    private RequestStack $requestStack;
-
     /**
      * @param LayoutManager        $manager           Layout manager.
      * @param FormLayoutRepository $repository        Form layout repository.
@@ -71,8 +67,8 @@ class ContextualFormLayoutListener extends AbstractListener
         LoggerInterface $logger,
         array $supportedModules,
         array $supportedElements,
-        ScopeMatcher $scopeMatcher,
-        RequestStack $requestStack
+        private ScopeMatcher $scopeMatcher,
+        private RequestStack $requestStack,
     ) {
         parent::__construct($manager, $repository, $factory, $logger);
 
@@ -80,8 +76,6 @@ class ContextualFormLayoutListener extends AbstractListener
         $this->supportedElements = $supportedElements;
         $this->formRepository    = $formRepository;
         $this->framework         = $framework;
-        $this->scopeMatcher      = $scopeMatcher;
-        $this->requestStack      = $requestStack;
     }
 
     /**
@@ -133,11 +127,9 @@ class ContextualFormLayoutListener extends AbstractListener
      * @param Model       $model  Element model.
      * @param string|bool $buffer Generated content.
      *
-     * @return string|bool
-     *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function onPostGenerateElement(Model $model, $buffer)
+    public function onPostGenerateElement(Model $model, string|bool $buffer): string|bool
     {
         $this->manager->removeContextLayout();
 
@@ -164,7 +156,7 @@ class ContextualFormLayoutListener extends AbstractListener
             $model,
             static function (LayoutManager $manager, FormLayout $formLayout) use ($event): void {
                 $event->setLayout($formLayout);
-            }
+            },
         );
     }
 
@@ -231,7 +223,7 @@ class ContextualFormLayoutListener extends AbstractListener
             $model,
             static function (LayoutManager $manager, FormLayout $formLayout): void {
                 $manager->setContextLayout($formLayout);
-            }
+            },
         );
 
         return true;

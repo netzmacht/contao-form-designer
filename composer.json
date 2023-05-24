@@ -27,12 +27,12 @@
     "source": "https://github.com/netzmacht/contao-form-designer"
   },
   "require": {
-    "php": "^7.4 || ^8.0",
+    "php": "^8.1",
     "ext-dom": "*",
     "composer-runtime-api": "^2.0",
     "contao-community-alliance/meta-palettes": "^2.0",
     "contao/core-bundle": "^4.13 || ^5.0",
-    "doctrine/dbal": "^3.3",
+    "doctrine/dbal": "^3.4",
     "mvo/contao-group-widget": "^1.4",
     "netzmacht/html": "^2.0.2 || ^3.0",
     "psr/log": "^1.0",
@@ -45,7 +45,7 @@
   },
   "require-dev": {
     "contao/manager-plugin": "^2.1",
-    "doctrine/coding-standard": "^9.0",
+    "doctrine/coding-standard": "^11.0",
     "phpcq/runner-bootstrap": "^1.0@dev"
   },
   "autoload": {
@@ -57,7 +57,8 @@
     "allow-plugins": {
       "contao-components/installer": true,
       "contao/manager-plugin": true,
-      "dealerdirect/phpcodesniffer-composer-installer": true
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "php-http/discovery": true
     }
   },
   "extra": {

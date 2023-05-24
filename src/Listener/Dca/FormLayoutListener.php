@@ -36,7 +36,7 @@ class FormLayoutListener
      *
      * @var list<string>
      */
-    private $virtualWidgets;
+    private array $virtualWidgets;
 
     /**
      * @param FormLayoutRepository $repository      Form layout repository.
@@ -48,7 +48,7 @@ class FormLayoutListener
         FormLayoutRepository $repository,
         FormLayoutFactory $factory,
         ContaoFramework $contaoFramework,
-        array $virtualWidgets
+        array $virtualWidgets,
     ) {
         $this->factory         = $factory;
         $this->contaoFramework = $contaoFramework;
@@ -79,7 +79,7 @@ class FormLayoutListener
 
         $this->repository->setDefaultLayout(
             (int) $dataContainer->activeRecord->pid,
-            (int) $dataContainer->activeRecord->id
+            (int) $dataContainer->activeRecord->id,
         );
     }
 
@@ -122,7 +122,7 @@ class FormLayoutListener
     {
         return array_merge(
             array_keys($GLOBALS['TL_FFL']),
-            $this->virtualWidgets
+            $this->virtualWidgets,
         );
     }
 
@@ -182,6 +182,9 @@ class FormLayoutListener
      * @param string $groupName Group name.
      *
      * @return list<string>
+     *
+     * @psalm-suppress LessSpecificReturnStatement
+     * @psalm-suppress MoreSpecificReturnType
      */
     public function getTemplateGroup(string $groupName): array
     {

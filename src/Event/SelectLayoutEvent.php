@@ -20,11 +20,9 @@ class SelectLayoutEvent extends Event
     /**
      * Form layout.
      */
-    private ?FormLayout $layout = null;
+    private FormLayout|null $layout = null;
 
-    /**
-     * @param Widget $widget Form element widget.
-     */
+    /** @param Widget $widget Form element widget. */
     public function __construct(Widget $widget)
     {
         $this->widget = $widget;
@@ -51,7 +49,7 @@ class SelectLayoutEvent extends Event
     /**
      * Get the form layout.
      */
-    public function getLayout(): ?FormLayout
+    public function getLayout(): FormLayout|null
     {
         return $this->layout;
     }

@@ -26,6 +26,7 @@
                 <referencedProperty name="Contao\FormModel::$formLayout"/>
                 <referencedProperty name="Contao\ContentModel::$formLayout"/>
                 <referencedProperty name="Contao\ModuleModel::$formLayout"/>
+                <referencedProperty name="Contao\DataContainer::$activeRecord"/>
             </errorLevel>
         </UndefinedMagicPropertyFetch>
 

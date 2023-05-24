@@ -19,9 +19,7 @@ class DelegatingFormLayoutFactory implements FormLayoutFactory
      */
     private iterable $factories;
 
-    /**
-     * @param FormLayoutFactory[] $factories Form layout factories.
-     */
+    /** @param FormLayoutFactory[] $factories Form layout factories. */
     public function __construct(iterable $factories)
     {
         $this->factories = $factories;

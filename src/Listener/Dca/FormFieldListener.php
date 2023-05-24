@@ -15,9 +15,7 @@ class FormFieldListener
      */
     private array $widgetConfig;
 
-    /**
-     * @param array<string,array<string,mixed>> $widgetConfig Widget config.
-     */
+    /** @param array<string,array<string,mixed>> $widgetConfig Widget config. */
     public function __construct(array $widgetConfig)
     {
         $this->widgetConfig = $widgetConfig;
@@ -40,7 +38,7 @@ class FormFieldListener
                 ->addField(
                     ['formLayout', 'controlTemplate', 'layoutTemplate'],
                     'template_legend',
-                    PaletteManipulator::POSITION_APPEND
+                    PaletteManipulator::POSITION_APPEND,
                 );
 
             if (! empty($config['help'])) {

@@ -19,9 +19,7 @@ class ThemeImportListener
      */
     private FormLayoutRepository $formLayoutRepository;
 
-    /**
-     * @param FormLayoutRepository $formLayoutRepository Form layout repository.
-     */
+    /** @param FormLayoutRepository $formLayoutRepository Form layout repository. */
     public function __construct(FormLayoutRepository $formLayoutRepository)
     {
         $this->formLayoutRepository = $formLayoutRepository;
@@ -36,7 +34,7 @@ class ThemeImportListener
      *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function onExtractThemeFiles(DOMDocument $xml, ZipReader $archive, $themeId): void
+    public function onExtractThemeFiles(DOMDocument $xml, ZipReader $archive, int|string $themeId): void
     {
         $tables = $xml->getElementsByTagName('table');
 

@@ -14,5 +14,5 @@ ArrayUtil::arrayInsert(
             'label' => &$GLOBALS['TL_LANG']['tl_theme']['form_layout'],
             'icon'  => 'bundles/netzmachtcontaoformdesigner/img/form.gif',
         ],
-    ]
+    ],
 );

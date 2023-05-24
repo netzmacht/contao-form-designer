@@ -13,5 +13,5 @@ interface FormRepository
      *
      * @param int $formId Form id.
      */
-    public function find(int $formId): ?FormModel;
+    public function find(int $formId): FormModel|null;
 }
