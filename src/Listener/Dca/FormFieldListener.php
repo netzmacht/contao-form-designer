@@ -58,7 +58,7 @@ class FormFieldListener
     {
         try {
             $manipulator->applyToPalette($palette, 'tl_form_field');
-        } catch (PaletteNotFoundException $exception) {
+        } catch (PaletteNotFoundException) {
             // Ignore, palette seems not to exist
         }
     }
