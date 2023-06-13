@@ -1,6 +1,15 @@
 Changelog
 =========
 
+1.4.0 (2023-06-12)
+------------------
+
+ - Switched to m-vo/contao-group-widget instead of multicolumnwizard
+ - Support Contao 5
+ - Drop support for Contao < 4.13
+ - Require at least PHP 8.1
+ - Add form_text template for Contao 5 support
+
 1.3.3 (2022-08-15)
 ------------------
 
