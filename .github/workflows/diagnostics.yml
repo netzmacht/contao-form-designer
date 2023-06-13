@@ -26,10 +26,6 @@ jobs:
             phpcq_install: 'update'
             phpcq_flags: ''
             composer_install: 'update'
-          - php: '8.3'
-            phpcq_install: 'update'
-            phpcq_flags: '--exit-0'
-            composer_install: 'update --ignore-platform-reqs'
 
     steps:
       - name: PHP ${{ matrix.php }} Pull source
