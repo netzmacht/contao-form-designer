@@ -1,6 +1,16 @@
 Changelog
 =========
 
+1.3.3 (2022-08-15)
+------------------
+
+ - Support custom palettes for form fields
+
+1.3.2 (2022-08-15)
+------------------
+
+ - Fixed undefined array index warnings
+
 1.3.1 (2022-06-02)
 ------------------
 

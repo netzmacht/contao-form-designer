@@ -79,7 +79,7 @@ class StandardFormLayoutFactory implements FormLayoutFactory
             }
 
             foreach ($this->sections as $section) {
-                if (! $widget[$section]) {
+                if (! ($widget[$section] ?? null)) {
                     continue;
                 }
 
