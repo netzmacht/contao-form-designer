@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Netzmacht\Contao\FormDesigner\Listener\Dca;
 
 use Contao\CoreBundle\DataContainer\PaletteManipulator;
+use Contao\CoreBundle\DataContainer\PaletteNotFoundException;
 
 class FormFieldListener
 {
@@ -45,7 +46,20 @@ class FormFieldListener
                 $manipulator->addField('helpMessage', 'fconfig_legend', PaletteManipulator::POSITION_APPEND);
             }
 
-            $manipulator->applyToPalette($widget, 'tl_form_field');
+            $this->addToPalette($manipulator, $widget);
+
+            foreach ($config['palettes'] ?? [] as $palette) {
+                $this->addToPalette($manipulator, $palette);
+            }
+        }
+    }
+
+    private function addToPalette(PaletteManipulator $manipulator, string $palette): void
+    {
+        try {
+            $manipulator->applyToPalette($palette, 'tl_form_field');
+        } catch (PaletteNotFoundException) {
+            // Ignore, palette seems not to exist
         }
     }
 }
