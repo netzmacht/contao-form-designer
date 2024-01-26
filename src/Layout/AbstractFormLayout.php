@@ -82,7 +82,7 @@ abstract class AbstractFormLayout implements FormLayout
         $attributes->addClass('widget');
 
         $type = WidgetUtil::getType($widget);
-        if ($type) {
+        if ($type !== null) {
             $attributes->addClass('widget-' . $type);
         }
 

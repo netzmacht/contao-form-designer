@@ -35,7 +35,7 @@
     "doctrine/dbal": "^3.4",
     "mvo/contao-group-widget": "^1.4",
     "netzmacht/html": "^2.0.2 || ^3.0",
-    "psr/log": "^1.0",
+    "psr/log": "^1.0 || ^2.0 || ^3.0",
     "symfony/config": "^5.4 || ^6.0",
     "symfony/dependency-injection": "^5.4 || ^6.0",
     "symfony/event-dispatcher": "^5.4 || ^6.0",

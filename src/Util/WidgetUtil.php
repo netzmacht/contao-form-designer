@@ -11,6 +11,7 @@ use function array_key_exists;
 use function array_search;
 use function array_shift;
 use function get_class;
+use function is_string;
 use function method_exists;
 
 /**
@@ -70,6 +71,8 @@ final class WidgetUtil
      *
      * @param Widget $widget Form widget.
      *
+     * @return non-empty-string|null
+     *
      * @SuppressWarnings(PHPMD.Superglobals)
      */
     public static function getType(Widget $widget): string|null
@@ -82,9 +85,9 @@ final class WidgetUtil
         }
 
         $found               = array_search($widgetClass, $GLOBALS['TL_FFL'] ?? [], true);
-        $types[$widgetClass] = ($found ?: $widget->type);
+        $types[$widgetClass] = is_string($found) ? $found : $widget->type;
 
-        return $types[$widgetClass] ?: null;
+        return $types[$widgetClass] !== '' ? $types[$widgetClass] : null;
     }
 
     /**

@@ -29,7 +29,7 @@ class NoLayoutFound extends Exception
     {
         $message = sprintf(
             'No layout found for form widget type "%s"',
-            WidgetUtil::getType($widget) ?: get_class($widget),
+            WidgetUtil::getType($widget) ?? get_class($widget),
         );
 
         return new self($message, $code, $previous);
