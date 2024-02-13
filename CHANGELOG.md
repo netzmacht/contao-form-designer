@@ -1,6 +1,27 @@
 Changelog
 =========
 
+1.4.4 (2024-02-13)
+-----------------
+
+ - Adopt latest captcha changes
+ - Require at least Contao 4.13.37 or Contao 5.2.8
+
+1.4.3 (2024-01-26)
+------------------
+
+ - Allow symfony/event-dispatcher-contracts version 3
+
+1.4.2 (2024-01-26)
+------------------
+
+ - Allow psr/log ^2.0 and ^3.0
+
+1.4.1 (2023-06-26)
+------------------
+
+ - Allow psr/log ^2.0 and ^3.0
+
 1.4.0 (2023-06-12)
 ------------------
 

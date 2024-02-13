@@ -113,6 +113,28 @@ final class WidgetUtil
     }
 
     /**
+     * Get the ajax url if method getAjaxUrl method exists.
+     *
+     * @param Widget $widget The widget.
+     */
+    public static function getAjaxUrl(Widget $widget): string|null
+    {
+        /** @psalm-suppress InvalidScope */
+        return self::invokeClosure(
+            $widget,
+            function () {
+                // @codingStandardsIgnoreStart
+                if (method_exists($this, 'getAjaxUrl')) {
+                    return $this->getAjaxUrl();
+                }
+                // @codingStandardsIgnoreEnd
+
+                return null;
+            },
+        );
+    }
+
+    /**
      * Bind a closure to the widget and invoke it.
      *
      * @param Widget  $widget  The widget.

@@ -31,7 +31,7 @@
     "ext-dom": "*",
     "composer-runtime-api": "^2.0",
     "contao-community-alliance/meta-palettes": "^2.0",
-    "contao/core-bundle": "^4.13 || ^5.0",
+    "contao/core-bundle": "^4.13.37 || ^5.2.8",
     "doctrine/dbal": "^3.4",
     "mvo/contao-group-widget": "^1.4",
     "netzmacht/html": "^2.0.2 || ^3.0",
