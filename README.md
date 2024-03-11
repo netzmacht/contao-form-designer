@@ -24,8 +24,8 @@ See the [CHANGELOG.md](CHANGELOG.md)
 Requirements
 ------------
 
- - min. Contao 4.9
- - min. PHP 7.1 
+ - min. Contao 4.13 oder Contao 5
+ - min. PHP 8.1 
  
  
 Install
