@@ -14,6 +14,7 @@ use Netzmacht\Html\Exception\InvalidArgumentException;
 use function array_key_exists;
 use function gettype;
 use function in_array;
+use function is_string;
 
 abstract class AbstractFormLayout implements FormLayout
 {
@@ -223,14 +224,16 @@ abstract class AbstractFormLayout implements FormLayout
         }
 
         foreach ($this->widgetConfig[$type]['attributes'] as $attribute => $key) {
-            switch (gettype($key)) {
-                case 'array':
-                    $attributes->setAttribute($attribute, $this->parseArrayAttributeConfig($widget, $key));
-                    break;
+            $value = match(gettype($key)) {
+                'array' => $this->parseArrayAttributeConfig($widget, $key),
+                default => $widget->$key,
+            };
 
-                default:
-                    $attributes->setAttribute($attribute, $widget->$key);
+            if (is_string($value)) {
+                $value = StringUtil::decodeEntities($value);
             }
+
+            $attributes->setAttribute($attribute, $value);
         }
     }
 
@@ -250,6 +253,10 @@ abstract class AbstractFormLayout implements FormLayout
             if (in_array($name, static::$booleanAttributes)) {
                 $attributes->setAttribute($name, true);
             } elseif ($value !== '') {
+                if (is_string($value)) {
+                    $value = StringUtil::decodeEntities($value);
+                }
+
                 $attributes->setAttribute($name, $value);
             }
         }
