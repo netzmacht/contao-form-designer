@@ -6,8 +6,13 @@ namespace Netzmacht\Contao\FormDesigner\Model\FormLayout;
 
 use Contao\Model;
 
-/** @property string $type */
-class FormLayoutModel extends Model
+/**
+ * @property string $type
+ * @property int $pid
+ * @property string $name
+ * @property string $title
+ */
+final class FormLayoutModel extends Model
 {
     /**
      * Table name.

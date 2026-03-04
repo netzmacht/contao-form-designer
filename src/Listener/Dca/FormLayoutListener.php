@@ -14,7 +14,7 @@ use Netzmacht\Contao\FormDesigner\Model\FormLayout\FormLayoutRepository;
 use function array_keys;
 use function array_merge;
 
-class FormLayoutListener
+final class FormLayoutListener
 {
     /**
      * Form layout factory.

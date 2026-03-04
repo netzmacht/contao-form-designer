@@ -6,6 +6,7 @@ namespace Netzmacht\Contao\FormDesigner\Layout;
 
 use Contao\Widget;
 use Netzmacht\Contao\FormDesigner\Util\WidgetUtil;
+use Override;
 
 final class ContaoFormLayout extends AbstractFormLayout
 {
@@ -33,14 +34,20 @@ final class ContaoFormLayout extends AbstractFormLayout
      * @param Widget $widget  Widget.
      * @param string $section Section.
      */
+    #[Override]
     protected function getTemplate(Widget $widget, string $section): string
     {
         $type = WidgetUtil::getType($widget);
 
+        /**
+         * @psalm-suppress RiskyTruthyFalsyComparison
+         * @psalm-suppress PossiblyNullArrayOffset
+         */
         if ($section === 'help' && empty($this->widgetConfig[$type]['help'])) {
             return '';
         }
 
+        /** @psalm-suppress PossiblyNullArrayOffset */
         if (isset($this->widgetConfig[$type]['templates'][$section])) {
             return $this->widgetConfig[$type]['templates'][$section];
         }

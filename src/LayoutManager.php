@@ -9,7 +9,7 @@ use Netzmacht\Contao\FormDesigner\Event\SelectLayoutEvent;
 use Netzmacht\Contao\FormDesigner\Layout\FormLayout;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface as EventDispatcher;
 
-class LayoutManager
+final class LayoutManager
 {
     /**
      * Event dispatcher.

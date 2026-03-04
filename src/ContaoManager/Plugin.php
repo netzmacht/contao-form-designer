@@ -10,15 +10,13 @@ use Contao\ManagerPlugin\Bundle\Config\BundleConfig;
 use Contao\ManagerPlugin\Bundle\Parser\ParserInterface;
 use Contao\ManagerPlugin\Config\ConfigPluginInterface;
 use Netzmacht\Contao\FormDesigner\NetzmachtContaoFormDesignerBundle;
+use Override;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
-class Plugin implements BundlePluginInterface, ConfigPluginInterface
+final class Plugin implements BundlePluginInterface, ConfigPluginInterface
 {
-    /**
-     * {@inheritdoc}
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
+    /** {@inheritDoc} */
+    #[Override]
     public function getBundles(ParserInterface $parser): array
     {
         return [
@@ -27,11 +25,8 @@ class Plugin implements BundlePluginInterface, ConfigPluginInterface
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
+    /** {@inheritDoc} */
+    #[Override]
     public function registerContainerConfiguration(LoaderInterface $loader, array $managerConfig): void
     {
         $loader->load(__DIR__ . '/../Resources/config/config.yml');

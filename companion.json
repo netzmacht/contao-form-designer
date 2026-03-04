@@ -1,0 +1,49 @@
+{
+  "receipts": [
+    "projects/contao-bundle/5.3"
+  ],
+  "config": {
+    "phpConstraint": "^8.2"
+  },
+  "tools": {
+    "composer": {
+      "namespace": "Netzmacht\\Contao\\FormDesigner"
+    },
+    "phpcq": {
+      "plugins": {
+        "phpunit": false,
+        "rector": false
+      },
+      "presets": {
+        "composer-require-checker": {
+          "tasks": {
+            "composer-require-checker": {
+              "config":{
+                "config_file": ".composer-require-checker.json"
+              }
+            }
+          }
+        },
+        "phpcpd": {
+          "tasks": {
+            "phpcpd": {
+              "config": {
+                "exclude": [
+                  "src/Resources/contao/dca/tl_cowegis_popup.php",
+                  "src/Resources/contao/dca/tl_cowegis_style.php",
+                  "src/Resources/contao/dca/tl_cowegis_icon.php",
+                  "src/Resources/contao/dca/tl_cowegis_control.php"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "psalm": {
+      "configuration": {
+        "errorLevel": "3"
+      }
+    }
+  }
+}

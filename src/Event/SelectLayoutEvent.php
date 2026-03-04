@@ -8,9 +8,9 @@ use Contao\Widget;
 use Netzmacht\Contao\FormDesigner\Layout\FormLayout;
 use Symfony\Contracts\EventDispatcher\Event;
 
-class SelectLayoutEvent extends Event
+final class SelectLayoutEvent extends Event
 {
-    public const NAME = 'netzmacht.contao_form_designer.select_layout';
+    public const string NAME = 'netzmacht.contao_form_designer.select_layout';
 
     /**
      * Form widget.

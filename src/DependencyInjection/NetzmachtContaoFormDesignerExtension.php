@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Netzmacht\Contao\FormDesigner\DependencyInjection;
 
 use Contao\CoreBundle\ContaoCoreBundle;
+use Override;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
@@ -12,11 +13,12 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 use function method_exists;
 
-class NetzmachtContaoFormDesignerExtension extends Extension
+final class NetzmachtContaoFormDesignerExtension extends Extension
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
+    #[Override]
     public function load(array $configs, ContainerBuilder $container): void
     {
         $loader = new YamlFileLoader(

@@ -6,11 +6,12 @@ namespace Netzmacht\Contao\FormDesigner\Factory;
 
 use Netzmacht\Contao\FormDesigner\Exception\CreatingLayoutFailed;
 use Netzmacht\Contao\FormDesigner\Layout\FormLayout;
+use Override;
 
 use function array_merge;
 use function in_array;
 
-class DelegatingFormLayoutFactory implements FormLayoutFactory
+final class DelegatingFormLayoutFactory implements FormLayoutFactory
 {
     /**
      * Factories list.
@@ -26,10 +27,11 @@ class DelegatingFormLayoutFactory implements FormLayoutFactory
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      *
      * @throws CreatingLayoutFailed When type is not supported.
      */
+    #[Override]
     public function create(string $type, array $config): FormLayout
     {
         foreach ($this->factories as $factory) {
@@ -46,6 +48,7 @@ class DelegatingFormLayoutFactory implements FormLayoutFactory
      *
      * @return list<string>
      */
+    #[Override]
     public function supportedTypes(): array
     {
         $types = [];

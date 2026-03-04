@@ -9,7 +9,7 @@ use Contao\PageModel;
 use Netzmacht\Contao\FormDesigner\Layout\FormLayout;
 use Netzmacht\Contao\FormDesigner\LayoutManager;
 
-class ThemeFormLayoutListener extends AbstractListener
+final class ThemeFormLayoutListener extends AbstractListener
 {
     /**
      * Handle the generate page hook.

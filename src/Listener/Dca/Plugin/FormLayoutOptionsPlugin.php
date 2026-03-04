@@ -25,7 +25,7 @@ trait FormLayoutOptionsPlugin
 
         if ($collection) {
             foreach ($collection as $model) {
-                $themeName = $model->getRelated('pid')->name . ' [ID ' . $model->pid . ']';
+                $themeName = ($model->getRelated('pid')?->name ?? $model->pid) . ' [ID ' . $model->pid . ']';
 
                 $options[$themeName][$model->id] = $model->title . ' [ID ' . $model->id . ']';
             }

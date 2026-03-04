@@ -26,11 +26,15 @@ interface FormLayoutRepository
      * Find form layout by theme.
      *
      * @param int $themeId Theme id.
+     *
+     * @return Collection<FormLayoutModel>|null
      */
     public function findByTheme(int $themeId): Collection|null;
 
     /**
      * Find all form layouts.
+     *
+     * @return Collection<FormLayoutModel>|null
      */
     public function findAll(): Collection|null;
 

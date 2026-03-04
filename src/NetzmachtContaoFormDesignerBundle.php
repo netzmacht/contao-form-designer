@@ -6,6 +6,6 @@ namespace Netzmacht\Contao\FormDesigner;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class NetzmachtContaoFormDesignerBundle extends Bundle
+final class NetzmachtContaoFormDesignerBundle extends Bundle
 {
 }

@@ -6,6 +6,7 @@ namespace Netzmacht\Contao\FormDesigner\Util;
 
 use Closure;
 use Contao\Widget;
+use InvalidArgumentException;
 
 use function array_key_exists;
 use function array_search;
@@ -32,9 +33,12 @@ final class WidgetUtil
     public static function __callStatic(string $name, array $arguments)
     {
         $widget = array_shift($arguments);
+        if (! $widget instanceof Widget) {
+            throw new InvalidArgumentException('First argument has to be a widget.');
+        }
 
         /** @psalm-suppress InvalidScope */
-        return static::invokeClosure(
+        return self::invokeClosure(
             $widget,
             /** @return mixed */
             function () use ($name, $arguments) {

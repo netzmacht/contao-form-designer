@@ -10,6 +10,7 @@ use Contao\Widget;
 use Netzmacht\Contao\FormDesigner\Util\WidgetUtil;
 use Netzmacht\Html\Attributes;
 use Netzmacht\Html\Exception\InvalidArgumentException;
+use Override;
 
 use function array_key_exists;
 use function gettype;
@@ -52,31 +53,37 @@ abstract class AbstractFormLayout implements FormLayout
         $this->widgetConfig = $widgetConfig;
     }
 
+    #[Override]
     public function render(Widget $widget): string
     {
         return $this->renderBlock($widget, $this->getLayoutTemplate($widget));
     }
 
+    #[Override]
     public function renderControl(Widget $widget): string
     {
         return $this->renderBlock($widget, $this->getControlTemplate($widget));
     }
 
+    #[Override]
     public function renderLabel(Widget $widget): string
     {
         return $this->renderBlock($widget, $this->getLabelTemplate($widget));
     }
 
+    #[Override]
     public function renderErrors(Widget $widget): string
     {
         return $this->renderBlock($widget, $this->getErrorTemplate($widget));
     }
 
+    #[Override]
     public function renderHelpText(Widget $widget): string
     {
         return $this->renderBlock($widget, $this->getHelpTextTemplate($widget));
     }
 
+    #[Override]
     public function getContainerAttributes(Widget $widget): Attributes
     {
         $attributes = new Attributes();
@@ -94,6 +101,7 @@ abstract class AbstractFormLayout implements FormLayout
         return $attributes;
     }
 
+    #[Override]
     public function getLabelAttributes(Widget $widget): Attributes
     {
         $attributes = new Attributes();
@@ -106,6 +114,7 @@ abstract class AbstractFormLayout implements FormLayout
         return $attributes;
     }
 
+    #[Override]
     public function getControlAttributes(Widget $widget): Attributes
     {
         $attributes = new Attributes();
@@ -219,12 +228,16 @@ abstract class AbstractFormLayout implements FormLayout
     {
         $type = WidgetUtil::getType($widget);
 
+        /**
+         * @psalm-suppress RiskyTruthyFalsyComparison
+         * @psalm-suppress PossiblyNullArrayOffset
+         */
         if (empty($this->widgetConfig[$type]['attributes'])) {
             return;
         }
 
         foreach ($this->widgetConfig[$type]['attributes'] as $attribute => $key) {
-            $value = match(gettype($key)) {
+            $value = match (gettype($key)) {
                 'array' => $this->parseArrayAttributeConfig($widget, $key),
                 default => $widget->$key,
             };

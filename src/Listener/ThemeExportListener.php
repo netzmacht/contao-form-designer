@@ -9,7 +9,7 @@ use Contao\ZipWriter;
 use DOMDocument;
 use Netzmacht\Contao\FormDesigner\Model\FormLayout\FormLayoutRepository;
 
-class ThemeExportListener extends Theme
+final class ThemeExportListener extends Theme
 {
     /**
      * Form layout repository.
@@ -40,10 +40,10 @@ class ThemeExportListener extends Theme
         $formLayoutTable->setAttribute('name', 'tl_form_layout');
 
         $tables          = $xml->getElementsByTagName('tables')->item(0);
-        $formLayoutTable = $tables->appendChild($formLayoutTable);
+        $formLayoutTable = $tables?->appendChild($formLayoutTable);
         $collection      = $this->formLayoutRepository->findByTheme((int) $themeId);
 
-        if (! $collection) {
+        if (! $collection || $formLayoutTable === null) {
             return;
         }
 

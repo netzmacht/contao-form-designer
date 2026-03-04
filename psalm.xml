@@ -1,11 +1,5 @@
 <?xml version="1.0"?>
-<psalm
-        errorLevel="3"
-        hideExternalErrors="true"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns="https://getpsalm.org/schema/config"
-        xsi:schemaLocation="https://getpsalm.org/schema/config https://getpsalm.org/schema/config"
->
+<psalm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://getpsalm.org/schema/config" errorLevel="3" hideExternalErrors="true" xsi:schemaLocation="https://getpsalm.org/schema/config https://getpsalm.org/schema/config" findUnusedCode="false" findUnusedBaselineEntry="false">
     <projectFiles>
         <directory name="src"/>
         <ignoreFiles>
@@ -29,11 +23,5 @@
                 <referencedProperty name="Contao\DataContainer::$activeRecord"/>
             </errorLevel>
         </UndefinedMagicPropertyFetch>
-
-        <InternalMethod>
-            <errorLevel type="suppress">
-                <referencedMethod name="Contao\CoreBundle\Framework\ContaoFramework::getAdapter"/>
-            </errorLevel>
-        </InternalMethod>
     </issueHandlers>
 </psalm>

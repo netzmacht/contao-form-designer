@@ -14,7 +14,7 @@ use function sprintf;
 /**
  * Class NoLayoutFound exception.
  */
-class NoLayoutFound extends Exception
+final class NoLayoutFound extends Exception
 {
     /**
      * Generate the no layout widget.

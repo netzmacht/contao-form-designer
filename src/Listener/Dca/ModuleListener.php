@@ -9,7 +9,7 @@ use ContaoCommunityAlliance\MetaPalettes\MetaPalettes;
 use Netzmacht\Contao\FormDesigner\Listener\Dca\Plugin\FormLayoutOptionsPlugin;
 use Netzmacht\Contao\FormDesigner\Model\FormLayout\FormLayoutRepository;
 
-class ModuleListener
+final class ModuleListener
 {
     use FormLayoutOptionsPlugin;
 

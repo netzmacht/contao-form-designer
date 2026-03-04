@@ -7,10 +7,11 @@ namespace Netzmacht\Contao\FormDesigner\Factory;
 use Contao\StringUtil;
 use Netzmacht\Contao\FormDesigner\Layout\ContaoFormLayout;
 use Netzmacht\Contao\FormDesigner\Layout\FormLayout;
+use Override;
 
 use function ucfirst;
 
-class StandardFormLayoutFactory implements FormLayoutFactory
+final class StandardFormLayoutFactory implements FormLayoutFactory
 {
     /**
      * Widget config.
@@ -44,8 +45,9 @@ class StandardFormLayoutFactory implements FormLayoutFactory
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
+    #[Override]
     public function create(string $type, array $config): FormLayout
     {
         $widgetConfig      = $this->buildWidgetConfig($config);
@@ -55,8 +57,9 @@ class StandardFormLayoutFactory implements FormLayoutFactory
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
+    #[Override]
     public function supportedTypes(): array
     {
         return ['standard'];

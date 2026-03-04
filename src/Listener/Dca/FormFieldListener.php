@@ -7,7 +7,7 @@ namespace Netzmacht\Contao\FormDesigner\Listener\Dca;
 use Contao\CoreBundle\DataContainer\PaletteManipulator;
 use Contao\CoreBundle\DataContainer\PaletteNotFoundException;
 
-class FormFieldListener
+final class FormFieldListener
 {
     /**
      * Widget config.

@@ -12,7 +12,7 @@ use Netzmacht\Contao\FormDesigner\Model\FormLayout\FormLayoutRepository;
 
 use function assert;
 
-class ThemeImportListener
+final class ThemeImportListener
 {
     /**
      * Form layout repository.
@@ -39,11 +39,16 @@ class ThemeImportListener
         $tables = $xml->getElementsByTagName('table');
 
         for ($index = 0; $index < $tables->length; $index++) {
-            if ($tables->item($index)->getAttribute('name') !== 'tl_form_layout') {
+            $item = $tables->item($index);
+            if ($item === null) {
                 continue;
             }
 
-            $this->importFormLayout($tables->item($index), (int) $themeId);
+            if ($item->getAttribute('name') !== 'tl_form_layout') {
+                continue;
+            }
+
+            $this->importFormLayout($item, (int) $themeId);
         }
     }
 
@@ -58,8 +63,12 @@ class ThemeImportListener
         $rows = $item->childNodes;
 
         for ($index = 0; $index < $rows->length; $index++) {
-            /** @psalm-suppress ArgumentTypeCoercion */
-            $values = $this->getRowValues($rows->item($index), $themeId);
+            $item = $rows->item($index);
+            if (! $item instanceof DOMElement) {
+                continue;
+            }
+
+            $values = $this->getRowValues($item, $themeId);
             $model  = new FormLayoutModel();
 
             $model->setRow($values);

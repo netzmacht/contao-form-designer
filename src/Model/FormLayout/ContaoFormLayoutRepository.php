@@ -6,8 +6,9 @@ namespace Netzmacht\Contao\FormDesigner\Model\FormLayout;
 
 use Contao\Model\Collection;
 use Doctrine\DBAL\Connection;
+use Override;
 
-class ContaoFormLayoutRepository implements FormLayoutRepository
+final class ContaoFormLayoutRepository implements FormLayoutRepository
 {
     /**
      * Database connection.
@@ -20,11 +21,13 @@ class ContaoFormLayoutRepository implements FormLayoutRepository
         $this->connection = $connection;
     }
 
+    #[Override]
     public function findDefaultByTheme(int $themeId): FormLayoutModel|null
     {
         return FormLayoutModel::findOneBy(['tl_form_layout.pid=?', 'tl_form_layout.defaultLayout=1'], [$themeId]);
     }
 
+    #[Override]
     public function find(int $layoutId): FormLayoutModel|null
     {
         return FormLayoutModel::findByPk($layoutId);
@@ -34,21 +37,25 @@ class ContaoFormLayoutRepository implements FormLayoutRepository
      * @psalm-suppress InvalidReturnType
      * @psalm-suppress InvalidReturnStatement
      */
+    #[Override]
     public function findByTheme(int $themeId): Collection|null
     {
         return FormLayoutModel::findBy('pid', $themeId);
     }
 
+    #[Override]
     public function findAll(): Collection|null
     {
         return FormLayoutModel::findAll();
     }
 
+    #[Override]
     public function add(FormLayoutModel $model): void
     {
         $model->save();
     }
 
+    #[Override]
     public function setDefaultLayout(int $themeId, int $defaultLayoutId): void
     {
         $statement = $this->connection->prepare('UPDATE tl_form_layout SET defaultLayout=? WHERE pid=? AND id!=?');

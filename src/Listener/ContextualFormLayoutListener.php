@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 use function in_array;
 
-class ContextualFormLayoutListener extends AbstractListener
+final class ContextualFormLayoutListener extends AbstractListener
 {
     /**
      * List of supported frontend modules.
