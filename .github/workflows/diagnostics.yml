@@ -15,10 +15,6 @@ jobs:
       matrix:
         include:
           - php: '8.3'
-            phpcq_install: 'install'
-            phpcq_flags: ''
-            composer_install: 'update --prefer-lowest'
-          - php: '8.3'
             phpcq_install: 'update'
             phpcq_flags: ''
             composer_install: 'update'
