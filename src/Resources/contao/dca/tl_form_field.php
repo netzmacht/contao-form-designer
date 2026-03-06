@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Doctrine\DBAL\Types\Types;
+
 $GLOBALS['TL_DCA']['tl_form_field']['config']['onload_callback'][] = [
     'netzmacht.contao_form_designer.listener.dca.form_field',
     'initialize',
@@ -12,7 +14,7 @@ $GLOBALS['TL_DCA']['tl_form_field']['fields']['helpMessage'] = [
     'inputType' => 'text',
     'search'    => true,
     'eval'      => ['maxlength' => 255, 'tl_class' => 'long clr'],
-    'sql'       => "varchar(255) NOT NULL default ''",
+    'sql'       => ['type' => Types::STRING, 'length' => 255, 'default' => '', 'notnull' => true],
 ];
 
 $GLOBALS['TL_DCA']['tl_form_field']['fields']['controlClass'] = [
@@ -20,7 +22,7 @@ $GLOBALS['TL_DCA']['tl_form_field']['fields']['controlClass'] = [
     'search'    => true,
     'inputType' => 'text',
     'eval'      => ['maxlength' => 255, 'tl_class' => 'w50'],
-    'sql'       => "varchar(255) NOT NULL default ''",
+    'sql'       => ['type' => Types::STRING, 'length' => 255, 'default' => '', 'notnull' => true],
 ];
 
 $GLOBALS['TL_DCA']['tl_form_field']['fields']['formLayout'] = [
@@ -33,7 +35,7 @@ $GLOBALS['TL_DCA']['tl_form_field']['fields']['formLayout'] = [
     'options_callback' => ['netzmacht.contao_form_designer.listener.dca.module', 'getFormLayoutOptions'],
     'foreignKey'       => 'tl_form_layout.title',
     'relation'         => ['type' => 'belongsTo', 'load' => 'lazy'],
-    'sql'              => "int(10) unsigned NOT NULL default '0'",
+    'sql'              => ['type' => Types::INTEGER, 'unsigned' => true, 'default' => 0, 'notnull' => true],
 ];
 
 $GLOBALS['TL_DCA']['tl_form_field']['fields']['controlTemplate'] = [

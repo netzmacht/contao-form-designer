@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Contao\DC_Table;
+use Doctrine\DBAL\Types\Types;
 
 $GLOBALS['TL_DCA']['tl_form_layout'] = [
     'config'       => [
@@ -87,20 +88,27 @@ $GLOBALS['TL_DCA']['tl_form_layout'] = [
         'id'              => [
             'label'  => ['ID'],
             'search' => true,
-            'sql'    => 'int(10) unsigned NOT NULL auto_increment',
+            'sql'    => [
+                'type'          => Types::INTEGER,
+                'unsigned'      => true,
+                'autoincrement' => true,
+                'notnull'       => true,
+            ],
         ],
         'pid'             => [
             'foreignKey' => 'tl_theme.name',
-            'sql'        => "int(10) unsigned NOT NULL default '0'",
+            'sql'        => ['type' => Types::INTEGER, 'unsigned' => true, 'default' => 0, 'notnull' => true],
             'relation'   => ['type' => 'belongsTo', 'load' => 'lazy'],
         ],
-        'tstamp'          => ['sql' => "int(10) unsigned NOT NULL default '0'"],
+        'tstamp'          => [
+            'sql' => ['type' => Types::INTEGER, 'unsigned' => true, 'default' => 0, 'notnull' => true],
+        ],
         'title'           => [
             'exclude'   => true,
             'inputType' => 'text',
             'search'    => true,
             'eval'      => ['mandatory' => true, 'maxlength' => 255, 'tl_class' => 'w50'],
-            'sql'       => "varchar(255) NOT NULL default ''",
+            'sql'       => ['type' => Types::STRING, 'length' => 255, 'default' => '', 'notnull' => true],
         ],
         'type'            => [
             'exclude'          => true,
@@ -114,13 +122,19 @@ $GLOBALS['TL_DCA']['tl_form_layout'] = [
                 'chosen'             => true,
                 'submitOnChange'     => true,
             ],
-            'sql'              => "varchar(32) NOT NULL default ''",
+            'sql'              => ['type' => Types::STRING, 'length' => 32, 'default' => '', 'notnull' => true],
         ],
         'defaultLayout'   => [
             'exclude'   => true,
             'inputType' => 'checkbox',
             'eval'      => ['tl_class' => 'w50'],
-            'sql'       => "char(1) NOT NULL default ''",
+            'sql'       => [
+                'type'    => Types::STRING,
+                'length'  => 1,
+                'fixed'   => true,
+                'default' => '',
+                'notnull' => true,
+            ],
         ],
         'widgets'         => [
             'exclude'   => true,
@@ -166,42 +180,42 @@ $GLOBALS['TL_DCA']['tl_form_layout'] = [
                 ],
             ],
             'eval'      => ['tl_class' => 'clr long'],
-            'sql'       => 'blob NULL',
+            'sql'       => ['type' => Types::BLOB, 'notnull' => false],
         ],
         'fallbackLayout'  => [
             'exclude'          => true,
             'inputType'        => 'select',
             'options_callback' => ['netzmacht.contao_form_designer.listener.dca.form_layout', 'getLayoutTemplates'],
             'eval'             => ['tl_class' => 'w50', 'includeBlankOption' => true, 'chosen' => true],
-            'sql'              => "varchar(64) NOT NULL default ''",
+            'sql'              => ['type' => Types::STRING, 'length' => 64, 'default' => '', 'notnull' => true],
         ],
         'fallbackControl' => [
             'exclude'          => true,
             'inputType'        => 'select',
             'options_callback' => ['netzmacht.contao_form_designer.listener.dca.form_layout', 'getControlTemplates'],
             'eval'             => ['tl_class' => 'w50', 'includeBlankOption' => true, 'chosen' => true],
-            'sql'              => "varchar(64) NOT NULL default ''",
+            'sql'              => ['type' => Types::STRING, 'length' => 64, 'default' => '', 'notnull' => true],
         ],
         'fallbackLabel'   => [
             'exclude'          => true,
             'inputType'        => 'select',
             'options_callback' => ['netzmacht.contao_form_designer.listener.dca.form_layout', 'getLabelTemplates'],
             'eval'             => ['tl_class' => 'w50', 'includeBlankOption' => true, 'chosen' => true],
-            'sql'              => "varchar(64) NOT NULL default ''",
+            'sql'              => ['type' => Types::STRING, 'length' => 64, 'default' => '', 'notnull' => true],
         ],
         'fallbackError'   => [
             'exclude'          => true,
             'inputType'        => 'select',
             'options_callback' => ['netzmacht.contao_form_designer.listener.dca.form_layout', 'getErrorTemplates'],
             'eval'             => ['tl_class' => 'w50', 'includeBlankOption' => true, 'chosen' => true],
-            'sql'              => "varchar(64) NOT NULL default ''",
+            'sql'              => ['type' => Types::STRING, 'length' => 64, 'default' => '', 'notnull' => true],
         ],
         'fallbackHelp'    => [
             'exclude'          => true,
             'inputType'        => 'select',
             'options_callback' => ['netzmacht.contao_form_designer.listener.dca.form_layout', 'getHelpTemplates'],
             'eval'             => ['tl_class' => 'w50', 'includeBlankOption' => true, 'chosen' => true],
-            'sql'              => "varchar(64) NOT NULL default ''",
+            'sql'              => ['type' => Types::STRING, 'length' => 64, 'default' => '', 'notnull' => true],
         ],
     ],
 ];

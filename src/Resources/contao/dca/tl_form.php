@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Doctrine\DBAL\Types\Types;
+
 $GLOBALS['TL_DCA']['tl_form']['config']['onload_callback'][] = [
     'netzmacht.contao_form_designer.listener.dca.form',
     'preparePalette',
@@ -17,5 +19,5 @@ $GLOBALS['TL_DCA']['tl_form']['fields']['formLayout'] = [
     'options_callback' => ['netzmacht.contao_form_designer.listener.dca.form', 'getFormLayoutOptions'],
     'foreignKey'       => 'tl_form_layout.title',
     'relation'         => ['type' => 'belongsTo', 'load' => 'lazy'],
-    'sql'              => "int(10) unsigned NOT NULL default '0'",
+    'sql'              => ['type' => Types::INTEGER, 'unsigned' => true, 'default' => 0, 'notnull' => true],
 ];
