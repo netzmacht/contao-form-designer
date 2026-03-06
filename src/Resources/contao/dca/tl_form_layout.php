@@ -62,9 +62,10 @@ $GLOBALS['TL_DCA']['tl_form_layout'] = [
         ],
         'operations'        => [
             'edit'   => [
-                'label' => &$GLOBALS['TL_LANG']['tl_form_layout']['edit'],
-                'href'  => 'act=edit',
-                'icon'  => 'edit.svg',
+                'label'   => &$GLOBALS['TL_LANG']['tl_form_layout']['edit'],
+                'primary' => true,
+                'href'    => 'act=edit',
+                'icon'    => 'edit.svg',
             ],
             'copy'   => [
                 'label'      => &$GLOBALS['TL_LANG']['tl_form_layout']['copy'],
