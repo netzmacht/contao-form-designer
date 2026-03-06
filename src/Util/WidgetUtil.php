@@ -11,6 +11,7 @@ use InvalidArgumentException;
 use function array_key_exists;
 use function array_search;
 use function array_shift;
+use function call_user_func_array;
 use function get_class;
 use function is_string;
 use function method_exists;
@@ -42,9 +43,9 @@ final class WidgetUtil
             $widget,
             /** @return mixed */
             function () use ($name, $arguments) {
-                // @codingStandardsIgnoreStart
+                // phpcs:disable
                 return call_user_func_array([$this, $name], $arguments);
-                // @codingStandardsIgnoreEnd
+                // phpcs:enable
             },
         );
     }
@@ -63,9 +64,9 @@ final class WidgetUtil
             $widget,
             /** @return mixed */
             function () {
-                // @codingStandardsIgnoreStart
+                // phpcs:disable
                 return $this->arrAttributes;
-                // @codingStandardsIgnoreEnd
+                // phpcs:enable
             },
         );
     }
@@ -105,11 +106,11 @@ final class WidgetUtil
         return self::invokeClosure(
             $widget,
             function () {
-                // @codingStandardsIgnoreStart
+                // phpcs:disable
                 if (method_exists($this, 'getHash')) {
                     return $this->getHash();
                 }
-                // @codingStandardsIgnoreEnd
+                // phpcs:enable
 
                 return null;
             },
@@ -127,11 +128,11 @@ final class WidgetUtil
         return self::invokeClosure(
             $widget,
             function () {
-                // @codingStandardsIgnoreStart
+                // phpcs:disable
                 if (method_exists($this, 'getAjaxUrl')) {
                     return $this->getAjaxUrl();
                 }
-                // @codingStandardsIgnoreEnd
+                // phpcs:enable
 
                 return null;
             },
