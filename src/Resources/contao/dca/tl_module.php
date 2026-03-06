@@ -8,7 +8,6 @@ $GLOBALS['TL_DCA']['tl_module']['config']['onload_callback'][] = [
 ];
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['formLayout'] = [
-    'label'            => &$GLOBALS['TL_LANG']['tl_module']['formLayout'],
     'inputType'        => 'select',
     'eval'             => [
         'tl_class'           => 'w50',
